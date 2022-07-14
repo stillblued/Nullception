@@ -16,5 +16,7 @@ public class CommunityVO {
 	private int comHit;
 	private String memberLocation;
 	private String memberNickname;
+	private String attach;
+	private String attachDir;
 
 }
