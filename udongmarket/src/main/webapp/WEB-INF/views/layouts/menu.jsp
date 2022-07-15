@@ -69,7 +69,7 @@ footer {
   <nav>
     <ul>
       <li><a href="">ㅇㅅㅇ</a></li>
-      
+      <li><button type="button" onclick="location.href='mypage.do'">마이페이지</button>&nbsp;
     </ul>
   </nav>
 

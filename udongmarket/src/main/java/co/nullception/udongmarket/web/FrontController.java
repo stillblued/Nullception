@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import co.nullception.udongmarket.MainCommand;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.member.command.MemberLoginForm;
+import co.nullception.udongmarket.myPage.command.deleteMember;
+import co.nullception.udongmarket.myPage.command.showMypage;
 
 
 
@@ -28,7 +31,8 @@ public class FrontController extends HttpServlet {
 		// 요청과 수행할 커맨드 연결
 		map.put("/main.do", new MainCommand());
 		
-
+		map.put("/mypage.do", new showMypage());
+		map.put("/deletemember.do", new deleteMember());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
