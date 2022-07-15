@@ -10,11 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import co.nullception.udongmarket.MainCommand;
+import co.nullception.udongmarket.admin.command.FAQCommand;
+import co.nullception.udongmarket.admin.command.FaqFormCommand;
+import co.nullception.udongmarket.admin.command.MemberListCommand;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.member.command.MemberJoinForm;
 import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
+import co.nullception.udongmarket.myPage.command.deleteMember;
+import co.nullception.udongmarket.myPage.command.showMypage;
 
 
 
@@ -36,8 +41,11 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLogin.do", new MemberLogin()); // 로그인
 		map.put("/memberLogout.do", new MemberLogout()); // 로그아웃
 		map.put("/memberJoinForm.do", new MemberJoinForm()); // 회원가입 폼 호출
-		
-
+		map.put("/memberList.do", new MemberListCommand()); //관리자페이지 > 멤버리스트 호출
+		map.put("/faq.do", new FAQCommand()); // FAQ List
+		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
+		map.put("/mypage.do", new showMypage());
+		map.put("/deletemember.do", new deleteMember());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -50,6 +58,7 @@ public class FrontController extends HttpServlet {
 
 		Command command = map.get(page);
 		String viewPage = command.exec(request, response);
+		System.out.println("page : " +page+", viewPage : "+viewPage);
 
 		if (!viewPage.endsWith(".do")) {
 			if (viewPage.startsWith("ajax:")) {

@@ -72,19 +72,15 @@ footer {
 <body>
 
 
+
 	<nav>
 		<ul>
 			<li><a href="memberLoginForm.do">로그인</a></li>
-			<il> <a href="">마이페이지</a></il>
-
-			<il> <a href="">관리자페이지</a></il>
-
-
 			<li><a href="memberJoinForm.do">회원가입</a></li>
+      <li><button type="button" onclick="location.href='mypage.do'">마이페이지</button>&nbsp;
+			<li><a href="memberList.do">관리자페이지</a></li>
 		</ul>
 	</nav>
-
-
 
 </body>
 </html>

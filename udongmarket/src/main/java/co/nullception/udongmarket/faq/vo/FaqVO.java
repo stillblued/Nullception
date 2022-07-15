@@ -18,4 +18,5 @@ public class FaqVO {
 	private String attach;
 	private String attachDir;
 
+
 }
