@@ -10,11 +10,13 @@
 	<div>
 		<!-- 메인 > 관리자페이지 > 상세 카테고리 노출 -->
 		<nav>
-			<ul>
-				<li><a href="memberList.do">사용자 목록</a></li>
-				<li><a href="faq.do">FAQ</a></li>
-			</ul>
+			
+				<a href="memberList.do">사용자 목록</a>&nbsp;&nbsp;&nbsp;
+				<a href="faq.do">FAQ</a></li>
+
 		</nav>
+		<br>
+		<br> 
 		<table border=1>
 			<thead>
 				<tr>

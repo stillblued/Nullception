@@ -5,32 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-</style>
-
+<title>header</title>
 </head>
 <body>
 
-
-
-  <h2>ㅇㅅㅇ</h2>
-
-
+  <a href = "main.do"><h1>우동마켓</h1></a>
+  
 </body>
 </html>

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import co.nullception.udongmarket.comm.DataSource;
 import co.nullception.udongmarket.member.service.MemberService;
 import co.nullception.udongmarket.member.vo.MemberVO;
@@ -119,8 +118,8 @@ public class MemberServiceImpl implements MemberService {
 			psmt.setString(4, vo.getPhone());
 			psmt.setString(5, vo.getEmail());
 			psmt.setString(6, vo.getLocation());
-			cnt = psmt.executeUpdate();
 			
+			cnt = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

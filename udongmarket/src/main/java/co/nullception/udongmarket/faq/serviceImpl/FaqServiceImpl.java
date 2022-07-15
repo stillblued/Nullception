@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import co.nullception.udongmarket.comm.DataSource;
 import co.nullception.udongmarket.faq.service.FaqService;
 import co.nullception.udongmarket.faq.vo.FaqVO;
 
 public class FaqServiceImpl implements FaqService {
+	
 	private DataSource dao = DataSource.getInstance();
 	private Connection conn;
 	private PreparedStatement psmt;
@@ -45,7 +45,6 @@ public class FaqServiceImpl implements FaqService {
 	@Override
 	public FaqVO faqSelect(FaqVO vo) {
 		// 글 상세 보기
-		List<FaqVO> list = new ArrayList<>();
 		String sql = "select * from faq where member_id = ?";
 		try {
 			conn = dao.getConnection();
@@ -131,7 +130,7 @@ public class FaqServiceImpl implements FaqService {
 
 	@Override
 	public List<FaqVO> faqSearch(String val) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 

@@ -7,12 +7,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
 <title><tiles:getAsString name="title" /></title>
+
 <style>
 * {
 	box-sizing: border-box;
 }
+
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -26,29 +27,26 @@ header {
 }
 /* Create two columns/boxes that floats next to each other */
 nav {
-	float: left;
-	width: 30%;
-	height: 300px; /* only for demonstration, should be removed */
+	width: 75%;
+	height: 50px; /* only for demonstration, should be removed */
 	background: #ccc;
-	padding: 20px;
+	padding: 10px;
 }
 /* Style the list inside the menu */
 nav ul {
 	list-style-type: none;
 	padding: 0;
 }
+
 article {
-	float: left;
 	padding: 20px;
-	width: 70%;
+	width: 75%;
 	background-color: #f1f1f1;
-	height: 300px; /* only for demonstration, should be removed */
 }
 /* Clear floats after the columns */
-section::after {
-	content: "";
+section {
+	width: 75%;
 	display: table;
-	clear: both;
 }
 /* Style the footer */
 footer {
@@ -57,36 +55,36 @@ footer {
 	text-align: center;
 	color: white;
 }
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media ( max-width : 600px) {
-	nav, article {
-		width: 100%;
-		height: auto;
-	}
-}
 </style>
 
 </head>
 
 <body>
+	<div align="center">
+		<header>
 
-	<header>
-		<tiles:insertAttribute name="header" />
-	</header>
+			<tiles:insertAttribute name="header" />
 
-	<section>
-		<tiles:insertAttribute name="menu" />
+		</header>
 
-		<article>
-			<tiles:insertAttribute name="body" />
-		</article>
-	</section>
+		<section>
 
-	<footer>
-		<tiles:insertAttribute name="footer" />
-	</footer>
+			<tiles:insertAttribute name="menu" />
 
+			<article>
 
+				<tiles:insertAttribute name="body" />
+
+			</article>
+		</section>
+
+		<footer>
+
+			<tiles:insertAttribute name="footer" />
+
+		</footer>
+
+	</div>
 
 </body>
-</html>>
+</html>

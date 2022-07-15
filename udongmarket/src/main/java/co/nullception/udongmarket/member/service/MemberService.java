@@ -1,7 +1,6 @@
 package co.nullception.udongmarket.member.service;
 
 import java.util.List;
-
 import co.nullception.udongmarket.member.vo.MemberVO;
 
 public interface MemberService {
