@@ -1,7 +1,5 @@
 package co.nullception.udongmarket.comment.vo;
 
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,10 +9,9 @@ import lombok.Setter;
 public class CommentVO {
 	
 	private int boardId;
-	private int commentsNo;
+	private int commentsId;
 	private String commentsContent;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone="Asia/Seoul")
-	private Date commentsDate;
-	private String memberNickname;
+	private String commentsDate;
+	private String nickname;
 
 }

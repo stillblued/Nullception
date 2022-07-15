@@ -1,7 +1,5 @@
 package co.nullception.udongmarket.faq.vo;
 
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,13 +9,11 @@ import lombok.Setter;
 public class FaqVO {
 
 	private int boardId;
+	private String nickname;
 	private String faqTitle;
 	private String faqContent;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-	private Date faqDate;
-	private String faqState;
-	private String faqAnswerContent;
-	private String adminId;
-	private String memberNickname;
+	private String faqDate;
+	private String answerContent;
+	private String reportedId;
 
 }
