@@ -96,7 +96,7 @@ public class FaqServiceImpl implements FaqService {
 	public int faqUpdate(FaqVO vo) {
 		// 글 삭제
 		int n = 0;
-		String sql = "update faq set notice_title = ?, notice_subject = ?  where notice_id = ?";
+		String sql = "update faq set notice_title = ?, notice_subject = ?  where board_id = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
