@@ -12,7 +12,7 @@
 		<nav>
 			
 				<a href="memberList.do">사용자 목록</a>&nbsp;&nbsp;&nbsp;
-				<a href="faq.do">FAQ</a></li>
+				<a href="faq.do">FAQ</a>
 
 		</nav>
 		<br>
