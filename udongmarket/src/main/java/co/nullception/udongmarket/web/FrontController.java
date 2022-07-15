@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import co.nullception.udongmarket.MainCommand;
+import co.nullception.udongmarket.admin.command.FAQCommand;
+import co.nullception.udongmarket.admin.command.FaqFormCommand;
+import co.nullception.udongmarket.admin.command.MemberListCommand;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.myPage.command.deleteMember;
@@ -30,6 +33,9 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 요청과 수행할 커맨드 연결
 		map.put("/main.do", new MainCommand());
+		map.put("/memberList.do", new MemberListCommand()); //관리자페이지 > 멤버리스트 호출
+		map.put("/faq.do", new FAQCommand()); // FAQ List
+		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		
 		map.put("/mypage.do", new showMypage());
 		map.put("/deletemember.do", new deleteMember());
@@ -45,6 +51,7 @@ public class FrontController extends HttpServlet {
 
 		Command command = map.get(page);
 		String viewPage = command.exec(request, response);
+		System.out.println("page : " +page+", viewPage : "+viewPage);
 
 		if (!viewPage.endsWith(".do")) {
 			if (viewPage.startsWith("ajax:")) {
