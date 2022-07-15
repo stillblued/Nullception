@@ -65,20 +65,17 @@ footer {
 	}
 }
 </style>
-
 </head>
-
 <body>
 
 	<header>
 		<tiles:insertAttribute name="header" />
 	</header>
-
+	
 	<section>
 		<tiles:insertAttribute name="menu" />
-
 		<article>
-			<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="body" />
 		</article>
 	</section>
 
@@ -86,7 +83,5 @@ footer {
 		<tiles:insertAttribute name="footer" />
 	</footer>
 
-
-
 </body>
-</html>>
+</html>

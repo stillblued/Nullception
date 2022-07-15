@@ -1,7 +1,5 @@
 package co.nullception.udongmarket.deal.vo;
 
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,11 +12,11 @@ public class DealVO {
 	private String dealCategory;
 	private String dealTitle;
 	private String dealContent;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone="Asia/Seoul")
-	private Date dealDate;
+	private String dealDate;
 	private int dealPrice;
 	private String dealState;
 	private String dealAttach;
+	private String dealAttachDir;
 	private String memberLocation;
 	private String memberNickname;
 

@@ -35,15 +35,14 @@ public class DataSource {
 	}
 
 	public void disconnect() {
-
 		if (rs != null) {
 			try {
 				psmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
+		
 		if (conn != null) {
 			try {
 				conn.close();
