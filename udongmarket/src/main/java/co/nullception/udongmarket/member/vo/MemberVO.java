@@ -11,7 +11,7 @@ public class MemberVO {
 	private String memberId;
 	private String memberPassword;
 	private String nickname;
-	private int phone;
+	private String phone;
 	private String email;
 	private String location;
 	private int mannerTemp;

@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import co.nullception.udongmarket.MainCommand;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.member.command.MemberJoinForm;
+import co.nullception.udongmarket.member.command.MemberLogin;
+import co.nullception.udongmarket.member.command.MemberLoginForm;
+import co.nullception.udongmarket.member.command.MemberLogout;
+
 
 
 
@@ -27,6 +32,10 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 요청과 수행할 커맨드 연결
 		map.put("/main.do", new MainCommand());
+		map.put("/memberLoginForm.do", new MemberLoginForm()); // 로그인 폼 호출
+		map.put("/memberLogin.do", new MemberLogin()); // 로그인
+		map.put("/memberLogout.do", new MemberLogout()); // 로그아웃
+		map.put("/memberJoinForm.do", new MemberJoinForm()); // 회원가입 폼 호출
 		
 
 	}

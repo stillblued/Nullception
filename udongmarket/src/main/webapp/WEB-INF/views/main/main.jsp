@@ -7,6 +7,8 @@
 <title>main</title>
 </head>
 <body>
-<h1>시작하는곳</h1>
+<h1>메인</h1>
+
+
 </body>
 </html>
