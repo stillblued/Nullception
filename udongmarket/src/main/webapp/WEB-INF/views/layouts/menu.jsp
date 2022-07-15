@@ -66,10 +66,22 @@ footer {
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
+  <nav>
+    <ul>
+      <li><a href="">ㅇㅅㅇ</a></li>
+      <li><button type="button" onclick="location.href='mypage.do'">마이페이지</button>&nbsp;
+    </ul>
+  </nav>
+
+
 	<nav>
 		<ul>
 			<li><a href="memberList.do">관리자페이지</a></li>
 		</ul>
 	</nav>
+
 </body>
 </html>

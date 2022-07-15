@@ -14,6 +14,9 @@ import co.nullception.udongmarket.admin.command.FAQCommand;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.MemberListCommand;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.member.command.MemberLoginForm;
+import co.nullception.udongmarket.myPage.command.deleteMember;
+import co.nullception.udongmarket.myPage.command.showMypage;
 
 
 
@@ -34,7 +37,8 @@ public class FrontController extends HttpServlet {
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		
-
+		map.put("/mypage.do", new showMypage());
+		map.put("/deletemember.do", new deleteMember());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
