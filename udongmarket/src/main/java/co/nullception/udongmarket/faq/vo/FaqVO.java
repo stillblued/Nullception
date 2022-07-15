@@ -9,12 +9,11 @@ import lombok.Setter;
 public class FaqVO {
 
 	private int boardId;
+	private String nickname;
 	private String faqTitle;
 	private String faqContent;
 	private String faqDate;
-	private String faqState;
-	private String faqAnswerContent;
-	private String adminId;
-	private String memberNickname;
+	private String answerContent;
+	private String reportedId;
 
 }

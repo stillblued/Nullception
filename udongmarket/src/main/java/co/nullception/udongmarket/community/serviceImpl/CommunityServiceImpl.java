@@ -22,7 +22,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public List<CommunityVO> communityList() {
 		List<CommunityVO> list = new ArrayList<>();
 		CommunityVO vo;
-		String sql = "SELECT * FROM COMMUNITY ORDER BY BOARD_ID DESC";
+		String sql = "SELECT * FROM COMMUNITY ORDER BY BOARD_ID";
 
 		try {
 			conn = dao.getConnection();
@@ -31,13 +31,15 @@ public class CommunityServiceImpl implements CommunityService {
 			while (rs.next()) {
 				vo = new CommunityVO();
 				vo.setBoardId(rs.getInt("BOARD_ID"));
+				vo.setNickname(rs.getString("NICKNAME"));
 				vo.setComCategory(rs.getString("COM_CATEGORY"));
+				vo.setComTitle(rs.getString("COM_TITLE"));
 				vo.setComContent(rs.getString("COM_CONTENT"));
 				vo.setComDate(rs.getString("COM_DATE"));
-				vo.setComHit(rs.getInt("COM_HIT"));
-				vo.setComTitle(rs.getString("COM_TITLE"));
-				vo.setMemberLocation(rs.getString("MEMBER_LOCATION"));
-				vo.setMemberNickname(rs.getString("MEMBER_NICKNAME"));
+				vo.setComHit(rs.getString("COM_HIT"));
+				vo.setLocation(rs.getString("LOCATION"));
+				vo.setAttach(rs.getString("ATTACH"));
+				vo.setAttachDir(rs.getString("ATTACH_DIR"));
 
 				list.add(vo);
 			}
@@ -61,13 +63,15 @@ public class CommunityServiceImpl implements CommunityService {
 			if (rs.next()) {
 				vo = new CommunityVO();
 				vo.setBoardId(rs.getInt("BOARD_ID"));
+				vo.setNickname(rs.getString("NICKNAME"));
 				vo.setComCategory(rs.getString("COM_CATEGORY"));
+				vo.setComTitle(rs.getString("COM_TITLE"));
 				vo.setComContent(rs.getString("COM_CONTENT"));
 				vo.setComDate(rs.getString("COM_DATE"));
-				vo.setComHit(rs.getInt("COM_HIT"));
-				vo.setComTitle(rs.getString("COM_TITLE"));
-				vo.setMemberLocation(rs.getString("MEMBER_LOCATION"));
-				vo.setMemberNickname(rs.getString("MEMBER_NICKNAME"));
+				vo.setComHit(rs.getString("COM_HIT"));
+				vo.setLocation(rs.getString("LOCATION"));
+				vo.setAttach(rs.getString("ATTACH"));
+				vo.setAttachDir(rs.getString("ATTACH_DIR"));
 
 			}
 
@@ -81,44 +85,43 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public int communityInsert(CommunityVO vo) {
-		// 글 등록
-		int n = 0;
-		String sql = "INSERT INTO COMMUNITY VALUES(NUMBERS.NEXTVAL, ?, ? ,? ,?,0,?,?)";
+		int cnt = 0;
+		String sql = "INSERT INTO COMMUNITY (BOARD_ID, NICKNAME, COM_CATEGORY, COM_TITLE, COM_CONTENT, LOCATION, ATTACH, ATTACH_DIR) VALUES (ID_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getComCategory());
-			psmt.setString(2, vo.getComTitle());
-			psmt.setString(3, vo.getComContent());
-			psmt.setString(4, vo.getComDate());
-			psmt.setString(5, vo.getMemberLocation());
-			psmt.setString(6, vo.getMemberNickname());
+			psmt.setString(1, vo.getNickname());
+			psmt.setString(2, vo.getComCategory());
+			psmt.setString(3, vo.getComTitle());
+			psmt.setString(4, vo.getComContent());
+			psmt.setString(5, vo.getLocation());
+			psmt.setString(6, vo.getAttach());
+			psmt.setString(7, vo.getAttachDir());
 
-			n = psmt.executeUpdate();
+			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();
 		}
-		return n;
+		return cnt;
 	}
 
 	@Override
 	public int communityUpdate(CommunityVO vo) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	@Override
 	public int communityDelete(CommunityVO vo) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	@Override
 	public List<CommunityVO> communitySearchList(String key, String val) {
-		// 목록검색
 		List<CommunityVO> list = new ArrayList<>();
 		CommunityVO vo;
 		String sql = "SELECT * FROM COMMUNITY WHERE " + key + " LIKE '%" + val + "%'";
@@ -131,13 +134,16 @@ public class CommunityServiceImpl implements CommunityService {
 			while (rs.next()) {
 				vo = new CommunityVO();
 				vo.setBoardId(rs.getInt("BOARD_ID"));
+				vo.setNickname(rs.getString("NICKNAME"));
 				vo.setComCategory(rs.getString("COM_CATEGORY"));
+				vo.setComTitle(rs.getString("COM_TITLE"));
 				vo.setComContent(rs.getString("COM_CONTENT"));
 				vo.setComDate(rs.getString("COM_DATE"));
-				vo.setComHit(rs.getInt("COM_HIT"));
-				vo.setComTitle(rs.getString("COM_TITLE"));
-				vo.setMemberLocation(rs.getString("MEMBER_LOCATION"));
-				vo.setMemberNickname(rs.getString("MEMBER_NICKNAME"));
+				vo.setComHit(rs.getString("COM_HIT"));
+				vo.setLocation(rs.getString("LOCATION"));
+				vo.setAttach(rs.getString("ATTACH"));
+				vo.setAttachDir(rs.getString("ATTACH_DIR"));
+				
 				list.add(vo);
 			}
 		} catch (SQLException e) {

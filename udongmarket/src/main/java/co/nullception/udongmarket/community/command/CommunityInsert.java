@@ -29,17 +29,20 @@ public class CommunityInsert implements Command {
 			String originalFileName = multi.getOriginalFileName("file");
 			String saveFileName = multi.getFilesystemName("file");
 
-			vo.setMemberNickname(multi.getParameter("communityWriter"));
-			vo.setComTitle(multi.getParameter("communityTitle"));
-			vo.setComContent(multi.getParameter("communitySubject"));
-			vo.setComDate(multi.getParameter("communityDate"));
+			vo.setComTitle(multi.getParameter("comTitle"));
+			vo.setComContent(multi.getParameter("comContent"));
+			vo.setComCategory(multi.getParameter("comCategory"));
 			
-			//if(originalFileName != null) {
-			//	vo.setComAttach(originalFileName);
-			//	saveFileName = savePath + saveFileName; //파일경로를 추가한다
-			//	vo.setComAttachDir(saveFileName);}
+			//			vo.setNickname();
+			//			vo.setLocation();
+			
+			if(originalFileName != null) {
+				vo.setAttach(originalFileName);
+				saveFileName = savePath + saveFileName; //파일경로를 추가한다
+				vo.setAttachDir(saveFileName);}
 			
 			n = communityDao.communityInsert(vo);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -9,15 +9,17 @@ import lombok.Setter;
 public class DealVO {
 	
 	private int boardId;
+	private String nickname;
 	private String dealCategory;
 	private String dealTitle;
 	private String dealContent;
 	private String dealDate;
-	private int dealPrice;
+	private int price;
 	private String dealState;
+	private int dealHit;
+	private String location;
 	private String attach;
-	private String memberLocation;
-	private String memberNickname;
 	private String attachDir;
 
 }
+

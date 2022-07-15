@@ -12,14 +12,16 @@
 <body>
 	<div align="center">
 		<div>
-			<h1>게시글 목록</h1>
+			<h1>우동 커뮤니티</h1>
 		</div>
 		<div>
 			<form id="frm">
 				<select id="key" name="key">
-					<option value="community_title">제목</option>
-					<option value="community_subject">내용</option>
-					<option value="community_writer">작성자</option>
+					
+					<option value="com_title">제목</option>
+					<option value="com_content">내용</option>
+					<option value="nickname">작성자</option>
+					
 				</select> &nbsp; <input type="text" id="val" name="val"> &nbsp;&nbsp;
 				<input type="button" value="검색" onclick="communitySearch()">
 
@@ -32,11 +34,11 @@
 			<table border="1" id="table">
 				<thead>
 					<tr>
-						<th width="70">글번호</th>
-						<th width="130">작성자</th>
+						<th width="70">#</th>
 						<th width="200">제목</th>
+						<th width="70">작성자</th>
 						<th width="130">작성일</th>
-						<th width="70">조회수</th>
+						<th width="100">조회수</th>
 						
 					</tr>
 				</thead>
@@ -45,9 +47,9 @@
 						<c:when test="${not empty list }">
 							<c:forEach items="${list }" var="list">
 								<tr>
-									<td>${list.boardId }</td>
-									<td>${list.memberNickname }</td>
+									<td>${list.comCategory }</td>
 									<td>${list.comTitle }</td>
+									<td>${list.nickname }</td>
 									<td>${list.comDate }</td>
 									<td>${list.comHit }</td>
 								
@@ -99,9 +101,10 @@
 			$('tbody').remove();
 			var tbody = $("<tbody />");
 			$.each(data, function(index, item) {
-				var row = $("<tr />").append($("<td />").text(item.boardId),
-						$("<td />").text(item.memberNickname),
+						console.log(item);
+				var row = $("<tr />").append($("<td />").text(item.comCategory),
 						$("<td />").text(item.comTitle),
+						$("<td />").text(item.nickname),
 						$("<td />").text(item.comDate),
 						$("<td />").text(item.comHit)
 						
