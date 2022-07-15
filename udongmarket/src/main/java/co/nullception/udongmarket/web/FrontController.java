@@ -14,9 +14,13 @@ import co.nullception.udongmarket.admin.command.FAQCommand;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.MemberListCommand;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.member.command.MemberJoinForm;
+import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
+import co.nullception.udongmarket.member.command.MemberLogout;
 import co.nullception.udongmarket.myPage.command.deleteMember;
 import co.nullception.udongmarket.myPage.command.showMypage;
+
 
 
 
@@ -33,10 +37,13 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 요청과 수행할 커맨드 연결
 		map.put("/main.do", new MainCommand());
+		map.put("/memberLoginForm.do", new MemberLoginForm()); // 로그인 폼 호출
+		map.put("/memberLogin.do", new MemberLogin()); // 로그인
+		map.put("/memberLogout.do", new MemberLogout()); // 로그아웃
+		map.put("/memberJoinForm.do", new MemberJoinForm()); // 회원가입 폼 호출
 		map.put("/memberList.do", new MemberListCommand()); //관리자페이지 > 멤버리스트 호출
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
-		
 		map.put("/mypage.do", new showMypage());
 		map.put("/deletemember.do", new deleteMember());
 	}

@@ -15,6 +15,8 @@ public class FaqVO {
 	private String faqDate;
 	private String answerContent;
 	private String reportedId;
-	
+	private String attach;
+	private String attachDir;
+
 
 }
