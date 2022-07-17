@@ -26,8 +26,12 @@ import co.nullception.udongmarket.member.command.MemberJoinForm;
 import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
+import co.nullception.udongmarket.myPage.command.AjaxComList;
+import co.nullception.udongmarket.myPage.command.AjaxDealList;
+import co.nullception.udongmarket.myPage.command.UpdateMember;
 import co.nullception.udongmarket.myPage.command.deleteMember;
-import co.nullception.udongmarket.myPage.command.showMypage;
+import co.nullception.udongmarket.myPage.command.myPageUpdate;
+import co.nullception.udongmarket.myPage.command.showMyPage;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -52,8 +56,12 @@ public class FrontController extends HttpServlet {
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		
-		map.put("/mypage.do", new showMypage());
-		map.put("/deletemember.do", new deleteMember());
+		map.put("/myPage.do", new showMyPage());//마이페이지 호출
+		map.put("/deleteMember.do", new deleteMember());//회원탈퇴
+		map.put("/myPageUpdate.do", new myPageUpdate());//마이페이지 수정 폼 호출
+		map.put("/updateMember.do", new UpdateMember());//회원수정
+		map.put("/ajaxDealList.do", new AjaxDealList());//회원이 카테고리별로 작성한 deal 게시판 글 조회
+		map.put("/ajaxComList.do", new AjaxComList());//회원이 카테고리별로 작성한 community 게시판 글 조회
 		
 		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록

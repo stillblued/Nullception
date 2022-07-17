@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import co.nullception.udongmarket.comm.DataSource;
+import co.nullception.udongmarket.community.vo.CommunityVO;
+import co.nullception.udongmarket.deal.vo.DealVO;
 import co.nullception.udongmarket.member.vo.MemberVO;
 import co.nullception.udongmarket.myPage.MyPage;
 
@@ -47,13 +52,14 @@ public class MyPageImpl implements MyPage {
 	public int memberUpdate(MemberVO vo) {
 		// 회원수정(닉네임, 연락처, 지역만 변경가능)
 		int r = 0;
-		String sql = "update member set phone = ?, location = ? where member_id = ?";
+		String sql = "update member set phone = ?, location = ?, email = ? where member_id = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getPhone());
 			psmt.setString(2, vo.getLocation());
-			psmt.setString(3, vo.getMemberId());
+			psmt.setString(3, vo.getEmail());
+			psmt.setString(4, vo.getMemberId());
 			r = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -79,6 +85,108 @@ public class MyPageImpl implements MyPage {
 			dao.disconnect();
 		}
 		return r;
+	}
+
+	@Override
+	public List<DealVO> dealSelectList(String nickname, String category) {
+		// 닉네임이 ? 인 사람이 카테고리별로 deal 게시판에 쓴 글 조회
+		List<DealVO> list = new ArrayList<DealVO>();
+		
+		String sql = "select nickname, deal_category, deal_title, deal_content, deal_date, deal_state, deal_hit, location from deal "
+				+ "where nickname = ? and deal_category = ?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, nickname);
+			psmt.setString(2, category);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				DealVO vo = new DealVO();
+				vo.setNickname(rs.getString("nickname"));
+				vo.setDealCategory(rs.getString("deal_category"));
+				vo.setDealTitle(rs.getString("deal_title"));
+				vo.setDealContent(rs.getString("deal_content"));
+				vo.setDealDate(rs.getString("deal_date"));
+				vo.setDealState(rs.getString("deal_state"));
+				vo.setDealHit(Integer.parseInt(rs.getString("deal_hit")));
+				vo.setLocation(rs.getString("location"));
+				
+				list.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return list;
+	}
+
+	@Override
+	public List<CommunityVO> commSelectList(String nickname, String category) {
+		// 커뮤니티 게시판에 쓴 글 조회
+		List<CommunityVO> list = new ArrayList<CommunityVO>();
+		String sql = "select nickname, com_category, com_title, com_content, com_date, com_hit, location "
+				+ "from community where nickname = ? and com_category = ?";
+		
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, nickname);
+			psmt.setString(2, category);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				CommunityVO vo = new CommunityVO();
+				vo.setNickname(rs.getString("nickname"));
+				vo.setComCategory(rs.getString("com_category"));
+				vo.setComTitle(rs.getString("com_title"));
+				vo.setComContent(rs.getString("com_content"));
+				vo.setComDate(rs.getString("com_date"));
+				vo.setComHit(rs.getString("com_hit"));
+				vo.setLocation(rs.getString("location"));
+				list.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return list;
+	}
+
+	@Override
+	public List<DealVO> likesSelectList(String nickname) {
+		// 거래게시판에 누른 좋아요 게시글 리스트 확인
+		List<DealVO> list = new ArrayList<DealVO>();
+		String sql = "select nickname, deal_category, deal_title, deal_content, deal_date, "
+				+ "deal_state, deal_hit, location from deal "
+				+ "where board_id in (select board_id from likes where nickname = ?)";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, nickname);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				DealVO vo = new DealVO();
+				vo.setNickname(rs.getString("nickname"));
+				vo.setDealCategory(rs.getString("deal_category"));
+				vo.setDealTitle(rs.getString("deal_title"));
+				vo.setDealContent(rs.getString("deal_content"));
+				vo.setDealDate(rs.getString("deal_date"));
+				vo.setDealState(rs.getString("deal_state"));
+				vo.setDealHit(Integer.parseInt(rs.getString("deal_hit")));
+				vo.setLocation(rs.getString("location"));
+				
+				list.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return list;
 	}
 
 
