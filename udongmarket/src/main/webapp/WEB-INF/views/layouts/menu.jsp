@@ -15,6 +15,7 @@
 	<nav>
 		
 			<button type="button" onclick="location.href='memberLoginForm.do'">로그인</button>&nbsp;&nbsp;&nbsp;
+			<button type="button" onclick="location.href='main.do'">로그아웃</button>&nbsp;&nbsp;&nbsp;
 			<button type="button" onclick="location.href='memberJoinForm.do'">회원가입</button>&nbsp;&nbsp;&nbsp;
       		<button type="button" onclick="location.href='myPage.do'">마이페이지</button>&nbsp;&nbsp;&nbsp;
       		<button type="button" onclick="location.href='memberList.do'">관리자페이지</button>&nbsp;&nbsp;&nbsp;
