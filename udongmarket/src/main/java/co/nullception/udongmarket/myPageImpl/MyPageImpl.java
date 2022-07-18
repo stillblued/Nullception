@@ -92,7 +92,7 @@ public class MyPageImpl implements MyPage {
 		// 닉네임이 ? 인 사람이 카테고리별로 deal 게시판에 쓴 글 조회
 		List<DealVO> list = new ArrayList<DealVO>();
 		
-		String sql = "select nickname, deal_category, deal_title, deal_content, deal_date, deal_state, deal_hit, location from deal "
+		String sql = "select board_id, nickname, deal_category, deal_title, deal_content, deal_date, deal_state, deal_hit, location from deal "
 				+ "where nickname = ? and deal_category = ?";
 		try {
 			conn = dao.getConnection();
@@ -104,6 +104,7 @@ public class MyPageImpl implements MyPage {
 			while(rs.next()) {
 				DealVO vo = new DealVO();
 				vo.setNickname(rs.getString("nickname"));
+				vo.setBoardId(Integer.parseInt(rs.getString("board_id")));
 				vo.setDealCategory(rs.getString("deal_category"));
 				vo.setDealTitle(rs.getString("deal_title"));
 				vo.setDealContent(rs.getString("deal_content"));
@@ -126,7 +127,7 @@ public class MyPageImpl implements MyPage {
 	public List<CommunityVO> commSelectList(String nickname, String category) {
 		// 커뮤니티 게시판에 쓴 글 조회
 		List<CommunityVO> list = new ArrayList<CommunityVO>();
-		String sql = "select nickname, com_category, com_title, com_content, com_date, com_hit, location "
+		String sql = "select board_id, nickname, com_category, com_title, com_content, com_date, com_hit, location "
 				+ "from community where nickname = ? and com_category = ?";
 		
 		try {
@@ -138,6 +139,7 @@ public class MyPageImpl implements MyPage {
 			
 			while(rs.next()) {
 				CommunityVO vo = new CommunityVO();
+				vo.setBoardId(Integer.parseInt(rs.getString("board_id")));
 				vo.setNickname(rs.getString("nickname"));
 				vo.setComCategory(rs.getString("com_category"));
 				vo.setComTitle(rs.getString("com_title"));
@@ -159,7 +161,7 @@ public class MyPageImpl implements MyPage {
 	public List<DealVO> likesSelectList(String nickname) {
 		// 거래게시판에 누른 좋아요 게시글 리스트 확인
 		List<DealVO> list = new ArrayList<DealVO>();
-		String sql = "select nickname, deal_category, deal_title, deal_content, deal_date, "
+		String sql = "select board_id, nickname, deal_category, deal_title, deal_content, deal_date, "
 				+ "deal_state, deal_hit, location from deal "
 				+ "where board_id in (select board_id from likes where nickname = ?)";
 		try {
@@ -170,6 +172,7 @@ public class MyPageImpl implements MyPage {
 			
 			while(rs.next()) {
 				DealVO vo = new DealVO();
+				vo.setBoardId(Integer.parseInt(rs.getString("board_id")));
 				vo.setNickname(rs.getString("nickname"));
 				vo.setDealCategory(rs.getString("deal_category"));
 				vo.setDealTitle(rs.getString("deal_title"));
@@ -187,6 +190,25 @@ public class MyPageImpl implements MyPage {
 			dao.disconnect();
 		}
 		return list;
+	}
+
+	@Override
+	public int updateDealState(String dealState, int boardId) {
+		// boardId를 받아와서 해당 게시글의 거래상태 변경
+		int r = 0;
+		String sql = "update deal set deal_state = ? where board_id = ?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dealState);
+			psmt.setInt(2, boardId);
+			r = psmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return r;
 	}
 
 

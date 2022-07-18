@@ -14,7 +14,7 @@ import co.nullception.udongmarket.member.vo.MemberVO;
 import co.nullception.udongmarket.myPage.MyPage;
 import co.nullception.udongmarket.myPageImpl.MyPageImpl;
 
-public class showMyPage implements Command {
+public class ShowMyPage implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {

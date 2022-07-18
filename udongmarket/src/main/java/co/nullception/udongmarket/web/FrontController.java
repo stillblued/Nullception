@@ -36,10 +36,11 @@ import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
 import co.nullception.udongmarket.myPage.command.AjaxComList;
 import co.nullception.udongmarket.myPage.command.AjaxDealList;
+import co.nullception.udongmarket.myPage.command.AjaxDealState;
 import co.nullception.udongmarket.myPage.command.UpdateMember;
-import co.nullception.udongmarket.myPage.command.deleteMember;
-import co.nullception.udongmarket.myPage.command.myPageUpdate;
-import co.nullception.udongmarket.myPage.command.showMyPage;
+import co.nullception.udongmarket.myPage.command.DeleteMember;
+import co.nullception.udongmarket.myPage.command.MyPageUpdate;
+import co.nullception.udongmarket.myPage.command.ShowMyPage;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -71,12 +72,13 @@ public class FrontController extends HttpServlet {
 		map.put("/faqDelete.do", new FaqDelete()); // FAQ 삭제
 		map.put("/ajaxFaqDelete.do", new AjaxFaqDelete()); //AjaxFaq 삭제
 		
-		map.put("/myPage.do", new showMyPage());//마이페이지 호출
-		map.put("/deleteMember.do", new deleteMember());//회원탈퇴
-		map.put("/myPageUpdate.do", new myPageUpdate());//마이페이지 수정 폼 호출
+		map.put("/myPage.do", new ShowMyPage());//마이페이지 호출
+		map.put("/deleteMember.do", new DeleteMember());//회원탈퇴
+		map.put("/myPageUpdate.do", new MyPageUpdate());//마이페이지 수정 폼 호출
 		map.put("/updateMember.do", new UpdateMember());//회원수정
 		map.put("/ajaxDealList.do", new AjaxDealList());//회원이 카테고리별로 작성한 deal 게시판 글 조회
 		map.put("/ajaxComList.do", new AjaxComList());//회원이 카테고리별로 작성한 community 게시판 글 조회
+		map.put("/ajaxDealState.do", new AjaxDealState());//거래게시판 state 변경
 		
 		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
