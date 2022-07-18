@@ -102,6 +102,7 @@ public class FrontController extends HttpServlet {
 
 		Command command = map.get(page);
 		String viewPage = command.exec(request, response); // 요청수행
+		
 		System.out.println("page : " +page+", viewPage : "+viewPage);
 
 		if (!viewPage.endsWith(".do")) {

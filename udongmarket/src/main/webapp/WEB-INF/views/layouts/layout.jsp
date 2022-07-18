@@ -10,50 +10,80 @@
 <title><tiles:getAsString name="title" /></title>
 
 <style>
-* {
-	box-sizing: border-box;
+hr {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8c8c inset;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	margin-bottom: 3px;
+	margin-top: 3px;
 }
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, 맑은 고딕;
+	margin: 0, 25%, 0 25%;
 }
-/* Style the header */
+
 header {
-    height: 30px; 
+	height: 30px;
 	background-color: white;
-	text-align: center;
 	font-size: 10px;
+	text-align: right;
+	position: fixed;
+	top: 3px;
+	left: 17.75%;
+	right: 17.75%;
 }
-/* Create two columns/boxes that floats next to each other */
+
+section {
+	position: fixed;
+	height: 120px;
+	top: 33px;
+	left: 17.75%;
+	right: 17.75%;
+	background-color: white;
+	top: 33px;
+}
+
 nav {
-	width: 75%;
-	height: 50px; /* only for demonstration, should be removed */
+	color: black;
+	text-align: center;
+	height: 20px;
 	background: #ccc;
-	padding: 10px;
+	font-size: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: -10px;
 }
-/* Style the list inside the menu */
+
 nav ul {
 	list-style-type: none;
-	padding: 0;
 }
 
 article {
-	padding: 20px;
-	width: 75%;
+	padding-top: 200px;
+	width: 65%;
 	background-color: #f1f1f1;
 }
-/* Clear floats after the columns */
-section {
-	width: 75%;
-	display: table;
-}
-/* Style the footer */
+
 footer {
-    height: 50px; 
+	width: 65%;
+	margin-top: 5px;
+	padding-top: 5px;
+	height: 30px;
 	background-color: #777;
-	padding: 1px;
 	text-align: center;
 	color: white;
+	height: 30px;
+}
+
+h5 {
+	margin: 0;
+	padding: 0;
 }
 </style>
 
@@ -71,12 +101,14 @@ footer {
 
 			<tiles:insertAttribute name="menu" />
 
-			<article>
-
-				<tiles:insertAttribute name="body" />
-
-			</article>
 		</section>
+
+		<article>
+
+			<tiles:insertAttribute name="body" />
+
+		</article>
+
 
 		<footer>
 
