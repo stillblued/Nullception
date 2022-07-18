@@ -10,24 +10,25 @@
 
 </head>
 <body>
+
 	<div align="center">
 		<div>
 			<h1>우동 커뮤니티</h1>
 		</div>
+
 		<div>
 			<form id="frm">
 				<select id="key" name="key">
-					
 					<option value="com_title">제목</option>
 					<option value="com_content">내용</option>
 					<option value="nickname">작성자</option>
-					
+
 				</select> &nbsp; <input type="text" id="val" name="val"> &nbsp;&nbsp;
 				<input type="button" value="검색" onclick="communitySearch()">
 
 			</form>
-
 		</div>
+
 		<br>
 
 		<div>
@@ -39,37 +40,50 @@
 						<th width="70">작성자</th>
 						<th width="130">작성일</th>
 						<th width="70">조회수</th>
-						
+
 					</tr>
 				</thead>
 				<tbody id="tb">
-					<c:choose>
-						<c:when test="${not empty list }">
-							<c:forEach items="${list }" var="list">
-								<tr>
-									<td>${list.comCategory }</td>
-									<td>${list.comTitle }</td>
-									<td>${list.nickname }</td>
-									<td>${list.comDate }</td>
-									<td>${list.comHit }</td>
-								
-								</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
+
+					<c:if test="${empty list}"><td colspan="6" align="center">등록된 게시물이 없습니다.</td></c:if>
+					<c:if test="${not empty list}">
+						<c:forEach var="list" items="${list}">
 							<tr>
-								<td colspan="6" align="center">게시글이 존재하지 않습니다.</td>
+								<td>${list.comCategory }</td>
+								<td>${list.comTitle }</td>
+								<td>${list.nickname }</td>
+								<td>${list.comDate }</td>
+								<td>${list.comHit }</td>
 							</tr>
-						</c:otherwise>
-					</c:choose>
+						</c:forEach>
+					</c:if>
+
 				</tbody>
 			</table>
 		</div>
+
+
+
+		<div id = "page">
+			<%
+			int pageCount = (int) request.getAttribute("pageCount");
+			int pageBlock = (int) request.getAttribute("pageBlock");
+			int startPage = (int) request.getAttribute("startPage");
+			int endPage = (int) request.getAttribute("endPage");
+
+			for (int i = startPage; i <= endPage; i++) {
+			%>
+			<a href="communityList.do?pageNum=<%=i%>"><%=i%></a>
+			<%
+			}
+			%>
+		</div>
+
 		<br>
 		<div>
-			
+			<c:if test="${not empty nickname }">
 				<button type="button" onclick="location.href='communityForm.do'">등록</button>
-			
+			</c:if>
 		</div>
 	</div>
 
@@ -99,15 +113,17 @@
 		}
 		function jsonHtmlConvert(data) {
 			$('tbody').remove();
+			$('#page').remove();
 			var tbody = $("<tbody />");
 			$.each(data, function(index, item) {
-						console.log(item);
-				var row = $("<tr />").append($("<td />").text(item.comCategory),
+				console.log(item);
+				var row = $("<tr />").append(
+						$("<td />").text(item.comCategory),
 						$("<td />").text(item.comTitle),
 						$("<td />").text(item.nickname),
 						$("<td />").text(item.comDate),
 						$("<td />").text(item.comHit)
-						
+
 				);
 				tbody.append(row);
 			});
