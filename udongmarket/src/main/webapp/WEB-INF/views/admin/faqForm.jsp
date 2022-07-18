@@ -7,33 +7,34 @@
 <title>FAQ FORM</title>
 </head>
 <body>
-	<label id="title">온라인 문의</label>     
+	<label id="title">FAQ</label>     
 	<br><br>
 	<div>
-		<form id="frm" action="FormInsert()" method="post">
+		<form id="frm" action="faqInsert.do" method="post" enctype="multipart/form-data">
 			<table id="detailBoard" border="1">
-				<tr>
-					<th>분류</th>
-				</tr>
 				
 				<tr>
 					<th id="nickname">닉네임</th>
 					<td><input type="text" id="nickname" name="nickname" value="사용자닉네임호출예정" readonly="readonly"></td>
 				</tr>
+				
 				<tr>
-					<th id="ph">연락처</th>
-					<td><input type="number" id="ph" name="ph"></td>
+					<th id="title">제목</th>
+					<td><input type="text" id="faqTitle" name="faqTitle"></td>
 				</tr>
-				<tr>
-					<th id="email">이메일</th>
-					<td><input type="text" id="email" name="email"></td>
-				</tr>
+				
 				<tr>
 					<th id="content">내용</th>
-					<td><textarea id="content" name="content" rows="10" ></textarea></td>
+					<td><textarea id="faqContent" name="faqContent" rows="10" ></textarea></td>
+				</tr>
+				<tr>
+					<th id="file">첨부파일</th>
+					<td><input type="file" id="attach" name="attach"></td>
+				</tr>
+					
 			</table><br>
-			<input type="button" onclick="location.href='faq.do'" value="취소">
 			<input type="submit" value="전송">
+			<input type="button" onclick="location.href='faq.do'" value="취소">
 		</form>
 		             
 	</div>
