@@ -13,9 +13,9 @@ import co.nullception.udongmarket.MainCommand;
 import co.nullception.udongmarket.admin.command.AjaxFaqDelete;
 import co.nullception.udongmarket.admin.command.AjaxFaqSearch;
 import co.nullception.udongmarket.admin.command.FAQCommand;
-import co.nullception.udongmarket.admin.command.FaqDelete;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
+import co.nullception.udongmarket.admin.command.FaqSelectOne;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.command.AjaxCommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityForm;
@@ -69,8 +69,8 @@ public class FrontController extends HttpServlet {
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		map.put("/faqInsert.do" , new FaqInsert()); // FAQ 등록
 		map.put("/ajaxFaqSearch.do", new AjaxFaqSearch()); //FAQ 검색
-		map.put("/faqDelete.do", new FaqDelete()); // FAQ 삭제
 		map.put("/ajaxFaqDelete.do", new AjaxFaqDelete()); //AjaxFaq 삭제
+		map.put("/faqSelectOne.do", new FaqSelectOne()); // Faq 제목 클릭시 상세 정보
 		
 		map.put("/myPage.do", new ShowMyPage());//마이페이지 호출
 		map.put("/deleteMember.do", new DeleteMember());//회원탈퇴

@@ -21,6 +21,8 @@ h1 {
 <title>header</title>
 </head>
 <body>
+<!-- 관리자페이지 작업끝나기전까지 좀 빼놓을게요. -->
+<li><a href='memberList.do'">관리자페이지</a>&nbsp;</li>
 
       <% if(session.getAttribute("nick") == null) { %>
       
@@ -35,7 +37,7 @@ h1 {
        
        <li>${front }</li>
        <a href='memberLogout.do'">로그아웃</a>&nbsp;
-       <a href='memberList.do'">관리자페이지</a>&nbsp;
+       <!-- <a href='memberList.do'">관리자페이지</a>&nbsp; -->
        
       <% } else{ %> 
       
