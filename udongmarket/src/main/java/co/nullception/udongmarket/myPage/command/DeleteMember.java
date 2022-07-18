@@ -7,7 +7,7 @@ import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.myPage.MyPage;
 import co.nullception.udongmarket.myPageImpl.MyPageImpl;
 
-public class deleteMember implements Command {
+public class DeleteMember implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {

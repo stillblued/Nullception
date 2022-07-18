@@ -16,5 +16,6 @@ public interface MyPage {
 	List<DealVO> dealSelectList(String nickname, String category); //deal 게시판에 쓴 글 조회
 	List<CommunityVO> commSelectList(String nickname, String category);//community 게시판에 쓴 글 조회
 	List<DealVO> likesSelectList(String nickname);//좋아요 목록
+	int updateDealState(String dealState, int boardId);//거래 상태 업데이트
 	
 }

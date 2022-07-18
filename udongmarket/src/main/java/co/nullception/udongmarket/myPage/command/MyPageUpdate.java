@@ -9,7 +9,7 @@ import co.nullception.udongmarket.member.vo.MemberVO;
 import co.nullception.udongmarket.myPage.MyPage;
 import co.nullception.udongmarket.myPageImpl.MyPageImpl;
 
-public class myPageUpdate implements Command {
+public class MyPageUpdate implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
