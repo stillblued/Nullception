@@ -24,10 +24,12 @@ public class MemberLogin implements Command {
 			session.setAttribute("id", vo.getMemberId());
 			session.setAttribute("nick", vo.getNickname());
 			session.setAttribute("author", vo.getAuthor());
+			// System.out.println(vo.getAuthor());
 		    session.setAttribute("phone", vo.getPhone());
 		    session.setAttribute("email", vo.getEmail());
 		    session.setAttribute("location", vo.getLocation());
-		    session.setAttribute("Temp", vo.getMannerTemp());
+		    session.setAttribute("temp", vo.getMannerTemp());
+		    session.setAttribute("front", vo.getNickname() + "님"); //로그인한 유저 표시
 		    return "main/main";
 		     
 		} else {

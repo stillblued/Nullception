@@ -14,7 +14,7 @@ public class AjaxNicknameCheck implements Command {
 		// ajax를 이용한 닉네임 중복체크
 				MemberService memberDao = new MemberServiceImpl();
 				String nickname = request.getParameter("nickname");
-				boolean m = memberDao.isMemberIdCheck(nickname); // true 사용가능.
+				boolean m = memberDao.isMemberNickname(nickname); // true 사용가능.
 				String result = "Usable";
 				if(!m) {
 					result = "Un Usable";
