@@ -22,7 +22,7 @@
                  <tr>
                    <th width="150">아이디</th>
                    <td width="300"><input type="text" id="memberId" name="memberId" size="20"> &nbsp; 
-                   <input type="text" id="checkId" value="No">
+                   <input type="hidden" id="checkId" value="No">
                    <button type="button" id="btn1" onclick="idCheck()">중복체크</button>
                    </td>
                  </tr>
@@ -37,21 +37,42 @@
                  <tr>
                    <th width="150">닉네임</th>
                    <td width="300"><input type="text" id="nickname" name="nickname" size="20"> &nbsp; 
-                   <input type="text" id="checkNickname" value="No">
+                   <input type="hidden" id="checkNickname" value="No">
                    <button type="button" id="btn2" onclick="nicknameCheck()">중복체크</button>
                    </td>
                  </tr>
                  <tr>
                    <th width="150">연락처</th>
-                   <td width="300"><input type="text" id="phone" name="phone" size="20" required="required" placeholder="번호 사이에 -를 넣어주세요."> &nbsp;</td>
+                   <td>
+                   <input type="text" id="phone" name="phone" size="4" value="010"> -
+                   <input type="text" id="phone" name="phone" size="7" required="required" > -
+                   <input type="text" id="phone" name="phone" size="7" required="required" >
+                   </td>
                  </tr>
                  <tr>
-                   <th width="150">지역</th>
-                   <td width="300"><input type="text" id="location" name="location" size="20" required="required"> &nbsp;</td>
+                   <th width="150">지역</th>   
+                   <td width="300">
+                   <select id="location" name="location" >
+                   <option value="big_location">대구광역시</option>
+			       </select>
+                   <select id="location" name="location" >
+                   <option value="middle_location">중구</option>
+                   <option value="middle_location">동구</option>
+                   <option value="middle_location">서구</option>
+                   <option value="middle_location">남구</option>
+                   <option value="middle_location">북구</option>
+                   <option value="middle_location">수성구</option>
+                   <option value="middle_location">달서구</option>
+                   <option value="middle_location">달성군</option>
+			       </select>
+                   <input type="text" id="location" name="location" size="7" required="required">
+                   </td>
                  </tr>
                  <tr>
                    <th width="150">이메일</th>
-                   <td width="300"><input type="text" id="email" name="email" size="20" > &nbsp;</td>
+                   <td width="300">
+                   <input type="text" id="email" name="email" size="10" >@
+                   <input type="text" id="email2" name="email2" size="10" ></td>
                  </tr>
               </table>
            </div>
@@ -111,26 +132,9 @@
     		 return false;
     	 }
     	 
-    	 if(frm.email.value != "") {
-        	 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        	 if(regExp.test(frm.email.value) == false) {
-        		 alert("이메일 형식을 다시 확인해주세요.");
-        		 frm.email.value = "";
-        		 frm.email.focus();
-        		 return false;
-        	 } 
-        	 
-        	 } 
     	 
-    	 if(frm.phone.value != "") {
-    		 var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
-    		 if(regExp.test(frm.phone.value) == false) {
-    			 alert("연락처 형식 확인 후 다시 입력해주세요.");
-    			 frm.phone.value = "";
-    			 frm.phone.focus();
-    			 return false;
-    		 }
-    	 }
+    	 
+    	
     	 
     	 return true;
      }

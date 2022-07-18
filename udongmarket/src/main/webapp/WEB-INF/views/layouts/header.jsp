@@ -43,9 +43,9 @@ h1 {
         <a href='memberLogout.do'">로그아웃</a>&nbsp;&nbsp;&nbsp;
         <a href='myPage.do'">마이페이지</a>&nbsp;&nbsp;&nbsp;
         
-      <%} %>
+      <%} 
         
-      <% } %>
+       } %>
   
 </body>
 </html>
