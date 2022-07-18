@@ -50,6 +50,7 @@
 					<c:choose>
 						<c:when test="${not empty list }">
 							<c:forEach items="${list}" var="f">
+								<%-- <tr class="colored" onclick="faqSelectOne(${f.boardId})"> --%>
 								<tr>
 									<td>${f.boardId }</td>
 									<c:if test="${not empty REPORTED_ID }">
@@ -58,7 +59,7 @@
 									<c:if test="${ empty REPORTED_ID }">
 										<td>문의</td>
 									</c:if>
-									<td>${f.faqTitle}</td>
+									<td class="colored" onclick="faqSelectOne()">${f.faqTitle}</td>
 									<td>${f.faqDate}</td>
 									<td>${f.nickname}</td>
 									<c:if test="${not empty answer_content }">
@@ -67,7 +68,7 @@
 									<c:if test="${ empty answer_content }">
 										<td>처리중</td>
 									</c:if>
-									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delte" value="삭제"></td>
+									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
 									<%-- <td><a href="faqDelete.do?boardId=${f.boardId}">삭제</a></td> --%>
 								</tr>
 							</c:forEach>
@@ -80,8 +81,10 @@
 					</c:choose>
 				</tbody>
 			</table>
+			<c:if test="${author == 'USER' || not empty nickname }">
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
+				</c:if>
 		</form>
 	</div>
 	<script type="text/javascript">
@@ -154,6 +157,10 @@
 		xhr.open('GET',url);
 		xhr.send(); 
 	}
+		 function faqSelectOne() {  //get방식 안전하지 않음
+				/* location.href='faqDetail.do?boardId='+id; */	
+			 location.href='faqDetail.do';
+			}
 	</script>
 </body>
 </html>
