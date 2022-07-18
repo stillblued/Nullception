@@ -18,13 +18,16 @@
 	<div>
 		<form id="suchfrm">
 			<label>FAQ검색</label><br>
+			<select id ="key" name="key">
+			<option value="FAQ_TITLE">제목</option>
+			<option value="FAQ_CONTENT">내용</option>
+			</select>&nbsp;
 			<!-- List<FaqVO> faqSerch(String val); val의 값으로 들어감  -->
-			<input type="text" id="val" name="val">&nbsp;&nbsp; <input
-				type="button" value="검색" onclick="faqSearch()">
+			<input type="text" id="val" name="val">&nbsp;&nbsp;
+			<input type="button" value="검색" onclick="faqSearch()">
+			
 		</form>
 	</div>
-	<hr width="1000px" color="lightgray" noshade />
-	<!-- 구분선 -->
 	<form name="frm">
 		<div>
 			<label>전체</label> <label>문의</label> <label>신고</label> <label>기타</label>
@@ -37,6 +40,7 @@
 					<th>날짜</th>
 					<th>닉네임</th>
 					<th>상태</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,15 +53,51 @@
 						<td>${f.nickname}</td>
 						<c:if test ="${not empty answer_content }" > <td> 완료</td> </c:if>
 						<c:if test = "${ empty answer_content }"  > <td> 처리중</td> </c:if>
+						<td><input type="button" onclick="location.href='/udongmarket/faqDelete.do?boardId=${f.boardId}';" id="faqdelete" name="faqdelete" value="삭제"></td>
 					</tr>
 				</c:forEach>
+				 <!-- <input type="hidden" id="boardId" name="boardId"> -->
 
 			</tbody>
 		</table>
 		<input type="button" onclick="location.href='faqForm.do'" id="write"
 			name="write" value="등록">
 	</form>
-	<script>
+	
+	<script type="text/javascript">
+	function faqSearch(){
+		let key = ${'#key'}.val();
+		let val = ${'#val'}.val();
+		$.ajax({
+			url : "ajaxFaqSearch.do",
+			type : "post",
+			data : {key : key, val : val},
+			dataType : "Json",
+			success : function(result){
+				if(result.length > 0){
+					jsonHtmlConvert(result);
+				} else{
+					alert("검색한 결과가 없습니다.");
+				}
+			},
+			error : function(err){
+				alert("알 수 없는 에러입니다.");
+			}
+		})
+	}
+	function jsonHtmlConvert(data) {
+		$('tbody').remove();
+		var tbody = $("<tbody />");
+		$.each(data, function(index, item) {
+			var row = $("<tr />").append(
+					  $("<td />").text(item.faqTitle),
+					  $("<td />").text(item.faqDate),
+					  $("<td />").text(item.nickname),
+			);
+			tbody.append(row);
+		});
+		$('table').append(tbody);
+	}
 		
 	</script>
 </body>
