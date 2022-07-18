@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,12 +32,11 @@
               </div>
             </div>
           </div>
-          </div><br> -->
+         </div><br> -->
 		
 		<table border="1">
 			<thead>
 				<tr>
-					<th>상품이미지</th>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>가격</th>
@@ -49,7 +49,6 @@
 				<c:when test="${not empty list}">
 					<c:forEach items="${list}" var="d">
 						<tr>
-							<td></td>
 							<td>${d.nickname}</td>
 							<td>${d.dealTitle}</td>
 							<td>${d.price}</td>
@@ -77,15 +76,15 @@
 	
 	<script type="text/javascript">
 		function dealSearch() {
-			let key = ${'#key'}.val();
-			let val = ${'#val'}.val();
+			let key = $("#key").val();
+			let val = $("#val").val();
 			$.ajax({
 				url : "ajaxDealSearch.do",
 				type : "post",
 				data : {key : key, val : val},
-				dataType : "json,"
+				dataType : "json",
 				success : function(result) {
-					if (result.length > 0) {
+					if(result.length > 0) {
 						jsonHtmlConvert(result);
 					} else {
 						alert("검색한 결과가 없습니다.");
@@ -102,10 +101,11 @@
 			var tbody = $("<tbody />");
 			$.each(data, function(index, item) {
 				var row = $("<tr />").append(
-						  $("<td />").text(item.dealTitle),
 						  $("<td />").text(item.nickname),
+						  $("<td />").text(item.dealTitle),
 						  $("<td />").text(item.price),
-						  $("<td />").text(item.dealDate)
+						  $("<td />").text(item.dealDate),
+						  $("<td />").text(item.dealHit)
 				);
 				tbody.append(row);
 			});

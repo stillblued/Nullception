@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 
 public class DealVO {
-	
+
 	private int boardId;
 	private String nickname;
 	private String dealCategory;
@@ -20,5 +20,9 @@ public class DealVO {
 	private String location;
 	private String attach;
 	private String attachDir;
+
+	public DealVO() {
+		super();
+	}
 
 }
