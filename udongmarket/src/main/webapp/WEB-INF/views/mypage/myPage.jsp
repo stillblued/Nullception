@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>myPage.jsp</title>
 <script src="js/jquery-3.6.0.min.js"></script>
+<style>
+	#title:hover{
+		color: blue;
+	}
+</style>
 </head>
 <body>
 	<!-- 만약 권한이 USER이면 마이페이지, 아니면 관리자페이지 로드 -->
@@ -169,16 +174,19 @@
  	function jsonDealListConvert(data){
  		$("#dealList tbody").remove();
 		let tbody = $("<tbody />");
- 		
+		let state1 = '거래가능';
+		let state2 = '거래중';
+		let state3 = '거래완료';
 		$.each(data, function(index, item){
 			let row = $("<tr />").append(
 		   			  $("<td style='display:none' />").text(item.boardId),
 					  $("<td />").text(item.dealCategory),
-					  $("<td onclick='selectDeal(this)' />").text(item.dealTitle),
+					  $("<td id='title' onclick='selectDeal(this)' />").text(item.dealTitle),
 					  $("<td />").text(item.dealDate),
 					  $("<td />").text(item.dealHit),
-					  $("<td />").append($("<select id = 'dealState' onchange='changeState(this)'/>").append("<option value='거래가능'> 거래가능 </option>", "<option value='거래중'> 거래중 </option>", "<option value='거래완료'> 거래완료 </option>"))
-					  /* DB값 연동되게 하기, 초기값을 선택된 상태로 할 수 있도록 수정*/
+					  $("<td />").append($("<select onchange='changeState(this)'/>")
+							     .append($("<option " + (state1 == item.dealState ? 'selected' : '')+">거래가능</option> <option " + (state2 == item.dealState ? 'selected' : '') + ">거래중</option> <option " + (state3 == item.dealState ? 'selected' : '') + ">거래완료</option>")))
+					  /* hover css 먹여보기(링크처럼) */
 					);
 			tbody.append(row);
 		});
@@ -192,7 +200,7 @@
 			let row = $("<tr />").append(
    					  $("<td style='display:none' />").text(item.boardId),
 					  $("<td />").text(item.comCategory),
-					  $("<td onclick='selectCom(this)'/>").text(item.comTitle),
+					  $("<td id='title' onclick='selectCom(this)'/>").text(item.comTitle),
 					  $("<td />").text(item.comDate),
 					  $("<td />").text(item.location)
 					);
@@ -218,14 +226,13 @@
  	function changeState(e){
  		//select 값이 변경(onchange 이벤트 발생하면) dealState value를 변경
  		//board id 가져오기
- 		console.log(e);
- 		//부모 요소 선택할 수 있게 수정
- 		//let boardId = (((((e.previousSibling).previousSibling).previousSibling).previousSibling).previousSibling).textContent; //board_id
- 		let selectedState = $("#dealState option:selected").val(); //선택된 값
- 		//console.log(selectedState);
+ 		console.log(e); //select 태그
+ 		let boardId = (((e.parentNode).parentNode).childNodes[0]).innerHTML; //게시글 아이디
+ 		let selectedState = e.value;
+ 		console.log(selectedState);
  		//console.log(boardId);
  		
- 		 $.ajax({
+ 		   $.ajax({
 			url : "ajaxDealState.do",
 			type : "post",
 			data : {selectedState : selectedState, boardId : boardId },
@@ -236,7 +243,7 @@
 			error: function(){
 				console.log("error");
 			}
-		}) 
+		})   
  	}
 	
 </script>
