@@ -7,8 +7,9 @@
 <title>main</title>
 </head>
 <body>
-
-<h1>메인</h1>
-
+<div align="center">
+		<h1>${message }</h1>
+		<h1>메인</h1>
+	</div>
 </body>
 </html>

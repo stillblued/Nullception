@@ -22,6 +22,9 @@ import co.nullception.udongmarket.deal.command.AjaxDealSearch;
 import co.nullception.udongmarket.deal.command.DealForm;
 import co.nullception.udongmarket.deal.command.DealInsert;
 import co.nullception.udongmarket.deal.command.DealList;
+import co.nullception.udongmarket.member.command.AjaxMemberIdCheck;
+import co.nullception.udongmarket.member.command.AjaxNicknameCheck;
+import co.nullception.udongmarket.member.command.MemberJoin;
 import co.nullception.udongmarket.member.command.MemberJoinForm;
 import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
@@ -44,9 +47,12 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainCommand());
 		
 		map.put("/memberLoginForm.do", new MemberLoginForm()); // 로그인 폼 호출
-		map.put("/memberLogin.do", new MemberLogin()); // 로그인
-		map.put("/memberLogout.do", new MemberLogout()); // 로그아웃
+		map.put("/memberLogin.do", new MemberLogin()); // 로그인 처리
+		map.put("/memberLogout.do", new MemberLogout()); // 로그아웃 처리
 		map.put("/memberJoinForm.do", new MemberJoinForm()); // 회원가입 폼 호출
+		map.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복체크
+		map.put("/ajaxNicknameCheck.do", new AjaxNicknameCheck()); // 닉네임 중복체크
+		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
 		
 		map.put("/memberList.do", new MemberListCommand()); //관리자페이지 > 멤버리스트 호출
 		map.put("/faq.do", new FAQCommand()); // FAQ List
@@ -68,18 +74,18 @@ public class FrontController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 요청 분석 실행 결과 리턴
+		// 요청 분석 & 실행, 결과 리턴
 		request.setCharacterEncoding("utf-8");
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
-		String page = uri.substring(contextPath.length());
+		String page = uri.substring(contextPath.length()); // 요청분석
 
 		Command command = map.get(page);
-		String viewPage = command.exec(request, response);
+		String viewPage = command.exec(request, response); // 요청수행
 		System.out.println("page : " +page+", viewPage : "+viewPage);
 
 		if (!viewPage.endsWith(".do")) {
-			if (viewPage.startsWith("ajax:")) {
+			if (viewPage.startsWith("ajax:")) { // ajax 처리
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(viewPage.substring(5));
 				return;

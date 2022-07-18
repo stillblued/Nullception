@@ -11,7 +11,9 @@
      <div>
        <h1>로 그 인</h1>
      </div>
-     
+     <div align="center">
+		<h1>${message }</h1>
+	</div>
      <div>
        <form id="frm" action="memberLogin.do" method="post">
          <div>
@@ -37,5 +39,7 @@
        </form>
      </div>
    </div>
+   
+   
 </body>
 </html>

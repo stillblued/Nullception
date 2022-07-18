@@ -89,7 +89,7 @@ public class MemberServiceImpl implements MemberService {
 				vo.setMemberPassword(rs.getString("member_password"));
 				vo.setNickname(rs.getString("nickname"));
 				vo.setPhone(rs.getString("phone"));
-				vo.setEmail(rs.getString("emaile"));
+				vo.setEmail(rs.getString("email"));
 				vo.setLocation(rs.getString("location"));
 				vo.setMannerTemp(rs.getInt("manner_temp"));
 				vo.setAuthor(rs.getString("author"));
@@ -106,9 +106,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberInsert(MemberVO vo) {
 		// 회원가입
-		int cnt = 0;
-		String sql = "INSERT INTO MEMBER (MEMBER_ID, MEMBER_PASSWORD, NICKNAME, PHNONE" +
-		             " EMAIL, LOCATION) VALUES(?, ?, ?, ?, ?, ?)";
+		int cnt = 0;                                  
+		String sql = "INSERT INTO MEMBER (MEMBER_ID, MEMBER_PASSWORD, NICKNAME, PHONE, " +
+		             " EMAIL, LOCATION) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -131,13 +131,43 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean isMemberIdCheck(String id) {
 		// 아이디 중복체크
-		return false;
+		boolean d = false;
+		String sql = "SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = ? ";
+		try {
+			 conn = dao.getConnection();
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setString(1, id);
+			 rs = psmt.executeQuery();
+			 if(!rs.next()) { // 존재하면 false, 안하면 true 돌려줌. 
+				 d = true;
+			 }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return d;
 	}
 
 	@Override
 	public boolean isMemberNickname(String nickname) {
 		// 닉네임 중복체크
-		return false;
+		boolean m = false;
+		String sql = "SELECT NICKNAME FROM MEMBER WHERE NICKNAME = ? ";
+		try {
+			 conn = dao.getConnection();
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setString(1, nickname);
+			 rs = psmt.executeQuery();
+			 if(!rs.next()) { // 존재하면 false, 안하면 true 돌려줌. 
+				 m = true;
+			 }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return m;
 	}
 
 }
