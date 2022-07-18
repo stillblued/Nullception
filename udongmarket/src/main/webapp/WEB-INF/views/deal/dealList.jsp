@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div><h1>거래 게시글 목록</h1></div>
-	<div>
+	 <div>
 		<form id="frm">
 			<select id="key" name="key">
 				<option value="deal_title">제목</option>
@@ -21,10 +21,9 @@
 		</form>
 		
 		<br>
-		<br>
-		<div class="col-md-4">
+		<!-- <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
             <div class="card-body">
               <p class="card-text"></p>
               <div class="d-flex justify-content-between align-items-center">
@@ -32,15 +31,17 @@
               </div>
             </div>
           </div>
-          </div><br>
+          </div><br> -->
 		
-		<%-- <table border="1">
+		<table border="1">
 			<thead>
 				<tr>
-					<th>닉네임</th>
+					<th>상품이미지</th>
+					<th>작성자</th>
 					<th>제목</th>
 					<th>가격</th>
 					<th>작성일자</th>
+					<th>조회수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,22 +49,24 @@
 				<c:when test="${not empty list}">
 					<c:forEach items="${list}" var="d">
 						<tr>
+							<td></td>
 							<td>${d.nickname}</td>
 							<td>${d.dealTitle}</td>
 							<td>${d.price}</td>
 							<td>${d.dealDate}</td>
+							<td>${d.dealHit}</td>
 						</tr>			
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="6" align="center">
+						<td colspan="5" align="center">
 						현재 거래중인 상품이 없습니다.</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
 			</tbody>		
-		</table><br> --%>
+		</table><br>
 		<div>
 			<!-- 비회원은 글등록 못하게 -->
 			<%-- <c:if test="${not empty id}"> --%>
@@ -80,7 +83,7 @@
 				url : "ajaxDealSearch.do",
 				type : "post",
 				data : {key : key, val : val},
-				dataType : "Json,"
+				dataType : "json,"
 				success : function(result) {
 					if (result.length > 0) {
 						jsonHtmlConvert(result);

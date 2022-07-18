@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <h5>copyrightⓒ 2022 team Nullception All rigths reserved</h5>
+  <h5>copyrightⓒ 2022 team Nullception All rights reserved</h5>
 
 </body>
 </html>
