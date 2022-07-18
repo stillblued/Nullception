@@ -99,9 +99,7 @@ public class DealServiceImpl implements DealService {
 			psmt.setString(6, vo.getLocation());
 			psmt.setString(7, vo.getAttach());
 			psmt.setString(8, vo.getAttachDir());
-			
 			cnt = psmt.executeUpdate();
-			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -145,6 +143,7 @@ public class DealServiceImpl implements DealService {
 			psmt.setString(6, vo.getAttach());
 			psmt.setString(7, vo.getLocation());
 			psmt.setInt(8, vo.getBoardId());
+			cnt = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -163,6 +162,7 @@ public class DealServiceImpl implements DealService {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
+			
 			while(rs.next()) {
 				vo = new DealVO();
 				vo.setBoardId(rs.getInt("board_id"));
@@ -177,6 +177,7 @@ public class DealServiceImpl implements DealService {
 				vo.setAttachDir(rs.getString("attach_dir"));
 				vo.setLocation(rs.getString("location"));
 				vo.setNickname(rs.getString("nickname"));
+				list.add(vo);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -185,5 +186,5 @@ public class DealServiceImpl implements DealService {
 		}
 		return list;
 	}
-	
+
 }

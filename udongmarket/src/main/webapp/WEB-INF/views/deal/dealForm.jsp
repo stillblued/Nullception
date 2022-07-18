@@ -15,7 +15,7 @@
 				<div class="deal">
 					상품이미지
 					<input type="file" id="file" name="file"><br>
-				</div>
+				</div><br>
 				<div class="deal">
 					카테고리
 					<select id="key" name="key">
@@ -29,24 +29,24 @@
 						<option value="도서/음반">도서/음반</option>
 						<option value="기타">기타</option>
 					</select>
-				</div>
+				</div><br>
 				<div class="deal">
 					제목
 					<input type="text" id="dealTitle" name="dealTitle">
-				</div>
+				</div><br>
 				<div class="deal">
 					내용
-					<textarea rows="6" cols="75" id="dealContent" name="dealContent"></textarea>
-				</div>
+					<textarea rows="6" cols="50" id="dealContent" name="dealContent"></textarea>
+				</div><br>
 				<div class="deal">
 					가격
-					<input type="text" id="dealPrice" name="dealPrice">
+					<input type="text" id="price" name="price">
 				</div>
 			</section>
 		</div><br>
 		<div>
 			<input type="submit" value="등록하기">&nbsp;&nbsp;&nbsp;
-			<input type="reset" value="취소">
+			<input type="reset" value="취소" onclick="location.href='dealList.do'">
 		</div>
 	</form>
 </div>
