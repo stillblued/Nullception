@@ -3,6 +3,10 @@ package co.nullception.udongmarket.community.command;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.bind.support.SessionAttributeStore;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import co.nullception.udongmarket.comm.Command;
@@ -21,18 +25,22 @@ public class CommunityInsert implements Command {
 		String savePath = "C:\\Temp\\"; //파일 저장위치 (=> 실제 서버로 옮길 때는 "fileSave")	
 		int uploadSize = 1024*1024*1024; //최대 파일 사이즈 : 100MB
 		int n = 0;
+		HttpSession session = request.getSession();
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, uploadSize, "utf-8", new DefaultFileRenamePolicy());
 			String originalFileName = multi.getOriginalFileName("file");
 			String saveFileName = multi.getFilesystemName("file");
-
+			
+			String nickname = (String)session.getAttribute("nick");
+			String location = (String)session.getAttribute("location");
+			
+			vo.setNickname(nickname);
+			vo.setLocation(location);
 			vo.setComTitle(multi.getParameter("comTitle"));
 			vo.setComContent(multi.getParameter("comContent"));
 			vo.setComCategory(multi.getParameter("comCategory"));
 			
-			//			vo.setNickname();
-			//			vo.setLocation();
 			
 			if(originalFileName != null) {
 				vo.setAttach(originalFileName);

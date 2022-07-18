@@ -18,15 +18,21 @@ public class CommunityServiceImpl implements CommunityService {
 	private ResultSet rs;
 
 	@Override
-	public List<CommunityVO> communityList() {
+	public List<CommunityVO> communityList(int startRow, int endRow) {
 		List<CommunityVO> list = new ArrayList<>();
 		CommunityVO vo;
-		String sql = "SELECT * FROM COMMUNITY ORDER BY BOARD_ID";
+		String sql = "SELECT * \r\n"
+				+ "FROM (SELECT ROWNUM AS RNUM, A.*\r\n"
+				+ "FROM (SELECT * FROM COMMUNITY ORDER BY COM_DATE DESC, COM_CATEGORY) A)\r\n"
+				+ "WHERE RNUM BETWEEN ? AND ?";
 
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, startRow);
+			psmt.setInt(2, endRow);
 			rs = psmt.executeQuery();
+			
 			while (rs.next()) {
 				vo = new CommunityVO();
 				vo.setBoardId(rs.getInt("BOARD_ID"));
@@ -182,6 +188,25 @@ public class CommunityServiceImpl implements CommunityService {
 		}
 
 		return list;
+	}
+
+	@Override
+	public int getBoardCount() {
+		String sql = "SELECT COUNT(*) AS CNT FROM COMMUNITY";
+		int cnt = 0;
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("CNT");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
 	}
 
 }
