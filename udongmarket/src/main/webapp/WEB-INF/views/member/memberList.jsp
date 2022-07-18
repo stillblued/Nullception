@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +18,16 @@
 		</nav>
 		<br>
 		<br> 
+		<div align="center">
+		<select id="membauthor">
+		<option value="membauthorselect">== 권 한 ==</option>
+		<option value="ADMIN">ADMIN</option>
+		</select>
+		</div>
 		<table border=1>
 			<thead>
 				<tr>
-					<th>레벨</th>
+					<th>권한</th>
 					<th>아이디</th>
 					<th>닉네임</th>
 					<th>이메일</th>

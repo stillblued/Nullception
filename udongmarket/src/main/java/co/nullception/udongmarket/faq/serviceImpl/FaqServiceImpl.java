@@ -29,6 +29,7 @@ public class FaqServiceImpl implements FaqService {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new FaqVO();
+				vo.setBoardId(rs.getInt("BOARD_ID"));
 				vo.setFaqTitle(rs.getString("FAQ_TITLE"));
 				vo.setFaqDate(rs.getString("FAQ_DATE"));
 				vo.setNickname(rs.getString("NICKNAME"));
@@ -116,20 +117,21 @@ public class FaqServiceImpl implements FaqService {
 	}
 
 	@Override
-	public int faqDelete(FaqVO vo) {
+	public int faqDelete(int board_id) {
 		// 글 삭제
 		int cnt = 0;
 		String sql = "delete from faq where board_id = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getBoardId());
+			psmt.setInt(1, board_id);
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();
 		}
+		System.out.println("faqDelete : " + cnt);
 		return cnt;
 	}
 
@@ -138,10 +140,11 @@ public class FaqServiceImpl implements FaqService {
 		//내용 검색
 		List<FaqVO> list = new ArrayList<>();
 		FaqVO vo;
-		String sql = "select * from faq where "+key+"like '%" + val +"%'";
+		String sql = "select * from faq where "+key+" like '%" + val +"%'";
 		try{
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
 			while(rs.next()) {
 				vo = new FaqVO();
 				vo.setFaqTitle(rs.getString("FAQ_TITLE"));
@@ -153,6 +156,8 @@ public class FaqServiceImpl implements FaqService {
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
 				list.add(vo);
 			}
+			System.out.println(key);
+			System.out.println(val);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -160,7 +165,7 @@ public class FaqServiceImpl implements FaqService {
 			dao.disconnect();
 		}
 
-		return null;
+		return list;
 	}
 
 }
