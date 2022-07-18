@@ -22,7 +22,8 @@ public class AjaxDealState implements Command {
 		DealVO vo = new DealVO();
 		int r = 0;
 		ObjectMapper mapper = new ObjectMapper();
-
+		
+		String nickname = (String) session.getAttribute("nick");
 		String selectedState = request.getParameter("selectedState");
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		System.out.println(boardId);
@@ -34,6 +35,11 @@ public class AjaxDealState implements Command {
 		
 		if(r>0) {
 			System.out.println("수정 완료");
+			try {
+				jsonList = mapper.writeValueAsString(vo);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("수정 실패");
 		}
