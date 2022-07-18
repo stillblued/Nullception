@@ -87,7 +87,8 @@ public class DealServiceImpl implements DealService {
 	public int dealInsert(DealVO vo) {
 		// 글 등록
 		int cnt = 0;
-		String sql = "INSERT INTO DEAL (board_id, nickname, deal_category, deal_title, deal_content, price, location, attach, attach_dir) VALUES(ID_SEQ.NEXTVAL,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO DEAL (BOARD_ID, NICKNAME, DEAL_CATEGORY, DEAL_TITLE, DEAL_CONTENT, PRICE, LOCATION, ATTACH, ATTACH_DIR)"
+				+ " VALUES(ID_SEQ.NEXTVAL,?,?,?,?,?,?,?,?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
