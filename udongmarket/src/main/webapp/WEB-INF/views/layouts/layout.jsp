@@ -19,11 +19,10 @@ body {
 }
 /* Style the header */
 header {
-	background-color: #666;
-	padding: 30px;
+    height: 30px; 
+	background-color: white;
 	text-align: center;
-	font-size: 35px;
-	color: white;
+	font-size: 10px;
 }
 /* Create two columns/boxes that floats next to each other */
 nav {
@@ -50,8 +49,9 @@ section {
 }
 /* Style the footer */
 footer {
+    height: 50px; 
 	background-color: #777;
-	padding: 10px;
+	padding: 1px;
 	text-align: center;
 	color: white;
 }

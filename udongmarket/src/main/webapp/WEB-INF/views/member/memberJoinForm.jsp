@@ -59,7 +59,6 @@
             <div>
               <input type="submit" value="회원가입">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="취소">&nbsp;&nbsp;&nbsp;
-              <input type="button" value="홈으로" onclick="location.href='main.do'">
             </div>
         </form>
      </div>
@@ -206,7 +205,7 @@
     		 frm.btn2.disabled = true; // 버튼 비활성화
     		 frm.memberPassword.focus();
     	 } else {
-    		 alert("이미 사용중인 아이디입니다.");
+    		 alert("이미 사용중인 닉네임입니다.");
     		 frm.memberNickname.value = "";
     		 frm.memberNickname.foucos();
     	 }
