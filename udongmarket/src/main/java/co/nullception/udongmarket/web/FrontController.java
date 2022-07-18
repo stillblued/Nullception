@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import co.nullception.udongmarket.MainCommand;
+import co.nullception.udongmarket.admin.command.AjaxFaqDelete;
 import co.nullception.udongmarket.admin.command.AjaxFaqSearch;
 import co.nullception.udongmarket.admin.command.FAQCommand;
 import co.nullception.udongmarket.admin.command.FaqDelete;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
-import co.nullception.udongmarket.admin.command.MemberListCommand;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.command.AjaxCommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityForm;
@@ -29,6 +29,7 @@ import co.nullception.udongmarket.member.command.AjaxMemberIdCheck;
 import co.nullception.udongmarket.member.command.AjaxNicknameCheck;
 import co.nullception.udongmarket.member.command.MemberJoin;
 import co.nullception.udongmarket.member.command.MemberJoinForm;
+import co.nullception.udongmarket.member.command.MemberList;
 import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
@@ -61,12 +62,13 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxNicknameCheck.do", new AjaxNicknameCheck()); // 닉네임 중복체크
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
 		
-		map.put("/memberList.do", new MemberListCommand()); //관리자페이지 > 멤버리스트 호출
+		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		map.put("/faqInsert.do" , new FaqInsert()); // FAQ 등록
 		map.put("/ajaxFaqSearch.do", new AjaxFaqSearch()); //FAQ 검색
 		map.put("/faqDelete.do", new FaqDelete()); // FAQ 삭제
+		map.put("/ajaxFaqDelete.do", new AjaxFaqDelete()); //AjaxFaq 삭제
 		
 		map.put("/myPage.do", new showMyPage());//마이페이지 호출
 		map.put("/deleteMember.do", new deleteMember());//회원탈퇴

@@ -25,7 +25,6 @@ public class AjaxFaqSearch implements Command {
 		String key = request.getParameter("key");
 		String val = request.getParameter("val");
 		list = faqDao.faqSearch(key, val);
-		
 		String jsonList = null;
 		try {
 			jsonList = mapper.writeValueAsString(list);

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <title>FAQ</title>
 </head>
@@ -16,89 +17,135 @@
 	</div>
 
 	<div>
-		<form id="suchfrm">
-			<label>FAQ검색</label><br>
-			<select id ="key" name="key">
-			<option value="FAQ_TITLE">제목</option>
-			<option value="FAQ_CONTENT">내용</option>
-			</select>&nbsp;
-			<!-- List<FaqVO> faqSerch(String val); val의 값으로 들어감  -->
-			<input type="text" id="val" name="val">&nbsp;&nbsp;
-			<input type="button" value="검색" onclick="faqSearch()">
-			
-		</form>
-	</div>
-	<form name="frm">
+		<div>
+			<form id="suchfrm">
+				<label>FAQ검색</label><br> <select id="key" name="key">
+					<option value="FAQ_TITLE">제목</option>
+					<option value="FAQ_CONTENT">내용</option>
+				</select>&nbsp;
+				<!-- List<FaqVO> faqSerch(String val); val의 값으로 들어감  -->
+				<input type="text" id="val" name="val">&nbsp;&nbsp; <input
+					type="button" value="검색" onclick="faqSearch()">
+
+			</form>
+		</div>
 		<div>
 			<label>전체</label> <label>문의</label> <label>신고</label> <label>기타</label>
 		</div>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>분류</th>
-					<th>제목</th>
-					<th>날짜</th>
-					<th>닉네임</th>
-					<th>상태</th>
-					<th>삭제</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list}" var="f">
-					<tr>
-						<c:if test ="${not empty REPORTED_ID }" > <td> 신고</td> </c:if>
-						<c:if test = "${ empty REPORTED_ID }"  > <td> 문의</td> </c:if>
-						<td>${f.faqTitle}</td>
-						<td>${f.faqDate}</td>
-						<td>${f.nickname}</td>
-						<c:if test ="${not empty answer_content }" > <td> 완료</td> </c:if>
-						<c:if test = "${ empty answer_content }"  > <td> 처리중</td> </c:if>
-						<td><input type="button" onclick="location.href='/udongmarket/faqDelete.do?boardId=${f.boardId}';" id="faqdelete" name="faqdelete" value="삭제"></td>
-					</tr>
-				</c:forEach>
-				 <!-- <input type="hidden" id="boardId" name="boardId"> -->
+		<form id="frm">
+			<table border="1">
 
-			</tbody>
-		</table>
-		<input type="button" onclick="location.href='faqForm.do'" id="write"
-			name="write" value="등록">
-	</form>
-	
+				<thead>
+					<tr>
+						<th>NO</th>
+						<th>분류</th>
+						<th>제목</th>
+						<th>날짜</th>
+						<th>닉네임</th>
+						<th>상태</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${list}" var="f">
+						<tr>
+							<td>${f.boardId }</td>
+							<c:if test="${not empty REPORTED_ID }">
+								<td>신고</td>
+							</c:if>
+							<c:if test="${ empty REPORTED_ID }">
+								<td>문의</td>
+							</c:if>
+							<td>${f.faqTitle}</td>
+							<td>${f.faqDate}</td>
+							<td>${f.nickname}</td>
+							<c:if test="${not empty answer_content }">
+								<td>완료</td>
+							</c:if>
+							<c:if test="${ empty answer_content }">
+								<td>처리중</td>
+							</c:if>
+							<td><input type="button" onclick="faqDelete()"
+								id="delete" name="delete" value="삭제"></td>
+								<td><a href="faqDelete.do?boardId=${f.boardId}">삭제</a></td>
+					
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<input type="button" onclick="location.href='faqForm.do'" id="write"
+				name="write" value="등록">
+		</form>
+	</div>
 	<script type="text/javascript">
-	function faqSearch(){
-		let key = ${'#key'}.val();
-		let val = ${'#val'}.val();
-		$.ajax({
-			url : "ajaxFaqSearch.do",
-			type : "post",
-			data : {key : key, val : val},
-			dataType : "Json",
-			success : function(result){
-				if(result.length > 0){
-					jsonHtmlConvert(result);
-				} else{
-					alert("검색한 결과가 없습니다.");
+		/* faq 검색 */
+		function faqSearch() {
+			let key = $("#key").val();
+			let val = $("#val").val();
+			$.ajax({
+				url : "ajaxFaqSearch.do",
+				type : "post",
+				data : {
+					key : key,
+					val : val
+				},
+				dataType : "json",
+				success : function(result) {
+					console.log(result);
+					if (result.length > 0) {
+						jsonHtmlConvert(result);
+					} else {
+						alert("검색한 결과가 없습니다.");
+					}
+				},
+				error : function() {
+					console.log("error");
 				}
-			},
-			error : function(err){
-				alert("알 수 없는 에러입니다.");
-			}
-		})
-	}
-	function jsonHtmlConvert(data) {
-		$('tbody').remove();
-		var tbody = $("<tbody />");
-		$.each(data, function(index, item) {
-			var row = $("<tr />").append(
-					  $("<td />").text(item.faqTitle),
-					  $("<td />").text(item.faqDate),
-					  $("<td />").text(item.nickname),
-			);
-			tbody.append(row);
-		});
-		$('table').append(tbody);
-	}
-		
-	</script>
+			})
+		}
+		function jsonHtmlConvert(data) {
+			$('tbody').remove();
+			var tbody = $("<tbody />");
+			var tcategory = "문의";
+			var tstate = "처리중"
+			$.each(data, function(index, item) {
+				if (item.REPORTED_ID != null) {
+				tcategory = "신고";};
+				if (item.answer_content != null) {
+				tstate = "완료";};
+				var row = $("<tr />").append($("<td />").text(tcategory),
+											 $("<td />").text(item.faqTitle),
+											 $("<td />").text(item.faqDate),
+											 $("<td />").text(item.nickname),
+											 $("<td />").text(tstate),
+											 $("<td />").append($("<button onclick='faqDelete(${item.boardId})'>").text("삭제")));
+								tbody.append(row);
+							});
+			$('table').append(tbody);
+		}/* faq 검색 끝 */
+	
+	
+		/* function faqDelete(){
+			
+		 	  console.log("boardId : "+boardId);
+	         let row = $(boardId).parent().parent().get(0);
+	         let td = row.cells[0];
+	         let id = $(td).html(); 
+	         
+	          const xhr = new XMLHttpRequest();
+	         const url = "faqDelete.do?boardId"+id;
+	         xhr.onload = function(){
+	            if(xhr.status >=200 && xhr.status <300){
+	               if(xhr.response ==1){
+	                  $(row).remove();
+	               }else{
+	                  alert ("삭제할 수 없습니다.")
+	               };
+	               }else{
+	                  errorCallBack(new Error(xhr.statusText));
+	               };  
+	         } 
+		} */
+    </script>
 </body>
 </html>
