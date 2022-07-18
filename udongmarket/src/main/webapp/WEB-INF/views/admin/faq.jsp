@@ -47,34 +47,44 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${list}" var="f">
-						<tr>
-							<td>${f.boardId }</td>
-							<c:if test="${not empty REPORTED_ID }">
-								<td>신고</td>
-							</c:if>
-							<c:if test="${ empty REPORTED_ID }">
-								<td>문의</td>
-							</c:if>
-							<td>${f.faqTitle}</td>
-							<td>${f.faqDate}</td>
-							<td>${f.nickname}</td>
-							<c:if test="${not empty answer_content }">
-								<td>완료</td>
-							</c:if>
-							<c:if test="${ empty answer_content }">
-								<td>처리중</td>
-							</c:if>
-							<td><input type="button" onclick="faqDelete()"
-								id="delete" name="delete" value="삭제"></td>
-								<td><a href="faqDelete.do?boardId=${f.boardId}">삭제</a></td>
-					
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty list }">
+							<c:forEach items="${list}" var="f">
+								<%-- <tr class="colored" onclick="faqSelectOne(${f.boardId})"> --%>
+								<tr>
+									<td>${f.boardId }</td>
+									<c:if test="${not empty REPORTED_ID }">
+										<td>신고</td>
+									</c:if>
+									<c:if test="${ empty REPORTED_ID }">
+										<td>문의</td>
+									</c:if>
+									<td class="colored" onclick="faqSelectOne()">${f.faqTitle}</td>
+									<td>${f.faqDate}</td>
+									<td>${f.nickname}</td>
+									<c:if test="${not empty answer_content }">
+										<td>완료</td>
+									</c:if>
+									<c:if test="${ empty answer_content }">
+										<td>처리중</td>
+									</c:if>
+									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
+									<%-- <td><a href="faqDelete.do?boardId=${f.boardId}">삭제</a></td> --%>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="6" align="center">게시글이 존재하지 않습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
+			<c:if test="${author == 'USER' || not empty nickname }">
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
+				</c:if>
 		</form>
 	</div>
 	<script type="text/javascript">
@@ -110,11 +120,11 @@
 			var tstate = "처리중"
 			$.each(data, function(index, item) {
 				if (item.REPORTED_ID != null) {
-				tcategory = "신고";};
+				    tcategory = "신고";};
 				if (item.answer_content != null) {
-				tstate = "완료";};
+					tstate = "완료";};
 				var row = $("<tr />").append($("<td />").text(tcategory),
-											 $("<td />").text(item.faqTitle),
+										     $("<td />").text(item.faqTitle),
 											 $("<td />").text(item.faqDate),
 											 $("<td />").text(item.nickname),
 											 $("<td />").text(tstate),
@@ -123,29 +133,34 @@
 							});
 			$('table').append(tbody);
 		}/* faq 검색 끝 */
+
+		 function faqDelete(obj){	
+		let row = $(obj).parent().parent().get(0);
+		let td = row.cells[0];
+		let id = $(td).html();		
+		
+			const xhr = new XMLHttpRequest();
+		const url = "ajaxFaqDelete.do?boardId="+id;
+		xhr.onload = function(){
+			if(xhr.status >= 200 && xhr.status < 300){
+				if(xhr.response == 1) {
+					alert("데이터가 삭제되었습니다.");
+					$(row).remove();
+				}else {
+					alert("삭제 할 수 없습니다.");
+				};
+			}else {
+				errorCallback(new Error(xhr.stautsText));
+			}
+		};
 	
-	
-		/* function faqDelete(){
-			
-		 	  console.log("boardId : "+boardId);
-	         let row = $(boardId).parent().parent().get(0);
-	         let td = row.cells[0];
-	         let id = $(td).html(); 
-	         
-	          const xhr = new XMLHttpRequest();
-	         const url = "faqDelete.do?boardId"+id;
-	         xhr.onload = function(){
-	            if(xhr.status >=200 && xhr.status <300){
-	               if(xhr.response ==1){
-	                  $(row).remove();
-	               }else{
-	                  alert ("삭제할 수 없습니다.")
-	               };
-	               }else{
-	                  errorCallBack(new Error(xhr.statusText));
-	               };  
-	         } 
-		} */
-    </script>
+		xhr.open('GET',url);
+		xhr.send(); 
+	}
+		 function faqSelectOne() {  //get방식 안전하지 않음
+				/* location.href='faqDetail.do?boardId='+id; */	
+			 location.href='faqDetail.do';
+			}
+	</script>
 </body>
 </html>

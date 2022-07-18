@@ -43,7 +43,7 @@
 		}
 		%>
 	</div>
-	<hr id ="headHr">
+	<hr>
 
 </body>
 </html>
