@@ -25,7 +25,7 @@ public class FaqServiceImpl implements FaqService {
 		String sql = "select * from faq order by board_id desc";
 		try {
 			conn = dao.getConnection();
-			psmt = conn.prepareCall(sql);
+			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new FaqVO();
@@ -50,10 +50,10 @@ public class FaqServiceImpl implements FaqService {
 	@Override
 	public FaqVO faqSelectOne(FaqVO vo) {
 		// 글 상세 보기
-		String sql = "select * from faq where member_id = ?";
+		String sql = "select * from faq where board_id = ?";
 		try {
 			conn = dao.getConnection();
-			psmt = conn.prepareCall(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getBoardId());
 			rs = psmt.executeQuery();
 			if (rs.next()) {
@@ -61,8 +61,8 @@ public class FaqServiceImpl implements FaqService {
 				vo.setFaqDate(rs.getString("FAQ_DATE"));
 				vo.setNickname(rs.getString("NICKNAME"));
 				vo.setFaqContent(rs.getString("FAQ_CONTENT"));
-				vo.setFaqDate(rs.getString("FAQ_DTAE"));
-				vo.setReportedId(rs.getString("REPORTE_ID"));
+				vo.setAnswerContent(rs.getString("ANSWER_CONTENT"));
+				vo.setReportedId(rs.getString("REPORTED_ID"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
 			}
@@ -81,7 +81,7 @@ public class FaqServiceImpl implements FaqService {
 				+ " values(id_SEQ.nextval, ?, ?, ?, sysdate, ? ,?)";
 		try {
 			conn = dao.getConnection();
-			psmt = conn.prepareCall(sql);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getNickname());
 			psmt.setString(2, vo.getFaqTitle());
 			psmt.setString(3, vo.getFaqContent());

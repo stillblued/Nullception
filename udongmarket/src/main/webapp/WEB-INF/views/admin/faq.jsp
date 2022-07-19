@@ -73,14 +73,20 @@
 							<c:forEach items="${list}" var="f">
 								<%-- <tr class="colored" onclick="faqSelectOne(${f.boardId})"> --%>
 								<tr>
-									<td>${f.boardId }</td>
+									<td id="boardId">${f.boardId }</td>
 									<c:if test="${not empty REPORTED_ID }">
 										<td>신고</td>
 									</c:if>
 									<c:if test="${ empty REPORTED_ID }">
 										<td>문의</td>
 									</c:if>
+
+									<td>${f.faqTitle}</td>
+
+									<td onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
+
 									<td class="colored" onclick="faqSelectOne()">${f.faqTitle}</td>
+
 									<td>${f.faqDate}</td>
 									<td>${f.nickname}</td>
 									<c:if test="${not empty answer_content }">
@@ -102,7 +108,11 @@
 					</c:choose>
 				</tbody>
 			</table>
+
+			<c:if test="${author == 'ADMIN' || not empty nickname }">
+
 			<c:if test="${author == 'USER' || not empty nickname }">
+
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
 				</c:if>
@@ -178,10 +188,23 @@
 		xhr.open('GET',url);
 		xhr.send(); 
 	}
+
 		 function faqSelectOne() {  //get방식 안전하지 않음
 				/* location.href='faqDetail.do?boardId='+id; */	
 			 location.href='faqDetail.do';
 			}
+
 	</script>
+
+		 function faqSelectOne(e) {  //get방식 안전하지 않음
+			 let boardId = (document.getElementById('boardId')).innerHTML;
+			 console.log(boardId);
+			 location.href='faqDetail.do?boardId='+boardId;	
+			 /* location.href='faqDetail.do'; */
+		}
+		 
+		
+</script>
+
 </body>
 </html>
