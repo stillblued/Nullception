@@ -32,14 +32,6 @@ public class AjaxMemberList implements Command {
 			e.printStackTrace();
 		}
 		return "ajax:" + jsonList;
-
-		if (list != null) {
-			result = "list";
-		}
-
-		
-		return "ajax:" + result;
-
 	}
 
 }

@@ -30,7 +30,7 @@ public class FaqInsert implements Command {
 		
 		//로그인 처리
 		HttpSession session = request.getSession(); //서버가 만들어 놓은 세션 가져옴. 서버정보는 request통해서 가져옴.
-		String sessionNickname = session.getAttribute("nickname").toString(); // 로그인 닉네임
+		String sessionNickname = (String) session.getAttribute("nickname"); // 로그인 닉네임
 		if (!sessionNickname.equals(vo.getNickname())) { // 본인이면...
 			try {
 				MultipartRequest multi = new MultipartRequest(request, savePath, uploadSize, "utf-8",

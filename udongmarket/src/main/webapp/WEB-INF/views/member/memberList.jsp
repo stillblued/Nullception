@@ -50,26 +50,7 @@ display: inline-block
 				<a href="faq.do">FAQ</a>
 		</nav>
 		<br>
-		<br> 
 
-		<div align="center">
-
-		<select id="membauthor">
-
-		<!-- <div align="center">
-		<select id="membauthorCategory" name="membauthorCategory"
-		 onchange="authorselectList()">
-
-		<select id="membauthorCategory" name="membauthorCategory"
-		 onchange="authorselectList()">
-
-		<option value="membauthorselect">== 권 한 ==</option>
-		<option value="ADMIN">ADMIN</option>
-		<option value="USER">USER</option>
-		<option value="BLIND">BLIND</option>
-		</select>
-		</div> -->
-		<!-- 권한에 따른 필터기능 -->
 		<div id="membauthorCategory" onchange="authorselectList()">
 		<ul>
 		<!-- <li>
@@ -78,15 +59,15 @@ display: inline-block
 		</li> -->
 		<li>
 		    <label for="ADMIN" style="cursor:pointer">
-		    <input type="radio" id="ADMIN" name="author" value="ADMIN" />ADMIN </label>
+		    <input type="radio" id="ADMIN" name="author" value="ADMIN" />&nbsp;ADMIN&nbsp;&nbsp; </label>
 		</li>
 		<li>
 		    <label for="USER" style="cursor:pointer">
-		    <input type="radio" id="USER" name="author" value="USER" />USER</label>
+		    <input type="radio" id="USER" name="author" value="USER" />&nbsp;USER&nbsp;&nbsp;</label>
 		</li>
 		<li>
 		    <label for="BLIND" style="cursor:pointer">
-		    <input type="radio" id="BLIND" name="author" value="BLIND" />BLIND
+		    <input type="radio" id="BLIND" name="author" value="BLIND" />&nbsp;BLIND&nbsp;&nbsp;
 		    </label>
 		</li>
 		</ul>
@@ -121,32 +102,16 @@ display: inline-block
 		//select 태그의 값이 변경될 때 멤버 리스트 필터하는 함수 #membauthorCategory
 		let category = $("input[name='author']:checked").val();
 
-<script type="text/javascript">
-	function authorselectList(){
-		//select 태그의 값이 변경될 때 멤버 리스트 필터하는 함수
-		let category = $("#membauthorCategory option:selected").text();
-		
-
 		$.ajax({
 			url : "ajaxMemberList.do",
 			type : "post",
 			data : {category : category},
 			dataType : "Json",
 			success : function(result){
-
-				console.log(result.length);
 				
-				/* if(result != null){
-					jsonMembListConvert(result);
-				} */
 				result.length != 0 ? jsonMembListConvert(result) : jsonMembListNull();
 
-				console.log(result);
-				/* if(result != null){
-					jsonComListConvert(result);
-				} else {
-				
-				}*/
+				/* if(result != null){jsonComListConvert(result);*/
 
 			}, 
 			error: function(){
