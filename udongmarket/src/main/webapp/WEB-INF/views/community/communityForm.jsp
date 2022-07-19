@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>communityForm</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div align="center">
@@ -18,8 +20,7 @@
 					<table border="1">
 						<tr>
 							<th>#</th>
-							<td colspan="3">
-									<select id="comCategory" name="comCategory">
+							<td colspan="3"><select id="comCategory" name="comCategory">
 
 									<option value="알리미">알리미</option>
 									<option value="소모임">소모임</option>
@@ -27,7 +28,7 @@
 									<option value="분실실종">분실실종</option>
 									<option value="도움요청">도움요청</option>
 
-							</select> 
+							</select>
 						</tr>
 
 						<tr>

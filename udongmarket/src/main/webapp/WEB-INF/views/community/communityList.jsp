@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -36,33 +37,37 @@
 				<thead>
 					<tr>
 						<th width="70">#</th>
-						<th width="250">제목</th>
+						<th width="450">제목</th>
 						<th width="70">작성자</th>
-						<th width="130">작성일</th>
-						<th width="70">조회수</th>
-
+						<th width="170">작성일</th>
 					</tr>
 				</thead>
 				<tbody id="tb">
+				
 
 					<c:if test="${empty list}"><td colspan="6" align="center">등록된 게시물이 없습니다.</td></c:if>
 					<c:if test="${not empty list}">
 						<c:forEach var="list" items="${list}">
-							<tr>
+							<tr onclick = "location.href='communityContent.do'">
 								<td>${list.comCategory }</td>
 								<td>${list.comTitle }</td>
 								<td>${list.nickname }</td>
 								<td>${list.comDate }</td>
-								<td>${list.comHit }</td>
 							</tr>
+							
+							<img src = "${list.attachDir}">
 						</c:forEach>
 					</c:if>
-
+					
+				
+				
+				
+				
 				</tbody>
 			</table>
 		</div>
 
-
+		<br>
 
 		<div id = "page">
 			<%
@@ -122,8 +127,6 @@
 						$("<td />").text(item.comTitle),
 						$("<td />").text(item.nickname),
 						$("<td />").text(item.comDate),
-						$("<td />").text(item.comHit)
-
 				);
 				tbody.append(row);
 			});
