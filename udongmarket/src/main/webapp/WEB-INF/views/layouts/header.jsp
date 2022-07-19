@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 	<div>
 		<%
 		if (session.getAttribute("nick") == null) {
