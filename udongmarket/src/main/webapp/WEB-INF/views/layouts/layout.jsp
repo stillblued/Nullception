@@ -48,7 +48,7 @@ header {
 	font-size: 10px;
 	text-align: right;
 	position: fixed;
-	top: 3px;
+	top: 0px;
 	left: 17.75%;
 	right: 17.75%;
 }
@@ -56,11 +56,10 @@ header {
 section {
 	position: fixed;
 	height: 120px;
-	top: 33px;
 	left: 17.75%;
 	right: 17.75%;
 	background-color: white;
-	top: 33px;
+	top: 25px;
 }
 
 nav {
