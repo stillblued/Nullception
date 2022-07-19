@@ -15,6 +15,8 @@ public class CommunityList implements Command {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		CommunityService communityDao = new CommunityServiceImpl();
+		List<CommunityVO> list = new ArrayList<CommunityVO>();
+		
 		int cnt = communityDao.getBoardCount();
 
 		int pageSize = 10;
@@ -27,9 +29,7 @@ public class CommunityList implements Command {
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
 
-		List<CommunityVO> list = new ArrayList<CommunityVO>();
 		list = communityDao.communityList(startRow, endRow);
-		
 
 		int pageCount = 0;
 		int pageBlock = 0;
@@ -55,9 +55,11 @@ public class CommunityList implements Command {
 		HttpSession session = request.getSession();
 		String nickname = (String) session.getAttribute("nick");
 		String location = (String) session.getAttribute("location");
+		
 		request.setAttribute("nickname", nickname);
 		request.setAttribute("location", location);
 		request.setAttribute("list", list);
+		
 		return "community/communityList";
 
 	}

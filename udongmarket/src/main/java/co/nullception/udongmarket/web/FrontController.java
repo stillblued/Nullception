@@ -18,6 +18,7 @@ import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.command.AjaxCommunitySearch;
+import co.nullception.udongmarket.community.command.CommunityContent;
 import co.nullception.udongmarket.community.command.CommunityForm;
 import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
@@ -92,6 +93,9 @@ public class FrontController extends HttpServlet {
 		map.put("/communityForm.do", new CommunityForm());
 		map.put("/communityInsert.do", new CommunityInsert());
 		map.put("/ajaxCommunitySearch.do", new AjaxCommunitySearch());
+		map.put("/communityContent.do", new CommunityContent());
+		
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
