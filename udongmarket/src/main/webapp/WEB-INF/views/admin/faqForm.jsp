@@ -1,5 +1,7 @@
+<%@ page import="co.nullception.udongmarket.faq.vo.FaqVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
 <title>FAQ FORM</title>
+<script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -36,21 +39,22 @@
 				
 				<tr>
 					<th id="nickname">닉네임</th>
-					<td><input type="text" id="nickname" name="nickname" value="사용자닉네임호출예정" readonly="readonly"></td>
+					<td><input type="text" id="nickname" name="nickname"" readonly="readonly" ></td>
+					<th id="nickname">작성 날짜</th>
+					<td><input type="text" id="faqDate" name="faqDate"<%--  value="${list.getFaqDate() }" --%> readonly="readonly"></td>
 				</tr>
-				
 				<tr>
 					<th id="title">제목</th>
-					<td><input type="text" id="faqTitle" name="faqTitle"></td>
+					<td colspan="3" ><input type="text" id="faqTitle" name="faqTitle"></td>
 				</tr>
 				
 				<tr>
 					<th id="content">내용</th>
-					<td><textarea id="faqContent" name="faqContent" rows="10" ></textarea></td>
+					<td colspan="3"> <textarea id="faqContent" name="faqContent" rows="10" ></textarea></td>
 				</tr>
 				<tr>
 					<th id="file">첨부파일</th>
-					<td><input type="file" id="attach" name="attach"></td>
+					<td colspan="3"><input type="file" id="attach" name="attach"></td>
 				</tr>
 					
 			</table><br>

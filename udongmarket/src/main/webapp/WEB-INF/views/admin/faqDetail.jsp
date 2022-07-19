@@ -58,13 +58,7 @@
 
 					<!-- <button type="button" onclick="faqUpdate(this)">수정</button>
 					<button type="button" onclick="location.href='ajaxFaqDelete.do'">삭제</button>  -->
-					<button type="button" onclick="location.href='faq.do'">목록
-						보기</button>
-
-					<button type="button" onclick="">수정</button>
-					<button type="button" onclick="faqDelete(this)">삭제</button>
-					<button type="button" onclick="location.href='faq.do';">목록
-						보기</button>
+					<button type="button" onclick="location.href='faq.do'">목록</button>
 
 				</td>
 			</tr>
@@ -101,5 +95,20 @@
 		/* location.href='faqDetail.do'; */
 		}
 </script>
+
+  <p>
+    <div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://web1-2.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </p>
 </body>
 </html>
