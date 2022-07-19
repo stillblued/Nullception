@@ -33,8 +33,6 @@ public class AjaxMemberList implements Command {
 		}
 		return "ajax:" + jsonList;
 
-		
-
 	}
 
 }

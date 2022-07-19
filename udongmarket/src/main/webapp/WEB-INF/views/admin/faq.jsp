@@ -81,11 +81,7 @@
 										<td>문의</td>
 									</c:if>
 
-									<td>${f.faqTitle}</td>
-
 									<td onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
-
-									<td class="colored" onclick="faqSelectOne()">${f.faqTitle}</td>
 
 									<td>${f.faqDate}</td>
 									<td>${f.nickname}</td>
@@ -109,9 +105,8 @@
 				</tbody>
 			</table>
 
+			
 			<c:if test="${author == 'ADMIN' || not empty nickname }">
-
-			<c:if test="${author == 'USER' || not empty nickname }">
 
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
@@ -188,13 +183,6 @@
 		xhr.open('GET',url);
 		xhr.send(); 
 	}
-
-		 function faqSelectOne() {  //get방식 안전하지 않음
-				/* location.href='faqDetail.do?boardId='+id; */	
-			 location.href='faqDetail.do';
-			}
-
-	</script>
 
 		 function faqSelectOne(e) {  //get방식 안전하지 않음
 			 let boardId = (document.getElementById('boardId')).innerHTML;
