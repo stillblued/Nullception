@@ -23,10 +23,11 @@ import co.nullception.udongmarket.community.command.CommunityForm;
 import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
 import co.nullception.udongmarket.deal.command.AjaxDealSearch;
+import co.nullception.udongmarket.deal.command.DealDelete;
 import co.nullception.udongmarket.deal.command.DealForm;
 import co.nullception.udongmarket.deal.command.DealInsert;
 import co.nullception.udongmarket.deal.command.DealList;
-import co.nullception.udongmarket.deal.command.DealView;
+import co.nullception.udongmarket.deal.command.DealDetail;
 import co.nullception.udongmarket.member.command.AjaxMemberIdCheck;
 import co.nullception.udongmarket.member.command.AjaxMemberList;
 import co.nullception.udongmarket.member.command.AjaxNicknameCheck;
@@ -87,7 +88,8 @@ public class FrontController extends HttpServlet {
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
 		map.put("/dealForm.do", new DealForm()); // 상품 등록폼
 		map.put("/ajaxDealSearch.do", new AjaxDealSearch()); // 검색
-		map.put("/dealView.do", new DealView()); // 글 상세보기
+		map.put("/dealDetail.do", new DealDetail()); // 글 상세
+		map.put("/dealDelete.do", new DealDelete()); // 글 삭제
 		
 		map.put("/communityList.do", new CommunityList());
 		map.put("/communityForm.do", new CommunityForm());

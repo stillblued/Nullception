@@ -3,6 +3,8 @@ package co.nullception.udongmarket.deal.command;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import co.nullception.udongmarket.deal.service.DealService;
@@ -21,12 +23,19 @@ public class DealInsert implements Command {
 		String savePath = "C:\\Temp\\";
 		int uploadSize = 1024 * 1024 * 1024;
 		int cnt = 0;
+		HttpSession session = request.getSession();
 
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, uploadSize, "utf-8",
 					new DefaultFileRenamePolicy());
 			String originalFileName = multi.getOriginalFileName("file");
 			String saveFileName = multi.getFilesystemName("file");
+			
+			String nickname = (String)session.getAttribute("nick");
+			String location = (String)session.getAttribute("location");
+			
+			vo.setNickname(nickname);
+			vo.setLocation(location);
 			vo.setAttach(multi.getParameter("attach"));
 			vo.setDealCategory(multi.getParameter("dealCategory"));
 			vo.setDealTitle(multi.getParameter("dealTitle"));

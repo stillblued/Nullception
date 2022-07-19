@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>myPage.jsp</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
@@ -14,6 +16,25 @@
 </style>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+			aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+			</ul>
+		</div>
+	</nav>	
+
 	<!-- 만약 권한이 USER이면 마이페이지, 아니면 관리자페이지 로드 -->
 	<h3>내정보</h3>
 	<div align="center">

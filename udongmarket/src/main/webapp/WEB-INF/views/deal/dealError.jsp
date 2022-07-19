@@ -4,14 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>footer</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-  <h5>copyrightⓒ 2022 team Nullception All rights reserved</h5>
-
+${message}
+<jsp:forward page="dealList.do"></jsp:forward>
 </body>
 </html>

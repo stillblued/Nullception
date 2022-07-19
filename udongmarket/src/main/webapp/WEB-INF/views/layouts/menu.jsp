@@ -8,13 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>menu</title>
 </head>
 <body>
-	<a href="main.do"><h1>
-			우동<br>마켓
-		</h1></a>
-	<%
+	<a href="main.do"><h1>우동<br>마켓</h1></a>
+	
+	<%-- <%
 	if (session.getAttribute("nick") == null) {
 	%>
 
@@ -52,7 +53,7 @@
 
 	<%
 	}
-	%>
+	%> --%>
 	<hr>
 </body>
 </html>

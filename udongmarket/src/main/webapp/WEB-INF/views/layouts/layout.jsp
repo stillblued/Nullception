@@ -6,11 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 
 <title><tiles:getAsString name="title" /></title>
 
 <style>
-hr {
+header {
+	height: 30px;
+	font-size: 15px;
+	text-align: right;
+	position: fixed;
+	top: 3px;
+	left: 17.75%;
+	right: 17.75%;
+}
+
+
+
+/* hr {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #8c8c8c inset;
@@ -74,7 +88,7 @@ footer {
 	width: 65%;
 	margin-top: 5px;
 	padding-top: 5px;
-	height: 30px;
+	height: 100px;
 	background-color: #777;
 	text-align: center;
 	color: white;
@@ -84,7 +98,7 @@ footer {
 h5 {
 	margin: 0;
 	padding: 0;
-}
+} */
 </style>
 
 </head>
