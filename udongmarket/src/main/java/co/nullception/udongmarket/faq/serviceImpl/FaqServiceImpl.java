@@ -147,6 +147,7 @@ public class FaqServiceImpl implements FaqService {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				vo = new FaqVO();
+				vo.setBoardId(rs.getInt("BOARD_ID"));
 				vo.setFaqTitle(rs.getString("FAQ_TITLE"));
 				vo.setFaqDate(rs.getString("FAQ_DATE"));
 				vo.setNickname(rs.getString("NICKNAME"));
@@ -166,6 +167,30 @@ public class FaqServiceImpl implements FaqService {
 		}
 
 		return list;
+	}
+
+	@Override
+	public int sFaqInsert(FaqVO vo) {
+		int cnt = 0;
+		String sql = "insert into faq (BOARD_ID, NICKNAME, FAQ_TITLE, FAQ_CONTENT, FAQ_DATE, ATTACH, ATTACH_DIR)"
+				+ " values(id_SEQ.nextval, ?, ?, ?, sysdate, ? ,?)";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getNickname());
+			psmt.setString(2, vo.getFaqTitle());
+			psmt.setString(3, vo.getFaqContent());
+			psmt.setString(4, vo.getAttach());
+			psmt.setString(5, vo.getAttachDir());
+
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
 	}
 
 }

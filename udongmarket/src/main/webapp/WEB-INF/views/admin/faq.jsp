@@ -149,14 +149,16 @@
 				    tcategory = "신고";};
 				if (item.answer_content != null) {
 					tstate = "완료";};
-				var row = $("<tr />").append($("<td />").text(tcategory),
+				var row = $("<tr />").append($("<td />").text(item.boardId), // boardId 못가져옴...
+				                             $("<td />").text(tcategory),
 										     $("<td />").text(item.faqTitle),
+									//$("<td />").append($("< onclick='faqSelectOne(this)'>").text(item.faqTitle)), 클릭안됨...
 											 $("<td />").text(item.faqDate),
 											 $("<td />").text(item.nickname),
 											 $("<td />").text(tstate),
 											 $("<td />").append($("<button onclick='faqDelete(${item.boardId})'>").text("삭제")));
 								tbody.append(row);
-							});
+							}); 
 			$('table').append(tbody);
 		}/* faq 검색 끝 */
 
