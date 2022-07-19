@@ -17,14 +17,19 @@ public class DealServiceImpl implements DealService {
 	private ResultSet rs;
 	
 	@Override
-	public List<DealVO> dealSelectList() {
+	public List<DealVO> dealSelectList(int startRow, int endRow) {
 		// 전체 목록
 		List<DealVO> list = new ArrayList<>();
 		DealVO vo;
-		String sql = "SELECT * FROM DEAL ORDER BY BOARD_ID";
+		String sql = "SELECT * \r\n"
+				+ "FROM (SELECT ROWNUM AS RNUM, A.*\r\n"
+				+ "FROM (SELECT * FROM DEAL ORDER BY DEAL_DATE DESC, DEAL_CATEGORY) A)\r\n"
+				+ "WHERE RNUM BETWEEN ? AND ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, startRow);
+			psmt.setInt(2, endRow);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				vo = new DealVO();
@@ -186,6 +191,26 @@ public class DealServiceImpl implements DealService {
 			dao.disconnect();
 		}
 		return list;
+	}
+
+	@Override
+	public int getDealCount() {
+		// 조회수
+		int cnt = 0;
+		String sql = "SELECT COUNT(*) AS CNT FROM DEAL";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("CNT");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
 	}
 
 }

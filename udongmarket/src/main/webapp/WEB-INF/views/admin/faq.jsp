@@ -6,9 +6,30 @@
 <head>
 <script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>FAQ</title>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+			aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+			</ul>
+		</div>
+	</nav>	
+
 	<div id="nav">
 		<ul>
 			<li><a href="memberList.do">사용자 목록</a></li>

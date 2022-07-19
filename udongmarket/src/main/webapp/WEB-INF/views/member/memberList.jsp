@@ -5,10 +5,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>전체 사용자 목록</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+			aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+			</ul>
+		</div>
+	</nav>	
+
 	<div>
 		<!-- 메인 > 관리자페이지 > 상세 카테고리 노출 -->
 		<nav>

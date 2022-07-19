@@ -21,8 +21,4 @@ public class DealVO {
 	private String attach;
 	private String attachDir;
 
-	public DealVO() {
-		super();
-	}
-
 }
