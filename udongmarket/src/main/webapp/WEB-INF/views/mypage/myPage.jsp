@@ -114,7 +114,7 @@
 			<c:forEach items="${likesList }" var="likesList">
 				<tr>
 					<td>${likesList.dealCategory }</td>
-					<td>${likesList.dealTitle}</td>
+					<td id='title'>${likesList.dealTitle}</td>
 					<!-- 해당 게시글로 이동하는 기능 => ?? -->
 					<td>${likesList.dealDate }</td>
 					<td>${likesList.dealHit }</td>
@@ -186,7 +186,6 @@
 					  $("<td />").text(item.dealHit),
 					  $("<td />").append($("<select onchange='changeState(this)'/>")
 							     .append($("<option " + (state1 == item.dealState ? 'selected' : '')+">거래가능</option> <option " + (state2 == item.dealState ? 'selected' : '') + ">거래중</option> <option " + (state3 == item.dealState ? 'selected' : '') + ">거래완료</option>")))
-					  /* hover css 먹여보기(링크처럼) */
 					);
 			tbody.append(row);
 		});
