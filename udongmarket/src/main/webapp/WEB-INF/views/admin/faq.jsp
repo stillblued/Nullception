@@ -51,14 +51,18 @@
 						<c:when test="${not empty list }">
 							<c:forEach items="${list}" var="f">
 								<tr>
-									<td>${f.boardId }</td>
+									<td id="boardId">${f.boardId }</td>
 									<c:if test="${not empty REPORTED_ID }">
 										<td>신고</td>
 									</c:if>
 									<c:if test="${ empty REPORTED_ID }">
 										<td>문의</td>
 									</c:if>
+<<<<<<< Updated upstream
 									<td>${f.faqTitle}</td>
+=======
+									<td onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
+>>>>>>> Stashed changes
 									<td>${f.faqDate}</td>
 									<td>${f.nickname}</td>
 									<c:if test="${not empty answer_content }">
@@ -80,6 +84,10 @@
 					</c:choose>
 				</tbody>
 			</table>
+<<<<<<< Updated upstream
+=======
+			<c:if test="${author == 'ADMIN' || not empty nickname }">
+>>>>>>> Stashed changes
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
 		</form>
@@ -154,6 +162,18 @@
 		xhr.open('GET',url);
 		xhr.send(); 
 	}
+<<<<<<< Updated upstream
 	</script>
+=======
+		 function faqSelectOne(e) {  //get방식 안전하지 않음
+			 let boardId = (document.getElementById('boardId')).innerHTML;
+			 console.log(boardId);
+			 location.href='faqDetail.do?boardId='+boardId;	
+			 /* location.href='faqDetail.do'; */
+		}
+		 
+		
+</script>
+>>>>>>> Stashed changes
 </body>
 </html>
