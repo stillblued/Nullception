@@ -6,9 +6,30 @@
 <head>
 <script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>FAQ</title>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+			aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+			</ul>
+		</div>
+	</nav>	
+
 	<div id="nav">
 		<ul>
 			<li><a href="memberList.do">사용자 목록</a></li>
@@ -50,6 +71,7 @@
 					<c:choose>
 						<c:when test="${not empty list }">
 							<c:forEach items="${list}" var="f">
+								<%-- <tr class="colored" onclick="faqSelectOne(${f.boardId})"> --%>
 								<tr>
 									<td id="boardId">${f.boardId }</td>
 									<c:if test="${not empty REPORTED_ID }">
@@ -58,11 +80,13 @@
 									<c:if test="${ empty REPORTED_ID }">
 										<td>문의</td>
 									</c:if>
-<<<<<<< Updated upstream
+
 									<td>${f.faqTitle}</td>
-=======
+
 									<td onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
->>>>>>> Stashed changes
+
+									<td class="colored" onclick="faqSelectOne()">${f.faqTitle}</td>
+
 									<td>${f.faqDate}</td>
 									<td>${f.nickname}</td>
 									<c:if test="${not empty answer_content }">
@@ -71,7 +95,7 @@
 									<c:if test="${ empty answer_content }">
 										<td>처리중</td>
 									</c:if>
-									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delte" value="삭제"></td>
+									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
 									<%-- <td><a href="faqDelete.do?boardId=${f.boardId}">삭제</a></td> --%>
 								</tr>
 							</c:forEach>
@@ -84,12 +108,14 @@
 					</c:choose>
 				</tbody>
 			</table>
-<<<<<<< Updated upstream
-=======
+
 			<c:if test="${author == 'ADMIN' || not empty nickname }">
->>>>>>> Stashed changes
+
+			<c:if test="${author == 'USER' || not empty nickname }">
+
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
+				</c:if>
 		</form>
 	</div>
 	<script type="text/javascript">
@@ -162,9 +188,14 @@
 		xhr.open('GET',url);
 		xhr.send(); 
 	}
-<<<<<<< Updated upstream
+
+		 function faqSelectOne() {  //get방식 안전하지 않음
+				/* location.href='faqDetail.do?boardId='+id; */	
+			 location.href='faqDetail.do';
+			}
+
 	</script>
-=======
+
 		 function faqSelectOne(e) {  //get방식 안전하지 않음
 			 let boardId = (document.getElementById('boardId')).innerHTML;
 			 console.log(boardId);
@@ -174,6 +205,6 @@
 		 
 		
 </script>
->>>>>>> Stashed changes
+
 </body>
 </html>

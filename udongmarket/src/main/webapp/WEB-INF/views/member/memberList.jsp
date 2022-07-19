@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>전체 사용자 목록</title>
-<<<<<<< Updated upstream
-=======
+
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
 #membauthorCategory > ul  {
@@ -18,29 +19,54 @@ li{
 display: inline-block
 }
 </style>
->>>>>>> Stashed changes
+
+<script src="js/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+			aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+			</ul>
+		</div>
+	</nav>	
+
 	<div>
 		<!-- 메인 > 관리자페이지 > 상세 카테고리 노출 -->
 		<nav>
-			
 				<a href="memberList.do">사용자 목록</a>&nbsp;&nbsp;&nbsp;
 				<a href="faq.do">FAQ</a>
-
 		</nav>
 		<br>
 		<br> 
-<<<<<<< Updated upstream
+
 		<div align="center">
+
 		<select id="membauthor">
-=======
+
 		<!-- <div align="center">
 		<select id="membauthorCategory" name="membauthorCategory"
 		 onchange="authorselectList()">
->>>>>>> Stashed changes
+
+		<select id="membauthorCategory" name="membauthorCategory"
+		 onchange="authorselectList()">
+
 		<option value="membauthorselect">== 권 한 ==</option>
 		<option value="ADMIN">ADMIN</option>
+		<option value="USER">USER</option>
+		<option value="BLIND">BLIND</option>
 		</select>
 		</div> -->
 		<!-- 권한에 따른 필터기능 -->
@@ -89,31 +115,46 @@ display: inline-block
 			</tbody>
 		</table>
 	</div>
-<<<<<<< Updated upstream
-=======
+
 <script type="text/javascript">
 	function authorselectList(){
 		//select 태그의 값이 변경될 때 멤버 리스트 필터하는 함수 #membauthorCategory
 		let category = $("input[name='author']:checked").val();
+
+<script type="text/javascript">
+	function authorselectList(){
+		//select 태그의 값이 변경될 때 멤버 리스트 필터하는 함수
+		let category = $("#membauthorCategory option:selected").text();
+		
+
 		$.ajax({
 			url : "ajaxMemberList.do",
 			type : "post",
 			data : {category : category},
 			dataType : "Json",
 			success : function(result){
+
 				console.log(result.length);
 				
 				/* if(result != null){
 					jsonMembListConvert(result);
 				} */
 				result.length != 0 ? jsonMembListConvert(result) : jsonMembListNull();
+
+				console.log(result);
+				/* if(result != null){
+					jsonComListConvert(result);
+				} else {
 				
+				}*/
+
 			}, 
 			error: function(){
 				console.log("error");
 			}
 		})
 	}
+
 	function jsonMembListConvert(data){
  		$("#tble tbody").remove();
 		let tbody = $("<tbody />");
@@ -143,6 +184,7 @@ display: inline-block
 	
 	
 </script>
->>>>>>> Stashed changes
+
+
 </body>
 </html>

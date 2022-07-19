@@ -8,42 +8,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>menu</title>
 </head>
 <body>
-     <a href = "main.do"><h1>우동<br>마켓</h1></a>
-     <% if(session.getAttribute("nick") == null) {%>
-     
-	<nav>
-			
-      		<button type="button" onclick="location.href='dealList.do'">장터</button>&nbsp;&nbsp;&nbsp;
-      		<button type="button" onclick="location.href='communityList.do'">커뮤</button>
-	</nav>
+	<a href="main.do"><h1>우동<br>마켓</h1></a>
 	
-     <%} else {
-    	 
- 		//세션의 정보는 Object타입으로 저장되어있음
- 		//다운 캐스팅 : 자식클래스의 변수 = (자식클래스 타입) 부모타입의 데이터
- 		String author = (String) session.getAttribute("author");
- 		// System.out.println(author);
-    	 if(author.equals("admin")) {  %>
-    	 <nav>
-       
-       <button type="button" onclick="location.href='dealList.do'">장터</button>&nbsp;&nbsp;&nbsp;
-       <button type="button" onclick="location.href='communityList.do'">커뮤</button>
-     </nav>
-     
-    	 <%}else{ %>
-    	 
-     <nav>
-    	  
-           <button type="button" onclick="location.href='dealList.do'">장터</button>&nbsp;&nbsp;&nbsp;
-      	   <button type="button" onclick="location.href='communityList.do'">커뮤</button>
-    	 </nav>
-     
-    	 <%} %>
-     
-     <%} %>
+	<%-- <%
+	if (session.getAttribute("nick") == null) {
+	%>
+
+	<nav>
+		<a href='dealList.do'>장터</a> &nbsp;&nbsp;&nbsp; <a
+			href='communityList.do'>커뮤</a>
+	</nav>
+
+	<%
+	} else {
+
+	String author = (String) session.getAttribute("author");
+
+	if (author.equals("admin")) {
+	%>
+	<nav>
+
+		<a href='dealList.do'>장터</a> &nbsp;&nbsp;&nbsp; <a
+			href='communityList.do'>커뮤</a>
+	</nav>
+
+	<%
+	} else {
+	%>
+
+	<nav>
+
+		<a href='dealList.do'>장터</a> &nbsp;&nbsp;&nbsp; <a
+			href='communityList.do'>커뮤</a>
+	</nav>
+
+	<%
+	}
+	%>
+
+	<%
+	}
+	%> --%>
+	<hr>
 </body>
 </html>

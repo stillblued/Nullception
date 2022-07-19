@@ -1,3 +1,4 @@
+<%@page import="co.nullception.udongmarket.member.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -6,10 +7,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>거래 게시판 목록</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<%
+	MemberVO mvo = new MemberVO();
+%>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+			aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li class="active"><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+			</ul>
+		</div>
+	</nav>	
 	<div><h1>거래 게시글 목록</h1></div>
 	 <div>
 		<form id="frm">
@@ -19,24 +43,13 @@
 			</select>&nbsp;
 			<input type="text" id="val" name="val">&nbsp;&nbsp;
 			<input type="button" value="검색" onclick="dealSearch()">
-		</form>
+		</form><br>
 		
-		<br>
-		<!-- <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100" height="100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-            <div class="card-body">
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-         </div><br> -->
-		
-		<table border="1">
+		<table border="1" width="80%">
 			<thead>
 				<tr>
+					<th>NO</th>
+					<th>상품이미지</th>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>가격</th>
@@ -49,8 +62,10 @@
 				<c:when test="${not empty list}">
 					<c:forEach items="${list}" var="d">
 						<tr>
-							<td>${d.nickname}</td>
-							<td>${d.dealTitle}</td>
+							<td>${d.boardId}</td>
+							<td><img src="${d.attach}"></td>
+							<td>${mvo.memberId}</td>
+							<td><a href="dealDetail.do?boardId=${d.boardId}">${d.dealTitle}</a></td>
 							<td>${d.price}</td>
 							<td>${d.dealDate}</td>
 							<td>${d.dealHit}</td>
@@ -59,18 +74,33 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="5" align="center">
+						<td colspan="6" align="center">
 						현재 거래중인 상품이 없습니다.</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
 			</tbody>		
 		</table><br>
+		<div id = "page">
+			<%
+			int pageCount = (int) request.getAttribute("pageCount");
+			int pageBlock = (int) request.getAttribute("pageBlock");
+			int startPage = (int) request.getAttribute("startPage");
+			int endPage = (int) request.getAttribute("endPage");
+
+			for (int i = startPage; i <= endPage; i++) {
+			%>
+			<a href="dealList.do?pageNum=<%=i%>"><%=i%></a>
+			<%
+			}
+			%>
+		</div><br>
+		
 		<div>
 			<!-- 비회원은 글등록 못하게 -->
-			<%-- <c:if test="${not empty id}"> --%>
+			<c:if test="${not empty id}">
 				<button type="button" onclick="location.href='dealForm.do'">판매상품 등록하기</button>
-			<%-- </c:if> --%>
+			</c:if>
 		</div>
 	</div>
 	

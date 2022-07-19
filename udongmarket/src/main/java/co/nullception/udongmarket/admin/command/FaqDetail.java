@@ -8,17 +8,21 @@ import co.nullception.udongmarket.faq.service.FaqService;
 import co.nullception.udongmarket.faq.serviceImpl.FaqServiceImpl;
 import co.nullception.udongmarket.faq.vo.FaqVO;
 
-public class FaqSelectOne implements Command {
+public class FaqDetail implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		// 게시글 상세 조회
-		FaqService faqDao = new FaqServiceImpl();
-		FaqVO vo = new FaqVO();
-		vo = faqDao.faqSelectOne(vo);
-		request.setAttribute("vo", vo);
-		
-		return "admin/faq";
+				FaqService faqDao = new FaqServiceImpl();
+				FaqVO vo = new FaqVO();
+				int boardId = Integer.parseInt(request.getParameter("boardId"));
+				vo.setBoardId(boardId); 
+				System.out.println("FaqDetail은 실행됨...");
+				System.out.println("boardId 값 : "+boardId);
+				vo = faqDao.faqSelectOne(vo);
+				request.setAttribute("vo", vo);
+				
+				return "admin/faqDtail";
 	}
 
 }

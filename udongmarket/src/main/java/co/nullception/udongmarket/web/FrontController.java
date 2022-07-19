@@ -13,27 +13,30 @@ import co.nullception.udongmarket.MainCommand;
 import co.nullception.udongmarket.admin.command.AjaxFaqDelete;
 import co.nullception.udongmarket.admin.command.AjaxFaqSearch;
 import co.nullception.udongmarket.admin.command.FAQCommand;
-<<<<<<< Updated upstream
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
 import co.nullception.udongmarket.admin.command.FaqSelectOne;
-=======
 import co.nullception.udongmarket.admin.command.FaqDetail2;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
 import co.nullception.udongmarket.admin.command.FaqUpdate;
->>>>>>> Stashed changes
+import co.nullception.udongmarket.admin.command.FaqDetail;
+import co.nullception.udongmarket.admin.command.FaqFormCommand;
+import co.nullception.udongmarket.admin.command.FaqInsert;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.command.AjaxCommunitySearch;
+import co.nullception.udongmarket.community.command.CommunityContent;
 import co.nullception.udongmarket.community.command.CommunityForm;
 import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
 import co.nullception.udongmarket.deal.command.AjaxDealSearch;
+import co.nullception.udongmarket.deal.command.DealDelete;
 import co.nullception.udongmarket.deal.command.DealForm;
 import co.nullception.udongmarket.deal.command.DealInsert;
 import co.nullception.udongmarket.deal.command.DealList;
-import co.nullception.udongmarket.deal.command.DealView;
+import co.nullception.udongmarket.deal.command.DealDetail;
 import co.nullception.udongmarket.member.command.AjaxMemberIdCheck;
+import co.nullception.udongmarket.member.command.AjaxMemberList;
 import co.nullception.udongmarket.member.command.AjaxNicknameCheck;
 import co.nullception.udongmarket.member.command.MemberJoin;
 import co.nullception.udongmarket.member.command.MemberJoinForm;
@@ -70,24 +73,20 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복체크
 		map.put("/ajaxNicknameCheck.do", new AjaxNicknameCheck()); // 닉네임 중복체크
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
-		
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
-<<<<<<< Updated upstream
-=======
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
->>>>>>> Stashed changes
+		map.put("ajaxMemberList", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
+    
+
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		map.put("/faqInsert.do" , new FaqInsert()); // FAQ 등록
 		map.put("/ajaxFaqSearch.do", new AjaxFaqSearch()); //FAQ 검색
 		map.put("/ajaxFaqDelete.do", new AjaxFaqDelete()); //AjaxFaq 삭제
-<<<<<<< Updated upstream
 		map.put("/faqSelectOne.do", new FaqSelectOne()); // Faq 제목 클릭시 상세 정보
-		
-=======
 		map.put("/faqDetail.do", new FaqDetail2()); // Faq 제목 클릭시 상세 정보
 		map.put("/faqUpdate.do", new FaqUpdate()); //Faq 수정
->>>>>>> Stashed changes
+
 		map.put("/myPage.do", new ShowMyPage());//마이페이지 호출
 		map.put("/deleteMember.do", new DeleteMember());//회원탈퇴
 		map.put("/myPageUpdate.do", new MyPageUpdate());//마이페이지 수정 폼 호출
@@ -100,12 +99,16 @@ public class FrontController extends HttpServlet {
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
 		map.put("/dealForm.do", new DealForm()); // 상품 등록폼
 		map.put("/ajaxDealSearch.do", new AjaxDealSearch()); // 검색
-		map.put("/dealView.do", new DealView()); // 글 상세보기
+		map.put("/dealDetail.do", new DealDetail()); // 글 상세
+		map.put("/dealDelete.do", new DealDelete()); // 글 삭제
 		
 		map.put("/communityList.do", new CommunityList());
 		map.put("/communityForm.do", new CommunityForm());
 		map.put("/communityInsert.do", new CommunityInsert());
 		map.put("/ajaxCommunitySearch.do", new AjaxCommunitySearch());
+		map.put("/communityContent.do", new CommunityContent());
+		
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -118,6 +121,7 @@ public class FrontController extends HttpServlet {
 
 		Command command = map.get(page);
 		String viewPage = command.exec(request, response); // 요청수행
+		
 		System.out.println("page : " +page+", viewPage : "+viewPage);
 
 		if (!viewPage.endsWith(".do")) {
