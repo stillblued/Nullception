@@ -27,14 +27,14 @@
 
 		if (author.equals("ADMIN")) {
 		%>
-
+        ${front }&nbsp;&nbsp;
 		<a href='memberLogout.do'>로그아웃</a>&nbsp; <a>/</a>&nbsp; <a
 			href='memberList.do'>관리자페이지</a>
 
 		<%
 		} else {
 		%>
-
+        ${front }&nbsp;&nbsp;
 		<a href='memberLogout.do'>로그아웃</a>&nbsp; <a>/</a>&nbsp; <a
 			href='myPage.do'>마이페이지</a>
 
