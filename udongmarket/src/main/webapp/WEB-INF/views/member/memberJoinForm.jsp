@@ -44,28 +44,28 @@
 					<table border="1">
 						<tr>
 							<th width="150">아이디</th>
-							<td width="300"><input type="text" id="memberId"
-								name="memberId" size="20"> &nbsp; <input type="text"
-								id="checkId" value="No">
+							<td width="300">
+							<input type="text" id="memberId" name="memberId" size="20" onKeyUp="KeyInput(2)"> &nbsp;
+							<input type="text" id="checkId" value="No">
 								<button type="button" id="btn1" onclick="idCheck()">중복체크</button>
 							</td>
 						</tr>
 						<tr>
 							<th width="150">패스워드</th>
-							<td width="300"><input type="password" id="memberPassword"
-								name="memberPassword" size="20" required="required"
-								placeholder="숫자와 문자 포함,6~12자리"> &nbsp;</td>
+							<td width="300">
+							<input type="password" id="memberPassword" name="memberPassword" size="20" required="required" placeholder="숫자와 문자 포함,6~12자리"> &nbsp;</td>
 						</tr>
 						<tr>
 							<th width="150">패스워드 확인</th>
-							<td width="300"><input type="password" id="password"
-								name="password" size="20" required="required"> &nbsp;</td>
+							<td width="300">
+							<input type="password" id="password" name="password" size="20" onKeyUp="KeyInput(1)" required="required"> &nbsp;
+							</td>
 						</tr>
 						<tr>
 							<th width="150">닉네임</th>
-							<td width="300"><input type="text" id="nickname"
-								name="nickname" size="20"> &nbsp; <input type="text"
-								id="checkNickname" value="No">
+							<td width="300">
+							<input type="text" id="nickname" name="nickname" size="20" onKeyUp="KeyInput(3)"> &nbsp; 
+							<input type="text" id="checkNickname" value="No">
 								<button type="button" id="btn2" onclick="nicknameCheck()">중복체크</button>
 							</td>
 						</tr>
@@ -78,9 +78,11 @@
 									<option>017</option>
 									<option>018</option>
 									<option>019</option>
-							</select> <b>-</b> <input type="text" id="phone1" name="phone1" size="7"
-								required="required"> <b>-</b> <input type="text"
-								id="phone2" name="phone2" size="7" required="required">
+							</select> 
+							<b>-</b> 
+							<input type="text" id="phone1" name="phone1" size= 7 onKeyUp="KeyInput(0)" required="required">
+							 <b>-</b> 
+							 <input type="text"	id="phone2" name="phone2" size= 7 required="required">
 							</td>
 						</tr>
 						<tr>
@@ -94,13 +96,15 @@
 									<option>대구광역시 수성구</option>
 									<option>대구광역시 달서구</option>
 									<option>대구광역시 달성군</option>
-							</select> <input type="text" id="location1" name="location1" size="7"
-								required="required"></td>
+							</select> 
+							<input type="text" id="location1" name="location1" size="7" required="required"></td>
 						</tr>
 						<tr>
 							<th width="150">이메일</th>
-							<td width="300"><input type="text" id="email" name="email"
-								size="10"> <b>@</b> <select id="email1" name="email1">
+							<td width="300">
+							<input type="text" id="email" name="email" size="10"> 
+							<b>@</b> 
+								<select id="email1" name="email1">
 									<option>naver.com</option>
 									<option>daum.net</option>
 									<option>nate.com</option>
@@ -132,25 +136,6 @@
 				return false;
 			}
 
-			if (frm.memberPassword.value != "") {
-				// 숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
-				var regex = /^[A-Za-z0-9]{6,12}$/;
-				if (regex.test(frm.memberPassword.value) == false) {
-					alert("비밀번호 형식을 확인해주세요.");
-					frm.memberPassword.value = "";
-					frm.password.value = "";
-					frm.memberPassword.focus();
-					return false;
-				}
-			}
-
-			if (frm.memberPassword.value != frm.password.value) {
-				alert("패스워드가 일치하지 않습니다.");
-				frm.memberPassword.value = "";
-				frm.password.value = "";
-				form.memberPassword.focus();
-				return false;
-			}
 
 			if (frm.nickname.value == "") {
 				alert("닉네임을 입력하세요.");
@@ -163,18 +148,6 @@
 				return false;
 			}
 
-			if (frm.phone1.value != "" && frm.phone2.value != "") {
-				var regP = /^([0-9]{3,4})$/;
-				var regH = /^([0-9]{4})$/;
-				if (!regP.test(frm.phone1.value) != true
-						|| !regH.test(frm.phone2.value) != true) {
-					alert("핸드폰 입력값을 다시 확인해 주세요.");
-					frm.phone1.value = "";
-					frm.phone2.value = "";
-					form.phone1.focus();
-					return false;
-				}
-			}
 			
 			if (frm.phone2.value != "" && frm.phone1.value != "") {
 				var p = document.getElementById("phone");
@@ -198,9 +171,57 @@
 				console.log(m);
 				frm.email.value = frm.email.value + "@" + e.options[m].value;
 			}
+			
+			
 
 			return true;
 		}
+		
+		function KeyInput(mode) {
+			if(mode == 0) {
+				if(frm.phone1.value.length == 4) {
+					frm.phone2.focus();
+				} 
+				}else if(mode == 1) {
+					if(frm.memberPassword.value != "") {
+						// 숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식
+						var regex = /^[A-Za-z0-9]{6,12}$/;
+						if (regex.test(frm.memberPassword.value) == false) {
+							alert("비밀번호 형식을 확인해주세요.");
+							frm.memberPassword.value = "";
+							frm.password.value = "";
+							frm.memberPassword.focus();
+							
+						}
+					}
+					if(frm.password.value.length >= frm.memberPassword.value.length) {
+						if(frm.memberPassword.value != frm.password.value ){
+							alert("패스워드가 일치하지 않습니다.");
+							frm.memberPassword.value = "";
+							frm.password.value = "";
+							frm.memberPassword.focus();
+						}
+					}
+					
+				}else if(mode == 2) {
+					if(frm.btn1.disabled = true) {
+						if(frm.memberId.value != "") {
+						frm.checkId.value = "No";
+						frm.btn1.disabled = false;
+						}
+					
+					}
+					
+				}else if(mode == 3) {
+					if(frm.btn2.disabled = true) {
+						if(frm.nickname.value != "") {
+							frm.checkNickname.value = "No";
+							frm.btn2.disabled = false;
+						}
+					}
+				}
+			}
+		
 
 		function idCheck() {
 			let id = frm.memberId.value;
