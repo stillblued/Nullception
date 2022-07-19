@@ -16,29 +16,24 @@ public class AjaxMemberList implements Command {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		// MemberList 권한에 따른 멤버 목록 조회
-		
-    MemberService memberDao = new MemberServiceImpl();
+
+		MemberService memberDao = new MemberServiceImpl();
 		List<MemberVO> list = new ArrayList<>();
-    
 		ObjectMapper mapper = new ObjectMapper();
+		
 		String category = request.getParameter("category");
 		list = memberDao.memberAuthorSelectList(category);
-		
+
 		String jsonList = null;
-	
+
 		try {
-			jsonList = mapper.writeValueAsString(list);				
+			jsonList = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		return "ajax:" + jsonList;
 
-		if (list != null) {
-			result = "list";
-		}
-
 		
-		return "ajax:" + result;
 
 	}
 
