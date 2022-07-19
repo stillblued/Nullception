@@ -170,4 +170,35 @@ public class MemberServiceImpl implements MemberService {
 		return m;
 	}
 
+	@Override
+	public List<MemberVO> memberAuthorSelectList(String category) {
+		// 멤버권한 카테고리에 따른 목록 검색
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		MemberVO vo;
+		String sql = "SELECT * FROM MEMBER where author = ?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, category);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				vo = new MemberVO();
+				vo.setMemberId(rs.getString("member_id"));
+				vo.setMemberPassword(rs.getString("member_password"));
+				vo.setNickname(rs.getString("nickname"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setEmail(rs.getString("email"));
+				vo.setLocation(rs.getNString("location"));
+				vo.setMannerTemp(rs.getInt("manner_temp"));
+				vo.setAuthor(rs.getNString("author"));
+				list.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return list;
+	}
+
 }

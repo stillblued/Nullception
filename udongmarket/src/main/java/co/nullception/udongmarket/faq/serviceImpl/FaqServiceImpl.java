@@ -48,7 +48,7 @@ public class FaqServiceImpl implements FaqService {
 	}
 
 	@Override
-	public FaqVO faqSelect(FaqVO vo) {
+	public FaqVO faqSelectOne(FaqVO vo) {
 		// 글 상세 보기
 		String sql = "select * from faq where member_id = ?";
 		try {
@@ -117,14 +117,14 @@ public class FaqServiceImpl implements FaqService {
 	}
 
 	@Override
-	public int faqDelete(int board_id) {
+	public int faqDelete(FaqVO vo) {
 		// 글 삭제
 		int cnt = 0;
 		String sql = "delete from faq where board_id = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, board_id);
+			psmt.setInt(1, vo.getBoardId());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

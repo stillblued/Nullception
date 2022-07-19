@@ -1,12 +1,12 @@
 package co.nullception.udongmarket.admin.command;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.faq.service.FaqService;
@@ -17,34 +17,20 @@ public class AjaxFaqDelete implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		//게시글 삭제
-		PrintWriter writer;
+		//ajax게시글 삭제
 		
 		FaqService faqDao = new FaqServiceImpl();
-		int boardId = Integer.parseInt(request.getParameter("boardId"));
-		faqDao.faqDelete(boardId);
+		List<FaqVO> list = new ArrayList<FaqVO>();
+		ObjectMapper mapper = new ObjectMapper();  //jackson 라이브러리 사용(json)
+		FaqVO vo = new FaqVO();
+		vo.setBoardId(Integer.valueOf(request.getParameter("boardId")));
+		int cnt = faqDao.faqDelete(vo);
+		String jsonList ="0";
 		
-		int cnt = 0;
-		String result = null;
-		try {
-			if (cnt != 0) {
-				response.setContentType("text/html; charset=UTF-8");
-				writer = response.getWriter();
-				writer.println("<script>alert('삭제되었습니다.');");
-				writer.println("</script>;");
-				writer.close();
-			} else {
-				response.setContentType("text/html; charset=UTF-8");
-				writer = response.getWriter();
-				writer.println("<script>alert('오류가 발생했습니다.');");
-				writer.println("</script>;");
-				writer.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(cnt != 0) {
+			jsonList ="1";
 		}
-		
-		return "ajax:"+result;
+		return "ajax:"+jsonList;
 	}
 
 }
