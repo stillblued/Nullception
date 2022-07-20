@@ -94,8 +94,6 @@
 		<div id="nav">
 			<div id="page">
 				<%
-				int pageCount = (int) request.getAttribute("pageCount");
-				int pageBlock = (int) request.getAttribute("pageBlock");
 				int startPage = (int) request.getAttribute("startPage");
 				int endPage = (int) request.getAttribute("endPage");
 
@@ -104,12 +102,12 @@
 				<a href="communityList.do?pageNum=<%=i%>"><%=i%></a>
 				<%
 				}
-				%>
+				%>	
 			</div>
 		</div>
 		<br>
 		<div>
-			<c:if test="${not empty nickname }">
+			<c:if test="${not empty nick }">
 				<button type="button" onclick="location.href='communityForm.do'">등록</button>
 			</c:if>
 		</div>

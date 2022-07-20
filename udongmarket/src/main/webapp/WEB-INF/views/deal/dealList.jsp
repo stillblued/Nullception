@@ -9,13 +9,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>거래 게시판 목록</title>
+<title>dealList</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<%
-	MemberVO mvo = new MemberVO();
-%>
+
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -34,7 +32,7 @@
 			</ul>
 		</div>
 	</nav>	
-	<div><h1>거래 게시글 목록</h1></div>
+	<div><h1>장터 게시판</h1></div>
 	 <div>
 		<form id="frm">
 			<select id="key" name="key">
@@ -54,7 +52,7 @@
 					<th>제목</th>
 					<th>가격</th>
 					<th>작성일자</th>
-					<th>조회수</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -68,7 +66,7 @@
 							<td><a href="dealDetail.do?boardId=${d.boardId}">${d.dealTitle}</a></td>
 							<td>${d.price}</td>
 							<td>${d.dealDate}</td>
-							<td>${d.dealHit}</td>
+							
 						</tr>			
 					</c:forEach>
 				</c:when>
@@ -134,8 +132,7 @@
 						  $("<td />").text(item.nickname),
 						  $("<td />").text(item.dealTitle),
 						  $("<td />").text(item.price),
-						  $("<td />").text(item.dealDate),
-						  $("<td />").text(item.dealHit)
+						  $("<td />").text(item.dealDate)
 				);
 				tbody.append(row);
 			});
