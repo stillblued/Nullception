@@ -1,6 +1,5 @@
 
 <%@page import="co.nullception.udongmarket.faq.vo.FaqVO"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -11,26 +10,46 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>Insert title here</title>
+<title>FAQ</title>
+
 </head>
-
 <body>
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav">
-			<li><a href="main.do">메인</a></li>
-			<li><a href="dealList.do">장터</a></li>
-			<li><a href="communityList.do">커뮤니티</a></li>
-		</ul>
-	</div>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.do">메인</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li><a href="communityList.do">커뮤니티</a></li>
+				<li><a href="memberList.do">사용자 목록</a></li>
+				<li class="active"><a href="faq.do">FAQ</a></li>
+			</ul>
+		</div>
+	</nav>
 
+
+
+	<div>
+		<h1>FAQ</h1>
+	</div>
 	<form name="writeFrm">
-		<table border="1" width="90%">
+		<table border="1" width="50%">
 
 			<%
 			FaqVO vo = (FaqVO) request.getAttribute("vo");
 			%>
+
 			<tr>
-				<input type="hidden" id="boardId" name="boardId" value="<%=vo.getBoardId()%>">
+				<input type="hidden" id="boardId" name="boardId"
+					value="<%=vo.getBoardId()%>">
 				<th>닉네임</th>
 				<td><%=vo.getNickname()%></td>
 				<th>작성일</th>
@@ -43,7 +62,6 @@
 			<tr>
 				<th>내용</th>
 				<td colspan="3" height="100"><%=vo.getFaqContent()%></td>
-				<%-- <%=dto.getContent().replace("\r\n", "<br/>")%> --%>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
@@ -53,62 +71,102 @@
 
 			<tr>
 				<td colspan="4" align="center">
-					<!-- if (session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId()))  -->
-
-
-					<!-- <button type="button" onclick="faqUpdate(this)">수정</button>
+					<!-- ajax 방식으로 쓰면 안됨... --> <!-- <button type="button" onclick="faqUpdate(this)">수정</button>
 					<button type="button" onclick="location.href='ajaxFaqDelete.do'">삭제</button>  -->
 					<button type="button" onclick="location.href='faq.do'">목록</button>
 
 				</td>
 			</tr>
 		</table>
+	</form>
+	<br>
+	<hr>
 
-<script type="text/javascript">
-	//js 삭제
-	function faqDelete(obj) {
-		let row = $(obj).parent().parent().get(0);
-		let td = row.cells[0];
-		let id = $(td).html();
 
-		const xhr = new XMLHttpRequest();
-		const url = "ajaxFaqDelete.do?boardId=" + id;
-		xhr.onload = function() {
-		if (xhr.status >= 200 && xhr.status < 300) {
-			if (xhr.response == 1) {
-				alert("데이터가 삭제되었습니다.");
-				$(row).remove();
-			} else {
-				alert("삭제 할 수 없습니다.");};
-		} else {
-			errorCallback(new Error(xhr.stautsText));}};
+	<table border=1>
+		<thead>
+			<form name="commentsfrm" action="commentsInsert()" method="post">
+			<tr>
+				<input type="hidden" name="nickname" value="${nick}">
+				<th>${nick}</th>
+				<td><textarea id="commentsContent"></textarea></td>&nbsp;&nbsp;&nbsp;&nbsp;
+				<td><input type="button" onclick="commentsInsert()"
+					value="댓글등록"></td>
+			</tr>
+			</form>
+		</thead>
+		<tbody id = "comm">
+			<c:if test="${empty coList}">
+				<tr>
+					<td colspan="6" align="center">등록된 댓글이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:forEach items="${coList}" var="list">
+				<tr>
+					<th>${list.nickname }</th>
+					<td>${list.commentsContent }</td>
+					<td>${list.commentsDate }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br>
 
-		xhr.open('GET', url);
-		xhr.send();
+
+
+
+
+	<script type="text/javascript">
+		/* ajax를 이용해 댓글 등록하기 -> 성공하면 리스트 뿌리기*/
+		function commentsInsert() {
+			let Content = $("#commentsContent").val();//댓글내용
+			let BoardId = $("#boardId").val();
+			
+			$.ajax({
+				url : "ajaxCommentsInsert.do",
+				type : "post",
+				data : {
+					Content : Content , BoardId : BoardId
+				},
+				dataType : "Json",
+				success : function(result) {
+					if (result != null) {
+						jsonListConvert(result);
+
+					} else {
+						alert("댓글 등록 실패.");
+					}
+				},
+				error : function() {
+					console.log("error");
+				}
+			});
 		}
+		
+		function jsonListConvert(data){
+			
+				let today = timestamp();   	
 
-	//js 업데이트 폼
-	function faqUpdate(e) { //get방식 안전하지 않음
-		let boardId = (document.getElementById('boardId')).innerHTML;
-		console.log(boardId);
-		/* location.href='faqUpdate.do?boardId='+boardId; */
-		/* location.href='faqDetail.do'; */
-		}
-</script>
+				let tr = $("<tr />").append(
+				 		$("<th />").text(data.nickname),
+				 		$("<td />").text(data.commentsContent),
+				 		$("<td />").text(today)
+				 		
+				 		);
+				
+				$('#comm').append(tr);
+				
+			};
+	 		
+			function timestamp(){
+			    var today = new Date();
+			    today.setHours(today.getHours() + 9);
+			    return today.toISOString().replace('T', ' ').substring(0, 19);
+			}
+			
+		
+		
+	</script>
 
-  <p>
-    <div id="disqus_thread"></div>
-<script>
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://web1-2.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-  </p>
 </body>
 </html>

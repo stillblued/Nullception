@@ -13,13 +13,12 @@ import co.nullception.udongmarket.MainCommand;
 import co.nullception.udongmarket.admin.command.AjaxFaqDelete;
 import co.nullception.udongmarket.admin.command.AjaxFaqSearch;
 import co.nullception.udongmarket.admin.command.FAQCommand;
-import co.nullception.udongmarket.admin.command.FaqDetail2;
+import co.nullception.udongmarket.admin.command.FaqDetail;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
-import co.nullception.udongmarket.admin.command.FaqSelectOne;
 import co.nullception.udongmarket.admin.command.FaqUpdate;
-import co.nullception.udongmarket.admin.command.FaqDetail;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.comments.command.AjaxCommentsInsert;
 import co.nullception.udongmarket.community.command.AjaxCommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityContent;
 import co.nullception.udongmarket.community.command.CommunityForm;
@@ -71,15 +70,15 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
-		map.put("ajaxMemberList", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
     
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
 		map.put("/faqInsert.do" , new FaqInsert()); // FAQ 등록
 		map.put("/ajaxFaqSearch.do", new AjaxFaqSearch()); //FAQ 검색
 		map.put("/ajaxFaqDelete.do", new AjaxFaqDelete()); //AjaxFaq 삭제
-		map.put("/faqDetail.do", new FaqDetail2()); // Faq 제목 클릭시 상세 정보
-		map.put("/faqUpdate.do", new FaqUpdate()); //Faq 수정
+		map.put("/faqDetail.do", new FaqDetail()); // Faq 제목 클릭시 상세 정보
+		//map.put("/faqUpdate.do", new FaqUpdate()); //Faq 수정
+		map.put("/ajaxCommentsInsert.do", new AjaxCommentsInsert()); // ajax를 통해 댓글 등록
 
 		map.put("/myPage.do", new ShowMyPage());//마이페이지 호출
 		map.put("/deleteMember.do", new DeleteMember());//회원탈퇴

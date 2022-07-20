@@ -100,7 +100,7 @@ public class FaqServiceImpl implements FaqService {
 
 	@Override
 	public int faqUpdate(FaqVO vo) {
-		// 글 삭제
+		// 글 수정
 		int cnt = 0;
 		String sql = "update faq set faq_title = ?, faq_content = ?  where board_id = ?";
 		try {
@@ -131,7 +131,6 @@ public class FaqServiceImpl implements FaqService {
 		} finally {
 			dao.disconnect();
 		}
-		System.out.println("faqDelete : " + cnt);
 		return cnt;
 	}
 
@@ -157,9 +156,6 @@ public class FaqServiceImpl implements FaqService {
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
 				list.add(vo);
 			}
-			System.out.println(key);
-			System.out.println(val);
-			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
