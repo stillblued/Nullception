@@ -72,6 +72,7 @@ display: inline-block
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>매너온도</th>
+					<th>권한변경<th>
 				</tr>
 			</thead>
 			<tbody>
@@ -82,6 +83,7 @@ display: inline-block
 						<td>${m.nickname}</td>
 						<td>${m.email}</td>
 						<td>${m.mannerTemp}</td>
+						<td><input type="button" onclick="" value="권한변경"></td>
 					</tr>
 				</c:forEach>
 			
@@ -121,7 +123,8 @@ display: inline-block
 					  $("<td />").text(item.memberId),
 					  $("<td />").text(item.nickname),
 					  $("<td />").text(item.email),
-					  $("<td />").text(item.mannerTemp)
+					  $("<td />").text(item.mannerTemp),
+					  $(("<td  />").append($("<button onclick='' />").text("권한변경"))
 					);
 			tbody.append(row);
 		});

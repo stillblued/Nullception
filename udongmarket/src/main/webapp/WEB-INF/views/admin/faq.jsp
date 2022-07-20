@@ -104,7 +104,7 @@
 			</table>
 
 			
-			<c:if test="${author == 'ADMIN' || not empty nickname }">
+			<c:if test="${author == 'ADMIN' || author =='USER' || author == 'BLIND' }">
 
 			<input type="button" onclick="location.href='faqForm.do'" id="write"
 				name="write" value="등록">
