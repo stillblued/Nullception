@@ -4,12 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>전체 사용자 목록</title>
-
-<script src="js/jquery-3.6.0.min.js"></script>
+<title>FAQ</title>
 <style>
 #membauthorCategory > ul  {
 	list-style:none;
@@ -19,9 +18,6 @@ li{
 display: inline-block
 }
 </style>
-
-<script src="js/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -39,17 +35,13 @@ display: inline-block
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
 				<li><a href="communityList.do">커뮤니티</a></li>
+			    <li class="active"><a href="memberList.do">사용자 목록</a></li>
+			    <li><a href="faq.do">FAQ</a></li>
 			</ul>
 		</div>
-	</nav>	
-
-	<div>
-		<!-- 메인 > 관리자페이지 > 상세 카테고리 노출 -->
-		<nav>
-				<a href="memberList.do">사용자 목록</a>&nbsp;&nbsp;&nbsp;
-				<a href="faq.do">FAQ</a>
-		</nav>
-		<br>
+	</nav>
+	<div><h1>사용자 목록</h1></div>
+	<br>
 
 		<div id="membauthorCategory" onchange="authorselectList()">
 		<ul>

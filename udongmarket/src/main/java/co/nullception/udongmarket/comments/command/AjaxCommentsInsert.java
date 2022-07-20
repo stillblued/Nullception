@@ -1,0 +1,47 @@
+package co.nullception.udongmarket.comments.command;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.comment.service.CommentsService;
+import co.nullception.udongmarket.comment.serviceImpl.CommentsServiceImpl;
+import co.nullception.udongmarket.comments.vo.CommentsVO;
+
+public class AjaxCommentsInsert implements Command {
+
+	@Override
+	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		// Ajax를 통한 댓글 등록
+		HttpSession session = request.getSession(); // 세션 get
+		CommentsService commentsDao = new CommentsServiceImpl();
+		CommentsVO vo = new CommentsVO();
+		ObjectMapper mapper = new ObjectMapper();
+
+		
+		vo.setBoardId(Integer.valueOf(request.getParameter("BoardId")));
+		vo.setCommentsContent(request.getParameter("Content"));
+		String sessionNickName = (String) session.getAttribute("nick");
+		vo.setNickname(sessionNickName);
+		
+		commentsDao.commentInsert(vo);
+		
+		
+		String jsonList = null;
+		
+	
+		
+		try {
+			jsonList = mapper.writeValueAsString(vo);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return "ajax:" + jsonList;
+	}
+
+}

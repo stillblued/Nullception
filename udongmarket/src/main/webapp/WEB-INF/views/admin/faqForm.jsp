@@ -5,11 +5,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>FAQ FORM</title>
-<script src="js/jquery-3.6.0.min.js"></script>
+<title>FAQ</title>
+<script type="text/javascript">
+function autoDate () {
+	var tDay = new Date();
+	var tMonth = tDay.getMonth()+1;
+	var tDate = tDay.getDate();
+	if ( tMonth < 10) tMonth = "0"+tMonth;
+	if ( tDate < 10) tDate = "0"+tDate;
+	document.getElementById("tDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;
+ }
+function addLoadEvent(func) {
+	  var oldonload = window.onload;
+	  if (typeof window.onload != 'function') {
+	    window.onload = func;
+	  } else {
+	    window.onload = function() {
+	      if (oldonload) {
+	        oldonload();
+	      }
+	      func();
+	    }
+	  }
+	}
+addLoadEvent(function() {
+	  autoDate();
+	});
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -27,21 +53,27 @@
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
 				<li><a href="communityList.do">커뮤니티</a></li>
+			    <li><a href="memberList.do">사용자 목록</a></li>
+			    <li><a href="faq.do">FAQ</a></li>
 			</ul>
 		</div>
-	</nav>	
-
-	<label id="title">FAQ</label>     
+	</nav>
+	<div><h1>FAQ</h1></div>
 	<br><br>
 	<div>
 		<form id="frm" action="faqInsert.do" method="post" enctype="multipart/form-data">
 			<table id="detailBoard" border="1">
+			 <%
+			FaqVO vo = (FaqVO) request.getAttribute("vo");
+			%> 
 				
 				<tr>
 					<th id="nickname">닉네임</th>
-					<td><input type="text" id="nickname" name="nickname"" readonly="readonly" ></td>
+					<td><input type="text" id="nickname" name="nickname" value="${nick }" readonly="readonly" ></td>
 					<th id="nickname">작성 날짜</th>
-					<td><input type="text" id="faqDate" name="faqDate"<%--  value="${list.getFaqDate() }" --%> readonly="readonly"></td>
+					<%-- <td><input type="text" id="faqDate" name="faqDate" value="${list.getFaqDate() }"  readonly="readonly"></td> --%>
+					<td><input name="tName" type="text" id="tDate"></td>
+				
 				</tr>
 				<tr>
 					<th id="title">제목</th>

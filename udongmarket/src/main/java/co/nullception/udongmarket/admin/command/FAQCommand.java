@@ -28,6 +28,7 @@ public class FAQCommand implements Command {
 		
 		list = faqDao.faqSelectList();
 		request.setAttribute("list", list);
+		request.setAttribute("vo", vo);
 		return "admin/faq";
 	}
 

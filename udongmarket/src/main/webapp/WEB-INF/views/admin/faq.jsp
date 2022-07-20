@@ -26,17 +26,13 @@
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
 				<li><a href="communityList.do">커뮤니티</a></li>
+			    <li><a href="memberList.do">사용자 목록</a></li>
+			    <li class="active"><a href="faq.do">FAQ</a></li>
 			</ul>
 		</div>
-	</nav>	
-
-	<div id="nav">
-		<ul>
-			<li><a href="memberList.do">사용자 목록</a></li>
-			<li><a href="faq.do">FAQ</a></li>
-		</ul>
-	</div>
-
+	</nav>
+	<div><h1>FAQ</h1></div>
+	
 	<div>
 		<div>
 			<form id="suchfrm">
@@ -50,9 +46,7 @@
 
 			</form>
 		</div>
-		<div>
-			<label>전체</label> <label>문의</label> <label>신고</label> <label>기타</label>
-		</div>
+		
 		<form id="frm">
 			<table border="1">
 
@@ -64,7 +58,9 @@
 						<th>날짜</th>
 						<th>닉네임</th>
 						<th>상태</th>
+						<c:if test="${ author == 'ADMIN' }">
 						<th>삭제</th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>
@@ -81,7 +77,7 @@
 										<td>문의</td>
 									</c:if>
 
-									<td onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
+									<td id="title" onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
 
 									<td>${f.faqDate}</td>
 									<td>${f.nickname}</td>
@@ -91,7 +87,9 @@
 									<c:if test="${ empty answer_content }">
 										<td>처리중</td>
 									</c:if>
+									<c:if test="${ author == 'ADMIN' }">
 									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
+									</c:if>
 									<%-- <td><a href="faqDelete.do?boardId=${f.boardId}">삭제</a></td> --%>
 								</tr>
 							</c:forEach>
@@ -149,17 +147,18 @@
 				    tcategory = "신고";};
 				if (item.answer_content != null) {
 					tstate = "완료";};
-				var row = $("<tr />").append($("<td />").text(item.boardId), // boardId 못가져옴...
+				let row = $("<tr />").append($("<td id='boardId' />").text(item.boardId), 
 				                             $("<td />").text(tcategory),
-										     $("<td />").text(item.faqTitle),
-									//$("<td />").append($("< onclick='faqSelectOne(this)'>").text(item.faqTitle)), 클릭안됨...
+										     $("<td onclick='faqSelectOne(this)' style='cursor:pointer;' />").text(item.faqTitle),
 											 $("<td />").text(item.faqDate),
 											 $("<td />").text(item.nickname),
 											 $("<td />").text(tstate),
-											 $("<td />").append($("<button onclick='faqDelete(${item.boardId})'>").text("삭제")));
+											 //$("<td onclick='faqDelete(${item.boardId})' />").text("삭제"));
+											$("<td  />").append($("<button onclick='faqDelete(${item.boardId})' />").text("삭제")));
 								tbody.append(row);
 							}); 
 			$('table').append(tbody);
+			
 		}/* faq 검색 끝 */
 
 		 function faqDelete(obj){	
@@ -188,9 +187,8 @@
 
 		 function faqSelectOne(e) {  //get방식 안전하지 않음
 			 let boardId = (document.getElementById('boardId')).innerHTML;
-			 console.log(boardId);
+			 
 			 location.href='faqDetail.do?boardId='+boardId;	
-			 /* location.href='faqDetail.do'; */
 		}
 		 
 		
