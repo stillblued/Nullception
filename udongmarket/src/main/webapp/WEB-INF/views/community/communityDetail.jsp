@@ -35,12 +35,8 @@
 	CommunityVO vo = (CommunityVO) request.getAttribute("vo");
 	%>
 
-
-
-	<form name="frm">
-		<input type="hidden" id="boardId" name="boardId"
-			value="<%=vo.getBoardId()%>">
-		<table border="1" width="60%">
+	<div id="box">
+		<table id="tb" border="1" width="60%">
 			<tr>
 				<th>#</th>
 				<td colspan="3"><%=vo.getComCategory()%></td>
@@ -60,33 +56,24 @@
 				<td colspan="4">
 					<%
 					if (vo.getAttachDir() != null) {
-					%> <img
-					src="<%=vo.getAttachDir()%>">
-					<%
-					}
-					%> <%=vo.getComContent()%></td>
-			</tr>
-
-			<tr>
-				<td colspan="4" align="right">
-					<%
-					if (vo.getNickname().equals(session.getAttribute("nick")) || session.getAttribute("author").equals("ADMIN") ) {
-					%>
-					<button type="button"
-						onclick="location.href='communityUpdate.do'">수정</button>
-					<button type="button"
-						onclick="location.href='communityDelete.do'">삭제</button>
-					<%
-					}
-					;
-					%>
-					<button type="button" onclick="location.href='communityList.do'">목록</button>
-				</td>
+					%> <img src="<%=vo.getAttachDir()%>"> <%
+ }
+ %> <%=vo.getComContent()%></td>
 			</tr>
 		</table>
-		
+	</div>
+
+	<form name="frm" id="frm">
+		<c:if test="${not empty nick}">
+			<button type="button" onclick="location.href='communityUpdate.do?boardId=<%=vo.getBoardId()%>'">수정</button>
+			<button type="button" onclick="location.href='communityDelete.do?boardId=<%=vo.getBoardId()%>'">삭제</button>
+		</c:if>
+		<button type="button" onclick="location.href='communityList.do'">목록</button>
 	</form>
 
-		
+
+
+
+
 </body>
 </html>

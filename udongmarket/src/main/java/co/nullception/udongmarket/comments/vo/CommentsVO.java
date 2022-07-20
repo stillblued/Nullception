@@ -12,7 +12,8 @@ public class CommentsVO {
 	private int commentsId;
 	private String commentsContent;
 	private String commentsDate;
-	private String nickname;
+	private String commentsNick;
 	private String commentsState;
+	private String boardNick;
 
 }

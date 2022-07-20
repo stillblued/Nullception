@@ -32,9 +32,10 @@ public class CommentsServiceImpl implements CommentsService {
 				vo = new CommentsVO();
 				vo.setBoardId(rs.getInt("BOARD_ID"));
 				vo.setCommentsId(rs.getInt("COMMENTS_ID"));
-				vo.setNickname(rs.getString("NICKNAME"));
+				vo.setCommentsNick(rs.getString("COMMENTS_NICK"));
 				vo.setCommentsContent(rs.getString("COMMENTS_CONTENT"));
 				vo.setCommentsDate(rs.getString("COMMENTS_DATE"));
+				vo.setBoardNick(rs.getString("BOARD_NICK"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -49,13 +50,14 @@ public class CommentsServiceImpl implements CommentsService {
 	public int commentInsert(CommentsVO vo) {
 		// 댓글 입력
 		int cnt = 0;
-		String sql = "insert into comments (board_id, comments_id, comments_content, nickname) values( ?, comments_seq.nextval, ?, ?)";
+		String sql = "insert into comments (board_id, comments_id, comments_content, comments_nick, board_nick) values( ?, comments_seq.nextval, ?, ?, ?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getBoardId());
 			psmt.setString(2, vo.getCommentsContent());
-			psmt.setString(3, vo.getNickname());
+			psmt.setString(3, vo.getCommentsNick());
+			psmt.setString(4, vo.getBoardNick());
 
 			cnt = psmt.executeUpdate();
 
@@ -94,7 +96,7 @@ public class CommentsServiceImpl implements CommentsService {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCommentsContent());
-			psmt.setInt(1, vo.getCommentsId());
+			psmt.setInt(2, vo.getCommentsId());
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

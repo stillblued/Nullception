@@ -139,6 +139,11 @@
 					<th>작성일자</th>
 					<th>거래가능상태</th>
 				</tr>
+				<tbody>
+				<tr>
+					<td colspan='4' align='center'>게시글이 존재하지 않습니다.</td>
+				</tr>
+			</tbody>
 			</thead>
 			<c:forEach items="${likesList }" var="likesList">
 				<tr>

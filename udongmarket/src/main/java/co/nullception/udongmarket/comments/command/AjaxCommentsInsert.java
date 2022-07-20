@@ -26,7 +26,7 @@ public class AjaxCommentsInsert implements Command {
 		vo.setBoardId(Integer.valueOf(request.getParameter("BoardId")));
 		vo.setCommentsContent(request.getParameter("Content"));
 		String sessionNickName = (String) session.getAttribute("nick");
-		vo.setNickname(sessionNickName);
+		vo.setCommentsNick(sessionNickName);;
 		
 		commentsDao.commentInsert(vo);
 		

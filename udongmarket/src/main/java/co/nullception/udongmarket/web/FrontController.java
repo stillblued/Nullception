@@ -26,7 +26,6 @@ import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
 import co.nullception.udongmarket.community.command.CommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityUpdate;
-import co.nullception.udongmarket.community.command.UpdateCommu;
 import co.nullception.udongmarket.deal.command.AjaxDealSearch;
 import co.nullception.udongmarket.deal.command.DealDelete;
 import co.nullception.udongmarket.deal.command.DealDetail;
@@ -111,8 +110,8 @@ public class FrontController extends HttpServlet {
 		map.put("/communitySearch.do", new CommunitySearch()); //커뮤 검색
 		map.put("/communityDelete.do", new CommunityDelete()); //커뮤 삭제
 		map.put("/communityDetail.do", new CommunityDetail()); //커뮤 상세
-		map.put("/communityUpdate.do", new CommunityUpdate()); //커뮤 수정폼
-		map.put("/updateCommu.do", new UpdateCommu()); //커뮤글 수정
+		map.put("/communityUpdate.do", new CommunityUpdate()); //커뮤 수정
+	
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
