@@ -92,7 +92,7 @@ public class MyPageImpl implements MyPage {
 		// 닉네임이 ? 인 사람이 카테고리별로 deal 게시판에 쓴 글 조회
 		List<DealVO> list = new ArrayList<DealVO>();
 		
-		String sql = "select board_id, nickname, deal_category, deal_title, deal_content, deal_date, deal_state, deal_hit, location from deal "
+		String sql = "select board_id, nickname, deal_category, deal_title, deal_content, deal_date, deal_state, location from deal "
 				+ "where nickname = ? and deal_category = ?";
 		try {
 			conn = dao.getConnection();
@@ -110,7 +110,6 @@ public class MyPageImpl implements MyPage {
 				vo.setDealContent(rs.getString("deal_content"));
 				vo.setDealDate(rs.getString("deal_date"));
 				vo.setDealState(rs.getString("deal_state"));
-				vo.setDealHit(Integer.parseInt(rs.getString("deal_hit")));
 				vo.setLocation(rs.getString("location"));
 				
 				list.add(vo);
@@ -127,7 +126,7 @@ public class MyPageImpl implements MyPage {
 	public List<CommunityVO> commSelectList(String nickname, String category) {
 		// 커뮤니티 게시판에 쓴 글 조회
 		List<CommunityVO> list = new ArrayList<CommunityVO>();
-		String sql = "select board_id, nickname, com_category, com_title, com_content, com_date, com_hit, location "
+		String sql = "select board_id, nickname, com_category, com_title, com_content, com_date, location "
 				+ "from community where nickname = ? and com_category = ?";
 		
 		try {
@@ -145,7 +144,6 @@ public class MyPageImpl implements MyPage {
 				vo.setComTitle(rs.getString("com_title"));
 				vo.setComContent(rs.getString("com_content"));
 				vo.setComDate(rs.getString("com_date"));
-				vo.setComHit(rs.getString("com_hit"));
 				vo.setLocation(rs.getString("location"));
 				list.add(vo);
 			}
@@ -162,7 +160,7 @@ public class MyPageImpl implements MyPage {
 		// 거래게시판에 누른 좋아요 게시글 리스트 확인
 		List<DealVO> list = new ArrayList<DealVO>();
 		String sql = "select board_id, nickname, deal_category, deal_title, deal_content, deal_date, "
-				+ "deal_state, deal_hit, location from deal "
+				+ "deal_state, location from deal "
 				+ "where board_id in (select board_id from likes where nickname = ?)";
 		try {
 			conn = dao.getConnection();
@@ -179,7 +177,6 @@ public class MyPageImpl implements MyPage {
 				vo.setDealContent(rs.getString("deal_content"));
 				vo.setDealDate(rs.getString("deal_date"));
 				vo.setDealState(rs.getString("deal_state"));
-				vo.setDealHit(Integer.parseInt(rs.getString("deal_hit")));
 				vo.setLocation(rs.getString("location"));
 				
 				list.add(vo);

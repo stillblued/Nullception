@@ -61,7 +61,6 @@ public class FaqServiceImpl implements FaqService {
 				vo.setFaqDate(rs.getString("FAQ_DATE"));
 				vo.setNickname(rs.getString("NICKNAME"));
 				vo.setFaqContent(rs.getString("FAQ_CONTENT"));
-				vo.setAnswerContent(rs.getString("ANSWER_CONTENT"));
 				vo.setReportedId(rs.getString("REPORTED_ID"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));

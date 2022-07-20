@@ -1,4 +1,4 @@
-package co.nullception.udongmarket.comment.serviceImpl;
+package co.nullception.udongmarket.comments.serviceImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.nullception.udongmarket.comm.DataSource;
-import co.nullception.udongmarket.comment.service.CommentsService;
+import co.nullception.udongmarket.comments.service.CommentsService;
 import co.nullception.udongmarket.comments.vo.CommentsVO;
 
 public class CommentsServiceImpl implements CommentsService {

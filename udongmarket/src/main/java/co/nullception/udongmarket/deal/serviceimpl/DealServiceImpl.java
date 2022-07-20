@@ -41,7 +41,6 @@ public class DealServiceImpl implements DealService {
 				vo.setPrice(rs.getInt("price"));
 				vo.setDealState(rs.getString("deal_state"));
 				vo.setAttach(rs.getString("attach"));
-				vo.setDealHit(rs.getInt("deal_hit"));
 				vo.setAttachDir(rs.getString("attach_dir"));
 				vo.setLocation(rs.getString("location"));
 				vo.setNickname(rs.getString("nickname"));
@@ -75,7 +74,6 @@ public class DealServiceImpl implements DealService {
 				vo.setPrice(rs.getInt("price"));
 				vo.setDealState(rs.getString("deal_state"));
 				vo.setAttach(rs.getString("attach"));
-				vo.setDealHit(rs.getInt("deal_hit"));
 				vo.setAttachDir(rs.getString("attach_dir"));
 				vo.setLocation(rs.getString("location"));
 				vo.setNickname(rs.getString("nickname"));
@@ -179,7 +177,6 @@ public class DealServiceImpl implements DealService {
 				vo.setPrice(rs.getInt("price"));
 				vo.setDealState(rs.getString("deal_state"));
 				vo.setAttach(rs.getString("attach"));
-				vo.setDealHit(rs.getInt("deal_hit"));
 				vo.setAttachDir(rs.getString("attach_dir"));
 				vo.setLocation(rs.getString("location"));
 				vo.setNickname(rs.getString("nickname"));

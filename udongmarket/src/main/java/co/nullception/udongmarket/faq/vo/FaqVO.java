@@ -13,7 +13,6 @@ public class FaqVO {
 	private String faqTitle;
 	private String faqContent;
 	private String faqDate;
-	private String answerContent;
 	private String reportedId;
 	private String attach;
 	private String attachDir;

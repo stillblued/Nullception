@@ -40,7 +40,6 @@ public class CommunityServiceImpl implements CommunityService {
 				vo.setComTitle(rs.getString("COM_TITLE"));
 				vo.setComContent(rs.getString("COM_CONTENT"));
 				vo.setComDate(rs.getString("COM_DATE"));
-				vo.setComHit(rs.getString("COM_HIT"));
 				vo.setLocation(rs.getString("LOCATION"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
@@ -72,7 +71,6 @@ public class CommunityServiceImpl implements CommunityService {
 				vo.setComTitle(rs.getString("COM_TITLE"));
 				vo.setComContent(rs.getString("COM_CONTENT"));
 				vo.setComDate(rs.getString("COM_DATE"));
-				vo.setComHit(rs.getString("COM_HIT"));
 				vo.setLocation(rs.getString("LOCATION"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
@@ -127,7 +125,7 @@ public class CommunityServiceImpl implements CommunityService {
 			psmt.setString(5, vo.getAttach());
 			psmt.setString(6, vo.getAttachDir());
 			psmt.setString(7, vo.getNickname());
-			psmt.setString(8, "");
+			psmt.setString(8, vo.getComDate());
 			psmt.setInt(9, vo.getBoardId());
 
 		} catch (SQLException e) {
@@ -178,7 +176,6 @@ public class CommunityServiceImpl implements CommunityService {
 				vo.setComTitle(rs.getString("COM_TITLE"));
 				vo.setComContent(rs.getString("COM_CONTENT"));
 				vo.setComDate(rs.getString("COM_DATE"));
-				vo.setComHit(rs.getString("COM_HIT"));
 				vo.setLocation(rs.getString("LOCATION"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));

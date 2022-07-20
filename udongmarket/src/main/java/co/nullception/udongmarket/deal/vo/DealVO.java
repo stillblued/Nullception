@@ -16,7 +16,6 @@ public class DealVO {
 	private String dealDate;
 	private int price;
 	private String dealState;
-	private int dealHit;
 	private String location;
 	private String attach;
 	private String attachDir;

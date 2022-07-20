@@ -1,4 +1,4 @@
-package co.nullception.udongmarket.comment.service;
+package co.nullception.udongmarket.comments.service;
 
 import java.util.List;
 

@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.nullception.udongmarket.comm.Command;
-import co.nullception.udongmarket.comment.service.CommentsService;
-import co.nullception.udongmarket.comment.serviceImpl.CommentsServiceImpl;
+import co.nullception.udongmarket.comments.service.CommentsService;
+import co.nullception.udongmarket.comments.serviceImpl.CommentsServiceImpl;
 import co.nullception.udongmarket.comments.vo.CommentsVO;
 import co.nullception.udongmarket.faq.service.FaqService;
 import co.nullception.udongmarket.faq.serviceImpl.FaqServiceImpl;

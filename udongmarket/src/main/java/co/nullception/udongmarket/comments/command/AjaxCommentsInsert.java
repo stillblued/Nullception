@@ -8,8 +8,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.nullception.udongmarket.comm.Command;
-import co.nullception.udongmarket.comment.service.CommentsService;
-import co.nullception.udongmarket.comment.serviceImpl.CommentsServiceImpl;
+import co.nullception.udongmarket.comments.service.CommentsService;
+import co.nullception.udongmarket.comments.serviceImpl.CommentsServiceImpl;
 import co.nullception.udongmarket.comments.vo.CommentsVO;
 
 public class AjaxCommentsInsert implements Command {
