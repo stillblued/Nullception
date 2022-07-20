@@ -194,14 +194,7 @@
 							
 						}
 					}
-					if(frm.password.value.length >= frm.memberPassword.value.length) {
-						if(frm.memberPassword.value != frm.password.value ){
-							alert("패스워드가 일치하지 않습니다.");
-							frm.memberPassword.value = "";
-							frm.password.value = "";
-							frm.memberPassword.focus();
-						}
-					}
+					
 					
 				}else if(mode == 2) {
 					if(frm.btn1.disabled = true) {
@@ -219,6 +212,13 @@
 							frm.btn2.disabled = false;
 						}
 					}
+						if(frm.memberPassword.value != frm.password.value ){
+							alert("패스워드가 일치하지 않습니다.");
+							frm.memberPassword.value = "";
+							frm.password.value = "";
+							frm.memberPassword.focus();
+						}
+					
 				}
 			}
 		
