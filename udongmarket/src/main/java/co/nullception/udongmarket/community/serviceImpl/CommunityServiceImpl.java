@@ -21,8 +21,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public List<CommunityVO> communityList(int startRow, int endRow) {
 		List<CommunityVO> list = new ArrayList<>();
 		CommunityVO vo;
-		String sql = "SELECT * \r\n"
-				+ "FROM (SELECT ROWNUM AS RNUM, A.*\r\n"
+		String sql = "SELECT * \r\n" + "FROM (SELECT ROWNUM AS RNUM, A.*\r\n"
 				+ "FROM (SELECT * FROM COMMUNITY ORDER BY COM_DATE DESC, COM_CATEGORY) A)\r\n"
 				+ "WHERE RNUM BETWEEN ? AND ?";
 
@@ -32,7 +31,7 @@ public class CommunityServiceImpl implements CommunityService {
 			psmt.setInt(1, startRow);
 			psmt.setInt(2, endRow);
 			rs = psmt.executeQuery();
-			
+
 			while (rs.next()) {
 				vo = new CommunityVO();
 				vo.setBoardId(rs.getInt("BOARD_ID"));
@@ -117,7 +116,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public int communityUpdate(CommunityVO vo) {
 		int cnt = 0;
 		String sql = "UPDATE COMMUNITY SET COM_CATEGORY = ?, COM_TITLE = ?, COM_CONTENT = ? "
-				+ " LOCATION = ?, ATTACH = ?, ATTACH_DIR =?, NICKNAME =? WHERE BOARD_ID =?";
+				+ " LOCATION = ?, ATTACH = ?, ATTACH_DIR =?, NICKNAME =? COM_DATE =? WHERE BOARD_ID =?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -128,9 +127,10 @@ public class CommunityServiceImpl implements CommunityService {
 			psmt.setString(5, vo.getAttach());
 			psmt.setString(6, vo.getAttachDir());
 			psmt.setString(7, vo.getNickname());
-			psmt.setInt(8, vo.getBoardId());
-			
-		} catch(SQLException e) {
+			psmt.setString(8, "");
+			psmt.setInt(9, vo.getBoardId());
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();
@@ -147,7 +147,7 @@ public class CommunityServiceImpl implements CommunityService {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getBoardId());
 			cnt = psmt.executeUpdate();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();
@@ -156,14 +156,18 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public List<CommunityVO> communitySearchList(String key, String val) {
+	public List<CommunityVO> communitySearchList(int startRow, int endRow, String key, String val) {
 		List<CommunityVO> list = new ArrayList<>();
 		CommunityVO vo;
-		String sql = "SELECT * FROM COMMUNITY WHERE " + key + " LIKE '%" + val + "%'";
+		String sql = " SELECT * FROM (SELECT ROWNUM AS RNUM, "
+				+ "A. * FROM (SELECT * FROM COMMUNITY ORDER BY COM_DATE DESC, COM_CATEGORY) A) "
+				+ " WHERE " + key + " like '%" + val + "%' and RNUM BETWEEN ? AND ?";
 
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, startRow);
+			psmt.setInt(2, endRow);
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
@@ -178,7 +182,7 @@ public class CommunityServiceImpl implements CommunityService {
 				vo.setLocation(rs.getString("LOCATION"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
-				
+
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -198,10 +202,30 @@ public class CommunityServiceImpl implements CommunityService {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				cnt = rs.getInt("CNT");
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
+	}
+
+	@Override
+	public int getSearchCount(String key, String val) {
+		String sql = "SELECT COUNT(*) AS CNT FROM COMMUNITY WHERE " + key + " LIKE '%" + val + "%'";
+		int cnt = 0;
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				cnt = rs.getInt("CNT");
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();

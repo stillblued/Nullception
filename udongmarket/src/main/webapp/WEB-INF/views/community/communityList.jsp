@@ -16,14 +16,14 @@
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
 			</button>
 		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
@@ -38,14 +38,15 @@
 		</div>
 
 		<div>
-			<form id="frm">
+			<form id="frm" action="communitySearch.do" method="get">
 				<select id="key" name="key">
+					<option value="com_category">#</option>
 					<option value="com_title">제목</option>
 					<option value="com_content">내용</option>
 					<option value="nickname">작성자</option>
 
 				</select> &nbsp; <input type="text" id="val" name="val"> &nbsp;&nbsp;
-				<input type="button" value="검색" onclick="communitySearch()">
+				<input type="submit" value="검색">
 
 			</form>
 		</div>
@@ -63,47 +64,49 @@
 					</tr>
 				</thead>
 				<tbody id="tb">
-				
 
-					<c:if test="${empty list}"><td colspan="6" align="center">등록된 게시물이 없습니다.</td></c:if>
+
+					<c:if test="${empty list}">
+						<td colspan="6" align="center">등록된 게시물이 없습니다.</td>
+					</c:if>
 					<c:if test="${not empty list}">
 						<c:forEach var="list" items="${list}">
-							<tr onclick = "location.href='communityContent.do'">
+							<tr>
 								<td>${list.comCategory }</td>
-								<td>${list.comTitle }</td>
+								<td onclick="location.href='communityDetail.do?boardId=${list.boardId }'">${list.comTitle }</td>
 								<td>${list.nickname }</td>
 								<td>${list.comDate }</td>
 							</tr>
-							
-							<img src = "${list.attachDir}">
+
+
 						</c:forEach>
 					</c:if>
-					
-				
-				
-				
-				
+
+
+
+
+
 				</tbody>
 			</table>
 		</div>
 
 		<br>
+		<div id="nav">
+			<div id="page">
+				<%
+				int pageCount = (int) request.getAttribute("pageCount");
+				int pageBlock = (int) request.getAttribute("pageBlock");
+				int startPage = (int) request.getAttribute("startPage");
+				int endPage = (int) request.getAttribute("endPage");
 
-		<div id = "page">
-			<%
-			int pageCount = (int) request.getAttribute("pageCount");
-			int pageBlock = (int) request.getAttribute("pageBlock");
-			int startPage = (int) request.getAttribute("startPage");
-			int endPage = (int) request.getAttribute("endPage");
-
-			for (int i = startPage; i <= endPage; i++) {
-			%>
-			<a href="communityList.do?pageNum=<%=i%>"><%=i%></a>
-			<%
-			}
-			%>
+				for (int i = startPage; i <= endPage; i++) {
+				%>
+				<a href="communityList.do?pageNum=<%=i%>"><%=i%></a>
+				<%
+				}
+				%>
+			</div>
 		</div>
-
 		<br>
 		<div>
 			<c:if test="${not empty nickname }">
@@ -112,47 +115,7 @@
 		</div>
 	</div>
 
-	<script>
-		function communitySearch() {
-			let key = $("#key").val();
-			let val = $("#val").val();
-			$.ajax({
-				url : "ajaxCommunitySearch.do",
-				type : "post",
-				data : {
-					key : key,
-					val : val
-				},
-				dataType : "json",
-				success : function(result) {
-					console.log(result);
-					if (result.length > 0) {
-						jsonHtmlConvert(result);
-					} else {
-						alert("검색한 결과가 없습니다.")
-					}
-				},
-				error : function() {
-				}
-			})
-		}
-		function jsonHtmlConvert(data) {
-			$('tbody').remove();
-			$('#page').remove();
-			var tbody = $("<tbody />");
-			$.each(data, function(index, item) {
-				console.log(item);
-				var row = $("<tr />").append(
-						$("<td />").text(item.comCategory),
-						$("<td />").text(item.comTitle),
-						$("<td />").text(item.nickname),
-						$("<td />").text(item.comDate),
-				);
-				tbody.append(row);
-			});
-			$('table').append(tbody);
-		}
-	</script>
+	
 
 
 </body>
