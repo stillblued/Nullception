@@ -35,6 +35,8 @@ public class FaqInsert implements Command {
 		 * vo.setNickname(sessionNickname); } else {
 		 * System.out.println("정보가 일치하지 않습니다."); }
 		 */
+		
+		
 		String savePath = "C:\\Temp\\";
 		int uploadSize = 1024 * 1024 * 1024;
 		int cnt = 0;

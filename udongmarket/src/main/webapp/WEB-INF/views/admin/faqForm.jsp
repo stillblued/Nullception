@@ -53,7 +53,9 @@ addLoadEvent(function() {
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
 				<li><a href="communityList.do">커뮤니티</a></li>
+			    <c:if test="${author == 'ADMIN' }">
 			    <li><a href="memberList.do">사용자 목록</a></li>
+			    </c:if>
 			    <li><a href="faq.do">FAQ</a></li>
 			</ul>
 		</div>
@@ -68,8 +70,8 @@ addLoadEvent(function() {
 			%> 
 				
 				<tr>
-					<th id="nickname">닉네임</th>
-					<td><input type="text" id="nickname" name="nickname" value="${nick }" readonly="readonly" ></td>
+					<th id="nickname">닉네임</th><%-- ${nick } --%>
+					<td><input type="text" id="nickname" name="nickname" value="${vo.nickname}" readonly="readonly" ></td>
 					<th id="nickname">작성 날짜</th>
 					<%-- <td><input type="text" id="faqDate" name="faqDate" value="${list.getFaqDate() }"  readonly="readonly"></td> --%>
 					<td><input name="tName" type="text" id="tDate"></td>

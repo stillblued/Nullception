@@ -29,7 +29,9 @@
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
 				<li><a href="communityList.do">커뮤니티</a></li>
-				<li><a href="memberList.do">사용자 목록</a></li>
+				<c:if test="${author == 'ADMIN' }">
+			    <li><a href="memberList.do">사용자 목록</a></li>
+			    </c:if>
 				<li class="active"><a href="faq.do">FAQ</a></li>
 			</ul>
 		</div>
@@ -51,7 +53,7 @@
 				<input type="hidden" id="boardId" name="boardId"
 					value="<%=vo.getBoardId()%>">
 				<th>닉네임</th>
-				<td><%=vo.getNickname()%></td>
+				<td id="nickname"><%=vo.getNickname()%></td>
 				<th>작성일</th>
 				<td><%=vo.getFaqDate()%></td>
 			</tr>
@@ -151,7 +153,8 @@
 				 		$("<th />").text(data.nickname),
 				 		$("<td />").text(data.commentsContent),
 				 		$("<td />").text(today)
-				 		
+				 		 ,$("<td  />").append($("<button onclick='' />").text("수정"))
+				 		 ,$("<td  />").append($("<button onclick='commentdelete()' />").text("삭제"))
 				 		);
 				
 				$('#comm').append(tr);
@@ -164,6 +167,9 @@
 			    return today.toISOString().replace('T', ' ').substring(0, 19);
 			}
 			
+		function commentdelete(){
+			console.log("삭제해야돼,,, 클릭은 됨 ㅇㅅㅇ...");
+		} 
 		
 		
 	</script>
