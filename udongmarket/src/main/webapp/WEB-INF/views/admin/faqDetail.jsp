@@ -96,11 +96,11 @@
 			</form>
 		</thead>
 		<tbody id = "comm">
-			<c:if test="${empty coList}">
+			<%-- <c:if test="${empty coList}">
 				<tr>
 					<td colspan="6" align="center">등록된 댓글이 없습니다.</td>
 				</tr>
-			</c:if>
+			</c:if> --%>
 			<c:forEach items="${coList}" var="list">
 				<tr>
 					<th>${list.nickname }</th>
