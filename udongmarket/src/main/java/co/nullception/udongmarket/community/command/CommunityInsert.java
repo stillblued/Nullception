@@ -23,8 +23,6 @@ public class CommunityInsert implements Command {
 		String rootPath = request.getSession().getServletContext().getRealPath("/") ;
 		String savePath = rootPath + "fileSave/" ;
 
-		System.out.println(rootPath);
-		System.out.println(savePath);
 		
 		File targetDir = new File(savePath);
 		if (!targetDir.exists()) {
@@ -65,7 +63,7 @@ public class CommunityInsert implements Command {
 		}
 
 		String returnPage = null;
-		if (n != 0) { // n==0 이면 실패, 0이 아니면 성공
+		if (n != 0) { 
 			returnPage = "communityList.do";
 		} else {
 			request.setAttribute("message", "게시글 등록 실패");

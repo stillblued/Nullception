@@ -11,8 +11,9 @@ public interface CommunityService {
 		int communityInsert(CommunityVO vo); //글입력
 		int communityUpdate(CommunityVO vo); //글수정
 		int communityDelete(CommunityVO vo); //글삭제
-		List<CommunityVO> communitySearchList(String key, String val); //글목록에서 검색
+		List<CommunityVO> communitySearchList(int startRow, int endRow, String key, String val); //글목록에서 검색
 		int getBoardCount();
+		int getSearchCount(String key, String val);
 
 	
 	
