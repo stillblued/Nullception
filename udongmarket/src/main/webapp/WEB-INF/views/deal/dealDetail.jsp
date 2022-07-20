@@ -89,10 +89,7 @@
 					     								     					 .replaceAll(">", "&gt;")
 				        								 						 .replaceAll("\n", "<br>") %> --%></td>
 			</tr>
-			<tr>	
-				<td>조회수</td>
-				<td><%= vo.getDealHit() %></td>
-			</tr>
+			
 		</tbody>
 	</table><br>
 		<a href="dealList.do" class="btn btn-primary">목록</a>
