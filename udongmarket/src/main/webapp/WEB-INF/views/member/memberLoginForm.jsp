@@ -55,12 +55,54 @@
          <div>
            <input type="submit" value="로그인">&nbsp;&nbsp;&nbsp;
            <input type="reset" value="취소">&nbsp;&nbsp;&nbsp;
-           <input type="button" value="홈 가기" onclick="location.href='main.do'">&nbsp;&nbsp;&nbsp;
+           <input type="button" value="홈 가기" onclick="location.href='main.do'"><br><br><br>
+           <a href="javascript:kakaoLogin();"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" /></a>
          </div>
        </form>
      </div>
    </div>
-   
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+     //89bd47bf599b76dfe7bcd2c967e68e22 : 사용할 앱의 javascript키
+     window.Kakao.init("89bd47bf599b76dfe7bcd2c967e68e22");
+     
+     function kakaoLogin() {
+    	 window.Kakao.Auth.login({
+    		 scope:'profile_nickname,account_email',
+    		 success: function(authObj) {
+    			 console.log(authObj);
+    			 // key : access_token , value.
+    			 let key = Object.keys(authObj)[0];
+    			 let value = authObj[Object.keys(authObj)[0]];
+				 let value1 = authObj[Object.keys(authObj)[3]];
+				 let id = value.substr(0, 6);
+    			 let password = value.substr(10, 3) + value1;
+    			 
+    			 console.log("id :" + id);
+    			 console.log("password : " + password);
+    			 // id, password, email, nickname > 다른 값은 null이니까 마이페이지에서 수정
+    			 // join command를 사용해서 일단 4개를 DB에 넘기고 넘어가는지 확인하기
+    			 
+				 
+				 window.Kakao.API.request({
+    				 url:'/v2/user/me',
+    				 success: res => {
+    					 const kakao_account = res.kakao_account;
+    					 console.log(kakao_account);
+    				 },
+    				 fail: err => {
+    					 console.log(err);
+    				 }
+    			 });
+    		 } 
+    	 });
+    	 //request.setAttribute(id);
+    	 //request.setAttribute(password);
+    	 //location.href='kakaoJoin.do';
+     }
+     
+     
+  </script>
    
 </body>
 </html>

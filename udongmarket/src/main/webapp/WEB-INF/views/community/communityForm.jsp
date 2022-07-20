@@ -24,8 +24,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="main.do">메인</a></li>
-				<li class="active"><a href="dealList.do">장터</a></li>
-				<li><a href="communityList.do">커뮤니티</a></li>
+				<li><a href="dealList.do">장터</a></li>
+				<li class="active"><a href="communityList.do">커뮤니티</a></li>
 			</ul>
 		</div>
 	</nav>	
@@ -55,12 +55,12 @@
 						<tr>
 							<th>제목</th>
 							<td colspan="3"><input type="text" size="73" id="comTitle"
-								name="comTitle"></td>
+								name="comTitle" required="required"></td>
 						</tr>
 						<tr>
 							<th>내용</th>
 							<td colspan="3"><textarea rows="6" cols="75" id="comContent"
-									name="comContent"></textarea></td>
+									name="comContent" required="required"></textarea></td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
