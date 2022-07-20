@@ -30,7 +30,8 @@ public class CommunityList implements Command {
 		int endRow = currentPage * pageSize;
 
 		list = communityDao.communityList(startRow, endRow);
-
+		
+		
 		int pageCount = 0;
 		int pageBlock = 0;
 		int startPage = 0;

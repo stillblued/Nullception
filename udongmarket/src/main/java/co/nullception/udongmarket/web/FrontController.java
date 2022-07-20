@@ -16,15 +16,16 @@ import co.nullception.udongmarket.admin.command.FAQCommand;
 import co.nullception.udongmarket.admin.command.FaqDetail2;
 import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
-import co.nullception.udongmarket.admin.command.FaqSelectOne;
 import co.nullception.udongmarket.admin.command.FaqUpdate;
-import co.nullception.udongmarket.admin.command.FaqDetail;
 import co.nullception.udongmarket.comm.Command;
-import co.nullception.udongmarket.community.command.AjaxCommunitySearch;
-import co.nullception.udongmarket.community.command.CommunityContent;
+import co.nullception.udongmarket.community.command.CommunityDelete;
+import co.nullception.udongmarket.community.command.CommunityDetail;
 import co.nullception.udongmarket.community.command.CommunityForm;
 import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
+import co.nullception.udongmarket.community.command.CommunitySearch;
+import co.nullception.udongmarket.community.command.CommunityUpdate;
+import co.nullception.udongmarket.community.command.UpdateCommu;
 import co.nullception.udongmarket.deal.command.AjaxDealSearch;
 import co.nullception.udongmarket.deal.command.DealDelete;
 import co.nullception.udongmarket.deal.command.DealDetail;
@@ -72,7 +73,6 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
-		map.put("/ajaxMemberList", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
 		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
     
 		map.put("/faq.do", new FAQCommand()); // FAQ List
@@ -98,13 +98,14 @@ public class FrontController extends HttpServlet {
 		map.put("/dealDetail.do", new DealDetail()); // 글 상세
 		map.put("/dealDelete.do", new DealDelete()); // 글 삭제
 		
-		map.put("/communityList.do", new CommunityList());
-		map.put("/communityForm.do", new CommunityForm());
-		map.put("/communityInsert.do", new CommunityInsert());
-		map.put("/ajaxCommunitySearch.do", new AjaxCommunitySearch());
-		map.put("/communityContent.do", new CommunityContent());
-		
-		
+		map.put("/communityList.do", new CommunityList()); //커뮤 목록+페이징
+		map.put("/communityForm.do", new CommunityForm()); //커뮤 폼
+		map.put("/communityInsert.do", new CommunityInsert()); //커뮤 등록
+		map.put("/communitySearch.do", new CommunitySearch()); //커뮤 검색
+		map.put("/communityDelete.do", new CommunityDelete()); //커뮤 삭제
+		map.put("/communityDetail.do", new CommunityDetail()); //커뮤 상세
+		map.put("/communityUpdate.do", new CommunityUpdate()); //커뮤 수정폼
+		map.put("/updateCommu.do", new UpdateCommu()); //커뮤글 수정
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

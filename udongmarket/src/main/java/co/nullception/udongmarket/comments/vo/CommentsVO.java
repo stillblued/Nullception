@@ -1,4 +1,4 @@
-package co.nullception.udongmarket.comment.vo;
+package co.nullception.udongmarket.comments.vo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class CommentVO {
+public class CommentsVO {
 	
 	private int boardId;
 	private int commentsId;
