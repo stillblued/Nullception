@@ -35,6 +35,7 @@ import co.nullception.udongmarket.deal.command.DealList;
 import co.nullception.udongmarket.member.command.AjaxMemberIdCheck;
 import co.nullception.udongmarket.member.command.AjaxMemberList;
 import co.nullception.udongmarket.member.command.AjaxNicknameCheck;
+import co.nullception.udongmarket.member.command.KakaoJoin;
 import co.nullception.udongmarket.member.command.MemberJoin;
 import co.nullception.udongmarket.member.command.MemberJoinForm;
 import co.nullception.udongmarket.member.command.MemberList;
@@ -72,6 +73,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
+		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
     
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
