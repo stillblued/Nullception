@@ -49,7 +49,9 @@ import co.nullception.udongmarket.myPage.command.AjaxDealList;
 import co.nullception.udongmarket.myPage.command.AjaxDealState;
 import co.nullception.udongmarket.myPage.command.DeleteMember;
 import co.nullception.udongmarket.myPage.command.MyPageUpdate;
+import co.nullception.udongmarket.myPage.command.PrintCommentsList;
 import co.nullception.udongmarket.myPage.command.ShowMyPage;
+import co.nullception.udongmarket.myPage.command.AjaxUpdateComments;
 import co.nullception.udongmarket.myPage.command.UpdateMember;
 
 @WebServlet("*.do")
@@ -93,6 +95,8 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxComList.do", new AjaxComList());//회원이 카테고리별로 작성한 community 게시판 글 조회
 		map.put("/ajaxDealState.do", new AjaxDealState());//거래게시판 state 변경
 		map.put("/ajaxcommentCheck.do", new AjaxCommentCheck()); //댓글 state 체크
+		map.put("/printCommentLists.do", new PrintCommentsList());//댓글이 달린 게시글 리스트 출력
+		map.put("/ajaxUpdateComments.do", new AjaxUpdateComments()); //실시간 댓글 확인
 		
 		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록

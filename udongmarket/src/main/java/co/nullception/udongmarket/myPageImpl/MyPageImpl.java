@@ -213,7 +213,7 @@ public class MyPageImpl implements MyPage {
 		// count 값을 int 변수에 담아주고 출력해보기
 		int r = 0;
 		int count = 0;
-		String sql = "select count(*) from comments where state = '읽지않음' and write_nickname = ?";
+		String sql = "select count(*) as cnt from comments where comments_state = '읽지않음' and board_nick = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -222,7 +222,7 @@ public class MyPageImpl implements MyPage {
 			
 			if(rs.next()) {
 				//rs.next의 값을 count에 저장
-				count = rs.getInt("count(*)");
+				count = rs.getInt("cnt");
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -232,6 +232,97 @@ public class MyPageImpl implements MyPage {
 		System.out.println("count : " + count);
 		return count;
 	}
+
+	@Override
+	public List<DealVO> dealCommentsList(String boardNick) {
+		// 거래 게시판 = 댓글달린 게시물 리스트
+		List<DealVO> list = new ArrayList<DealVO>();
+		String sql = "select * from deal where board_id in (select board_id from comments where board_nick = ? and comments_state='읽지않음')";
+		
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, boardNick);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				DealVO vo = new DealVO();
+				vo.setBoardId(Integer.parseInt(rs.getString("board_id")));
+				vo.setNickname(rs.getString("nickname"));
+				vo.setDealCategory(rs.getString("deal_category"));
+				vo.setDealTitle(rs.getString("deal_title"));
+				vo.setDealContent(rs.getString("deal_content"));
+				vo.setDealDate(rs.getString("deal_date"));
+				vo.setPrice(Integer.parseInt(rs.getString("price")));
+				vo.setDealState(rs.getString("deal_state"));
+				vo.setLocation(rs.getString("location"));
+				vo.setAttach(rs.getString("attach"));
+				vo.setAttachDir(rs.getString("attach_dir"));
+				list.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return list;
+	}
+
+	@Override
+	public List<CommunityVO> commCommentsList(String boardNick) {
+		// 커뮤니티 게시판 = 댓글달린 게시물 리스트
+		List<CommunityVO> list = new ArrayList<CommunityVO>();
+		String sql = "select * from community where board_id in (select board_id from comments where board_nick = ? and comments_state='읽지않음')";
+		
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, boardNick);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				CommunityVO vo = new CommunityVO();
+				vo.setBoardId(Integer.parseInt(rs.getString("board_id")));
+				vo.setNickname(rs.getString("nickname"));
+				vo.setComCategory(rs.getString("com_category"));
+				vo.setComTitle(rs.getString("com_title"));
+				vo.setComContent(rs.getString("com_content"));
+				vo.setComDate(rs.getString("com_date"));
+				vo.setLocation(rs.getString("location"));
+				vo.setAttach(rs.getString("attach"));
+				vo.setAttachDir(rs.getString("attach_dir"));
+				list.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return list;
+	}
+
+	@Override
+	public int updateComments(String boardNick) {
+		// 댓글 업데이트
+		int r = 0;
+		String sql = "update comments set comments_state = '읽음' where board_nick = ?";
+		
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, boardNick);
+			r = psmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		
+		return r;
+	}
+
+
+
 
 
 
