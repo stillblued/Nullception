@@ -211,6 +211,31 @@ public class MyPageImpl implements MyPage {
 		return r;
 	}
 
+	@Override
+	public int checkCommentState(String nickname) {
+		// count 값을 int 변수에 담아주고 출력해보기
+		int r = 0;
+		int count = 0;
+		String sql = "select count(*) from comments where state = '읽지않음' and write_nickname = ?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, nickname);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				//rs.next의 값을 count에 저장
+				count = rs.getInt("count(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		System.out.println("count : " + count);
+		return count;
+	}
+
 
 
 }

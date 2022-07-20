@@ -92,11 +92,14 @@
 					<th>거래가능상태</th>
 				</tr>
 			</thead>
-
+			<tbody>
+				<tr>
+					<td colspan='5' align='center'>게시글이 존재하지 않습니다.</td>
+				</tr>
+			</tbody>
 		</table>
 		<br>
 		<hr>
-		<br>
 		<h3>커뮤니티 게시판 글목록</h3>
 		<select id="comCategory" name="comCategory" onchange="changeComList()">
 			<option value="unselect">==카테고리 선택==</option>
@@ -116,7 +119,11 @@
 					<th>지역</th>
 				</tr>
 			</thead>
-
+			<tbody>
+				<tr>
+					<td colspan='4' align='center'>게시글이 존재하지 않습니다.</td>
+				</tr>
+			</tbody>
 		</table>
 		<br>
 		<hr>
@@ -143,6 +150,17 @@
 				</tr>
 			</c:forEach>
 		</table>
+	</div>
+	<!-- function을 헤더로 옮기거나 mypage에서만 알림을 볼 수 있도록 하기 -->
+	<h3>알림</h3>
+	<div align="center" style="background-color:lightskyblue; width:1000px; height: 30px;">
+		<table id="alert">
+			<thead style="display:none">
+				<th>알림 내용</th>
+			</thead>
+			
+		</table>
+	
 	</div>
 
 	<script type="text/javascript">
@@ -198,34 +216,44 @@
 		let state1 = '거래가능';
 		let state2 = '거래중';
 		let state3 = '거래완료';
-		$.each(data, function(index, item){
-			let row = $("<tr />").append(
-		   			  $("<td style='display:none' />").text(item.boardId),
-					  $("<td />").text(item.dealCategory),
-					  $("<td id='title' onclick='selectDeal(this)' />").text(item.dealTitle),
-					  $("<td />").text(item.dealDate),
-					  $("<td />").text(item.dealHit),
-					  $("<td />").append($("<select onchange='changeState(this)'/>")
-							     .append($("<option " + (state1 == item.dealState ? 'selected' : '')+">거래가능</option> <option " + (state2 == item.dealState ? 'selected' : '') + ">거래중</option> <option " + (state3 == item.dealState ? 'selected' : '') + ">거래완료</option>")))
-					);
+		if(data.length>0){
+			$.each(data, function(index, item){
+				let row = $("<tr />").append(
+			   			  $("<td style='display:none' />").text(item.boardId),
+						  $("<td />").text(item.dealCategory),
+						  $("<td id='title' onclick='selectDeal(this)' />").text(item.dealTitle),
+						  $("<td />").text(item.dealDate),
+						  $("<td />").text(item.dealHit),
+						  $("<td />").append($("<select onchange='changeState(this)'/>")
+								     .append($("<option " + (state1 == item.dealState ? 'selected' : '')+">거래가능</option> <option " + (state2 == item.dealState ? 'selected' : '') + ">거래중</option> <option " + (state3 == item.dealState ? 'selected' : '') + ">거래완료</option>")))
+						);
+				tbody.append(row);
+			});	
+		} else{
+			let row = $("<td colspan='5' align='center' />)").text("게시글이 존재하지 않습니다.");
 			tbody.append(row);
-		});
+		}
 		$('#dealList').append(tbody);
 	} 
  	
  	function jsonComListConvert(data){
  		$("#comList tbody").remove();
 		let tbody = $("<tbody />");
-		$.each(data, function(index, item){
-			let row = $("<tr />").append(
-   					  $("<td style='display:none' />").text(item.boardId),
-					  $("<td />").text(item.comCategory),
-					  $("<td id='title' onclick='selectCom(this)'/>").text(item.comTitle),
-					  $("<td />").text(item.comDate),
-					  $("<td />").text(item.location)
-					);
+		if(data.length>0){
+			$.each(data, function(index, item){
+				let row = $("<tr />").append(
+	   					  $("<td style='display:none' />").text(item.boardId),
+						  $("<td />").text(item.comCategory),
+						  $("<td id='title' onclick='selectCom(this)'/>").text(item.comTitle),
+						  $("<td />").text(item.comDate),
+						  $("<td />").text(item.location)
+						);
+				tbody.append(row);
+			});
+		} else{
+			let row = $("<td colspan='4' align='center' />)").text("게시글이 존재하지 않습니다.");
 			tbody.append(row);
-		});
+		}
 		$('#comList').append(tbody);
  	}
  	
@@ -234,6 +262,7 @@
  		console.log(e); //글번호 받아옴 >> 해당 글 페이지로 이동(수정)
  		let boardId = ((e.previousSibling).previousSibling).textContent;
  		console.log(boardId);
+ 		location.href='dealDetail.do?boardId='+boardId;
  	}
  	
  	function selectCom(e){
@@ -265,6 +294,51 @@
 			}
 		})   
  	}
+ 	
+ 	function checkCommentState(){
+ 		//댓글 상태 확인
+ 		//체크 요청을 보내면 ajax로 상태를 받아와서 확인(interval로 작동시간 정해주기)
+ 		//읽지 않은 댓글의 개수(count)값이 있으면 개수를 result로 반환하고 닉네임이 다르면 빈 문자열을 반환(알림이 없음)
+ 		let state = "check";
+ 		$.ajax({
+ 			url : "ajaxcommentCheck.do",
+ 			type : "post",
+ 			data : {state : state},
+ 			dataType : "Json",
+ 			success : function(result){
+ 				jsonStateConvert(result);
+ 			},
+ 			error: function(){
+ 				console.log("error");
+ 			}
+ 		})
+ 	}
+ 	
+ 	function jsonStateConvert(data){
+		console.log(data)
+ 		$("#alert tbody").remove();
+		//if data(count)가 0보다 크면 테이블에 출력
+		if(data>0){
+			let tbody = $("<tbody />");
+			let row = $("<tr />").append(
+					  $("<td />").text(data)
+					);
+			tbody.append(row);
+			$('#alert').append(tbody);
+		} else{ //count가 0이면 댓글이 없습니다 알림 출력
+			let tbody = $("<tbody />");
+			let row = $("<tr />").append(
+					  $("<td />").text("0")
+					);
+			tbody.append(row);
+			$('#alert').append(tbody);
+		}
+ 	}
+ 	
+ 	setInterval(function(){
+ 		checkCommentState();
+ 	}, 10000);
+ 	
 	
 </script>
 </body>
