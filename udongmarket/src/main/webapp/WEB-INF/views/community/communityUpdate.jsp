@@ -43,9 +43,7 @@
 					<table border="1">
 						<tr>
 							<th>#</th>
-							<td colspan="3"><select id="comCategory" name="comCategory"
-								value="${vo.getComCategory }">
-
+							<td colspan="3"><select id="comCategory" name="comCategory">
 									<option value="알리미">알리미</option>
 									<option value="소모임">소모임</option>
 									<option value="아르바이트">아르바이트</option>
@@ -62,9 +60,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="3"><textarea rows="6" cols="75" id="comContent"
-									name="comContent" required="required"
-									value="${vo.getComContent }"></textarea></td>
+							<td colspan="3"><textarea rows="6" cols="75" id="comContent" name="comContent" required="required">${vo.getComContent }</textarea></td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>

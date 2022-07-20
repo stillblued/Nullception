@@ -17,8 +17,7 @@
 		if (session.getAttribute("nick") == null) {
 		%>
 
-		<a href='memberLoginForm.do'>로그인</a>&nbsp; <a>/</a>&nbsp; <a
-			href='memberJoinForm.do'>회원가입</a>
+		<a href='memberLoginForm.do'>로그인 / 회원가입</a>
 
 		<%
 		} else {

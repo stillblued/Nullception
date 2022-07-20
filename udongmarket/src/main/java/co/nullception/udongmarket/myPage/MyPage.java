@@ -1,8 +1,6 @@
 package co.nullception.udongmarket.myPage;
 
 import java.util.List;
-
-import co.nullception.udongmarket.comments.vo.CommentsVO;
 import co.nullception.udongmarket.community.vo.CommunityVO;
 import co.nullception.udongmarket.deal.vo.DealVO;
 import co.nullception.udongmarket.member.vo.MemberVO;

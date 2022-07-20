@@ -26,15 +26,14 @@ public class AjaxDealState implements Command {
 		String nickname = (String) session.getAttribute("nick");
 		String selectedState = request.getParameter("selectedState");
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
-		System.out.println(boardId);
-		System.out.println(selectedState);
+		
+		
 		
 		r = myPageDao.updateDealState(selectedState, boardId);
 		
 		String jsonList=null;
 		
 		if(r>0) {
-			System.out.println("수정 완료");
 			try {
 				jsonList = mapper.writeValueAsString(vo);
 			} catch (JsonProcessingException e) {

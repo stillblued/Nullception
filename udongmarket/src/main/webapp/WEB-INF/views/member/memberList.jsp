@@ -87,7 +87,7 @@ display: inline-block
 			
 			</tbody>
 		</table>
-	</div>
+
 
 <script type="text/javascript">
 	function authorselectList(){

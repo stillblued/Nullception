@@ -1,13 +1,8 @@
 package co.nullception.udongmarket.admin.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.faq.service.FaqService;
 import co.nullception.udongmarket.faq.serviceImpl.FaqServiceImpl;
@@ -20,7 +15,6 @@ public class AjaxFaqDelete implements Command {
 		//ajax게시글 삭제
 		
 		FaqService faqDao = new FaqServiceImpl();
-		List<FaqVO> list = new ArrayList<FaqVO>();
 		ObjectMapper mapper = new ObjectMapper();  //jackson 라이브러리 사용(json)
 		FaqVO vo = new FaqVO();
 		vo.setBoardId(Integer.valueOf(request.getParameter("boardId")));
