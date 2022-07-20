@@ -18,17 +18,22 @@ public class FAQCommand implements Command {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(); // 서버가 만들어 놓은 세션 가져옴. 서버정보는 request통해서 가져옴.
 		String sessionNickName = (String) session.getAttribute("nick"); //세션 닉네임
-		
 		// faq 게시글 목록 가져오기
 		FaqService faqDao = new FaqServiceImpl();
 		List<FaqVO> list = new ArrayList<>();
 		FaqVO vo = new FaqVO();
-		vo.setNickname(sessionNickName); //세션 닉네임 get
-		System.out.println("vo.getNickname(faqsessionnick) : " + vo.getNickname());
+		vo.setNickname(request.getParameter("nickname"));
+		//vo.setNickname(sessionNickName); //세션 닉네임 get
 		
 		list = faqDao.faqSelectList();
 		request.setAttribute("list", list);
 		request.setAttribute("vo", vo);
+		request.setAttribute("sessionNickName", sessionNickName);
+		
+		 System.out.println("sessionNickName : " + sessionNickName);
+		 System.out.println("vo.getNickname(nickname) : " + vo.getNickname());
+		 //System.out.println("request.getParameter(\"nickname\")"+request.getParameter("nickname"));
+		 
 		return "admin/faq";
 	}
 

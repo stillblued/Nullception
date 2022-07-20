@@ -123,9 +123,9 @@ display: inline-block
 					  $("<td />").text(item.memberId),
 					  $("<td />").text(item.nickname),
 					  $("<td />").text(item.email),
-					  $("<td />").text(item.mannerTemp),
-					  $(("<td  />").append($("<button onclick='' />").text("권한변경"))
-					);
+					  $("<td />").text(item.mannerTemp)
+					  ,$("<td  />").append($("<button onclick='' />").text("권한변경"))
+							  );
 			tbody.append(row);
 		});
 		$('#tble').append(tbody);

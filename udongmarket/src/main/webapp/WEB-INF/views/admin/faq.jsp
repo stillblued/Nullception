@@ -26,7 +26,9 @@
 				<li><a href="main.do">메인</a></li>
 				<li><a href="dealList.do">장터</a></li>
 				<li><a href="communityList.do">커뮤니티</a></li>
+			    <c:if test="${author == 'ADMIN' }">
 			    <li><a href="memberList.do">사용자 목록</a></li>
+			    </c:if>
 			    <li class="active"><a href="faq.do">FAQ</a></li>
 			</ul>
 		</div>
@@ -76,11 +78,11 @@
 									<c:if test="${ empty REPORTED_ID }">
 										<td>문의</td>
 									</c:if>
-
+									
 									<td id="title" onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
 
 									<td>${f.faqDate}</td>
-									<td>${f.nickname}</td>
+									<td id="nickname">${f.nickname}</td>
 									<c:if test="${not empty answer_content }">
 										<td>완료</td>
 									</c:if>
@@ -187,8 +189,15 @@
 
 		 function faqSelectOne(e) {  //get방식 안전하지 않음
 			 let boardId = (document.getElementById('boardId')).innerHTML;
+			 let nick = document.getElementById('nickname').innerHTML;
+			 console.log("nick"+nick);
 			 
+			 if(nick == '${nick}'){
 			 location.href='faqDetail.do?boardId='+boardId;	
+				 
+			 }else{
+				 alert('작성자만 열람가능합니다.');
+			 }
 		}
 		 
 		
