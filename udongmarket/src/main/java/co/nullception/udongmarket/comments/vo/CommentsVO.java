@@ -13,5 +13,6 @@ public class CommentsVO {
 	private String commentsContent;
 	private String commentsDate;
 	private String nickname;
+	private String commentsState;
 
 }
