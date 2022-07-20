@@ -13,6 +13,10 @@
 	#title:hover{
 		color: blue;
 	}
+	
+	#stateAlert:hover{
+		color: pink;
+	}
 </style>
 </head>
 <body>
@@ -35,7 +39,6 @@
 		</div>
 	</nav>	
 
-	<!-- 만약 권한이 USER이면 마이페이지, 아니면 관리자페이지 로드 -->
 	<h3>내정보</h3>
 	<div align="center">
 		<table border="1">
@@ -148,9 +151,9 @@
 			</c:forEach>
 		</table>
 	</div>
-	<!-- function을 헤더로 옮기거나 mypage에서만 알림을 볼 수 있도록 하기 -->
+	<!-- 위치 헤더로 옮기기 / div + checkCommentState() + setInterval -->
 	<h3>알림</h3>
-	<div align="center" style="background-color:lightskyblue; width:1000px; height: 30px;">
+	<div align="center" style="background-color:lightskyblue; width:20px; height: 20px;">
 		<table id="alert">
 			<thead style="display:none">
 			<tr>
@@ -268,6 +271,7 @@
  		console.log(e);
  		let boardId = ((e.previousSibling).previousSibling).textContent;
  		console.log(boardId);
+ 		location.href='communityDetail.do?boardId='+boardId;
  	}
  	
  	function changeState(e){
@@ -304,6 +308,7 @@
  			data : {state : state},
  			dataType : "Json",
  			success : function(result){
+ 				console.log("result : "+ result);
  				jsonStateConvert(result);
  			},
  			error: function(){
@@ -319,7 +324,7 @@
 		if(data>0){
 			let tbody = $("<tbody />");
 			let row = $("<tr />").append(
-					  $("<td />").text(data)
+					  $("<td id='stateAlert' onclick='commentsList()'/>").text(data)
 					);
 			tbody.append(row);
 			$('#alert').append(tbody);
@@ -333,9 +338,14 @@
 		}
  	}
  	
+ 	function commentsList(){
+ 		//내가 확인하지 않은 댓글들의 리스트를 보여줌
+ 		location.href='printCommentLists.do';
+ 	}
+ 	
  	setInterval(function(){
  		checkCommentState();
- 	}, 10000);
+ 	}, 6000);
  	
 	
 </script>
