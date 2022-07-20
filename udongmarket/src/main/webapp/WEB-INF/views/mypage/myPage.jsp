@@ -88,7 +88,6 @@
 					<th>카테고리</th>
 					<th>글제목</th>
 					<th>작성일자</th>
-					<th>조회수</th>
 					<th>거래가능상태</th>
 				</tr>
 			</thead>
@@ -135,7 +134,6 @@
 					<th>카테고리</th>
 					<th>글제목</th>
 					<th>작성일자</th>
-					<th>조회수</th>
 					<th>거래가능상태</th>
 				</tr>
 			</thead>
@@ -145,7 +143,6 @@
 					<td id='title'>${likesList.dealTitle}</td>
 					<!-- 해당 게시글로 이동하는 기능 => ?? -->
 					<td>${likesList.dealDate }</td>
-					<td>${likesList.dealHit }</td>
 					<td>${likesList.dealState }</td>
 				</tr>
 			</c:forEach>
@@ -156,7 +153,9 @@
 	<div align="center" style="background-color:lightskyblue; width:1000px; height: 30px;">
 		<table id="alert">
 			<thead style="display:none">
+			<tr>
 				<th>알림 내용</th>
+			</tr>
 			</thead>
 			
 		</table>
@@ -223,7 +222,6 @@
 						  $("<td />").text(item.dealCategory),
 						  $("<td id='title' onclick='selectDeal(this)' />").text(item.dealTitle),
 						  $("<td />").text(item.dealDate),
-						  $("<td />").text(item.dealHit),
 						  $("<td />").append($("<select onchange='changeState(this)'/>")
 								     .append($("<option " + (state1 == item.dealState ? 'selected' : '')+">거래가능</option> <option " + (state2 == item.dealState ? 'selected' : '') + ">거래중</option> <option " + (state3 == item.dealState ? 'selected' : '') + ">거래완료</option>")))
 						);

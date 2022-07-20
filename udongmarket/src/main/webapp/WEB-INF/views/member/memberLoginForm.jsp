@@ -54,8 +54,8 @@
          <br>
          <div>
            <input type="submit" value="로그인">&nbsp;&nbsp;&nbsp;
-           <input type="reset" value="취소">&nbsp;&nbsp;&nbsp;
-           <input type="button" value="홈 가기" onclick="location.href='main.do'"><br><br><br>
+           <input type="button" value="회원가입" onclick="location.href='memberJoinForm.do'">&nbsp;&nbsp;&nbsp;
+           <input type="button" value="메인" onclick="location.href='main.do'"><br><br><br>
            <a href="javascript:kakaoLogin();"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" /></a>
          </div>
        </form>

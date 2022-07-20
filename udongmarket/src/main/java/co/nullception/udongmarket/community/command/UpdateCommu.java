@@ -2,21 +2,15 @@ package co.nullception.udongmarket.community.command;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.service.CommunityService;
 import co.nullception.udongmarket.community.serviceImpl.CommunityServiceImpl;
 import co.nullception.udongmarket.community.vo.CommunityVO;
-import co.nullception.udongmarket.member.vo.MemberVO;
-import co.nullception.udongmarket.myPage.MyPage;
-import co.nullception.udongmarket.myPageImpl.MyPageImpl;
 
 public class UpdateCommu implements Command {
 
