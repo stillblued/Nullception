@@ -46,7 +46,7 @@
 							<th width="150">아이디</th>
 							<td width="300">
 							<input type="text" id="memberId" name="memberId" size="20" onKeyUp="KeyInput(2)"> &nbsp;
-							<input type="text" id="checkId" value="No">
+							<input type="hidden" id="checkId" value="No">
 								<button type="button" id="btn1" onclick="idCheck()">중복체크</button>
 							</td>
 						</tr>
@@ -65,7 +65,7 @@
 							<th width="150">닉네임</th>
 							<td width="300">
 							<input type="text" id="nickname" name="nickname" size="20" onKeyUp="KeyInput(3)"> &nbsp; 
-							<input type="text" id="checkNickname" value="No">
+							<input type="hidden" id="checkNickname" value="No">
 								<button type="button" id="btn2" onclick="nicknameCheck()">중복체크</button>
 							</td>
 						</tr>
@@ -80,9 +80,9 @@
 									<option>019</option>
 							</select> 
 							<b>-</b> 
-							<input type="text" id="phone1" name="phone1" size= 7 onKeyUp="KeyInput(0)" required="required">
+							<input type="text" id="phone1" name="phone1" size= 7 onKeyUp="KeyInput(0)" >
 							 <b>-</b> 
-							 <input type="text"	id="phone2" name="phone2" size= 7 required="required">
+							 <input type="text"	id="phone2" name="phone2" size= 7 >
 							</td>
 						</tr>
 						<tr>
@@ -97,7 +97,7 @@
 									<option>대구광역시 달서구</option>
 									<option>대구광역시 달성군</option>
 							</select> 
-							<input type="text" id="location1" name="location1" size="7" required="required"></td>
+							<input type="text" id="location1" name="location1" size="7" ></td>
 						</tr>
 						<tr>
 							<th width="150">이메일</th>
@@ -115,14 +115,85 @@
 				</div>
 				<br>
 				<div>
-					<input type="submit" value="회원가입">&nbsp;&nbsp;&nbsp; <input
-						type="reset" value="취소">&nbsp;&nbsp;&nbsp;
+					<input type="submit" value="회원가입">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소">&nbsp;&nbsp;&nbsp;
+					  <a  href="javascript:kakaoLogin();">
+					<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" />
+					</a> 
 				</div>
 			</form>
 		</div>
 	</div>
-
+	<!-- <form id="kakaoForm" method="post" action="kakaoLogin.do">
+      <input type="hidden" name="email"/>
+      <input type="hidden" name="name"/>
+   </form> -->
+	
+	
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
+	//89bd47bf599b76dfe7bcd2c967e68e22 : 사용할 앱의 javascript키
+     window.Kakao.init("89bd47bf599b76dfe7bcd2c967e68e22");
+     
+     function kakaoLogin() {
+    	 window.Kakao.Auth.login({
+    		 scope:'profile_nickname,account_email',
+    		 success: function(authObj) {
+    			 console.log(authObj);
+    			 // id, password, email, nickname > 다른 값은 null이니까 마이페이지에서 수정
+    			 // join command를 사용해서 일단 4개를 DB에 넘기고 넘어가는지 확인하기
+    			 
+    			 
+				 window.Kakao.API.request({
+    				 url:'/v2/user/me',
+    				 success: function(res) {
+    					 /*  var account = response.kakao_account;
+    		                console.log(account)
+    		                  $('#kakaoForm input[name=email]').val(account.email);
+    		               $('#kakaoForm input[name=name]').val(account.profile.nickname);
+    		               // 사용자 정보가 포함된 폼을 서버로 제출한다.
+    		               document.querySelector('#kakaoForm').submit();
+    					  */
+    					 
+    					 
+    					 console.log("아이디:" + res.id);
+    					 let id = res.id + "id";
+    					 let pw = (res.id).toString().substr(0,5) + "pw";
+    					 
+    					 console.log(pw);
+    					 // let key = Object.keys(res.kakao_account)[6];
+    					 let val = res.kakao_account[Object.keys(res.kakao_account)[6]];
+    					 console.log("메일:" + val);
+    					 console.log("닉네임:" + res.properties['nickname']);
+    					 console.log("토큰:" + authObj.access_token);  
+    					 
+    					 // id
+    					 document.getElementById("memberId").value = id;
+    					 console.log(frm.memberId.value);
+    					 
+    					 // password
+    					 document.getElementById("memberPassword").value = pw;
+    					 document.getElementById("password").value = pw;
+    					 
+    					 // nick
+                         document.getElementById("nickname").value = res.properties['nickname'];
+    					 
+    					 // email
+    					 document.getElementById("email").value = val;
+    					 
+    					 document.querySelector('#frm').submit();
+     					 
+    					 
+    					 
+    				 },
+    				 fail: err => {
+    					 console.log(err);
+    				 }
+    			 });
+    		 } 
+    	 });
+    	
+     }
+	
 		function formCheck() {
 			
 			if (frm.memberId.value == "") {

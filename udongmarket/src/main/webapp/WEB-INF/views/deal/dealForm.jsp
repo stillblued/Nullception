@@ -34,7 +34,7 @@
 %>
 <div><h1>거래 게시글 등록</h1></div>
 <div>
-	<form id="frm" action="dealInsert.do" method="post" enctype="multipart/form-data">
+	<form id="frm" action="dealInsert.do" method="post" enctype="multipart/form-data" onsubmit="return check()">
 		<div class="form">
 			<table border="1">
 				<tr>
@@ -57,7 +57,7 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>${mvo.memberId()}</td>
+					<td><input type="text" id="nickname" name="nickname" value="${nick}" readonly></td>
 				</tr>
 				<tr>
 					<th>제목</th>
@@ -71,13 +71,42 @@
 					<th>가격</th>
 					<td><input type="text" id="price" name="price"></td>
 				</tr>
+				<tr>
+					<th>거래상태</th>
+					<td>
+						<input type="radio" name="dealState" value="yes">거래가능
+						<input type="radio" name="dealState" value="no">거래중
+						<input type="radio" name="dealState" value="done">거래완료
+					</td>
+				</tr>
 			</table>
 		</div><br>
 		<div>
-			<input type="submit" value="등록하기">&nbsp;&nbsp;&nbsp;
-			<input type="reset" value="취소" onclick="location.href='dealList.do'">
+			<input type="submit" value="등록하기" class="btn btn-primary">&nbsp;&nbsp;&nbsp;
+			<input type="reset" value="취소"  class="btn btn-danger" onclick="location.href='dealList.do'">
 		</div>
 	</form>
 </div>
 </body>
+<script>
+function check() {
+	if (frm.dealTitle.value == '') {
+		alert('제목을 입력하세요.');
+		frm.dealTitle.focus();
+		return false;
+	}
+
+	if (frm.dealContent.value == '') {
+		alert('내용을 입력하세요.');
+		frm.dealContent.focus();
+		return false;
+	}
+
+	if (frm.price.value == '') {
+		alert('가격을 입력하세요.');
+		frm.price.focus();
+		return false;
+	}
+}
+</script>
 </html>

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page import="co.nullception.udongmarket.deal.vo.DealVO" %>
-<%@ page import="co.nullception.udongmarket.member.vo.MemberVO" %>
-<%@ page import="co.nullception.udongmarket.deal.serviceimpl.DealServiceImpl" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,77 +30,92 @@
 	</nav>	
 
 	<%
-		String memberId = null;
-		if (session.getAttribute("memberId") != null) {
-			memberId = (String) session.getAttribute("memberId");
-		}
-		int boardId = 0;
-		if (request.getParameter("boardId") != null) {
-			boardId = Integer.parseInt(request.getParameter("boardId"));
-		}
-		if (boardId == 0) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href = 'dealList.jsp'");
-			script.println("</script>");
-		}	
 		DealVO vo = (DealVO)request.getAttribute("vo");
-		MemberVO mvo = new MemberVO();
 	%>
-	<table border="1" width="90%">
+
+	<div><h3>게시글 상세보기</h3></div>
+	<form name="frm">
+	<input type="hidden" id="boardId" name="boardId" value="${vo.boardId}">
+	<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 		<thead>
 			<tr>
 				<th colspan="2" style="text-align: center;">게시글 상세보기</th>
 			</tr>
 		</thead>
+
 		<tbody>
 			<tr>
-				<td>카테고리</td>
-				<td><%= vo.getDealCategory() %></td>
+				<th>카테고리</th>
+				<td>왜 안나오냐고 ${vo.dealCategory}</td>
+				<th>작성자</th>
+				<td>${vo.nickname}</td>
+				<th>작성일자</th>
+				<td>${vo.dealDate.substring(0,11)}</td>
 			</tr>
 			<tr>
-				<td>상품이미지</td>
-				<td><%= vo.getAttach() %></td>
+				<th>상품이미지</th>
+				<td colspan="6">
+					<%-- <%
+						if (vo.getAttachDir() != null) {
+					%>
+						<img src="<%= vo.getAttachDir() %>">
+					<%
+						}
+					%> --%>
+				<c:if test="${vo.attachDir != null}">
+						<img src="${vo.attachDir}">
+				</c:if>
+				</td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td><%= mvo.getMemberId() %></td>
+				<th>제목</th>
+				<td colspan="1">${vo.dealTitle}</td>
+				<th>가격</th>
+				<td colspan="1">${vo.price}</td>
+				<th>거래상태</th>
+				<td colspan="1">${vo.dealState}</td>
 			</tr>
 			<tr>
-				<td>작성일자</td>
-				<td><%= vo.getDealDate() %></td>
+				<th>내용</th>
+				<td height="100" colspan="6">${vo.dealContent}</td>
 			</tr>
 			<tr>
-				<td>제목</td>
-				<td><%= vo.getDealTitle() %></td>
+				<th>거래상태</th>
+				<td colspan="5">
+				<c:choose>
+					<c:when test="${vo.dealState eq 'yes'}">
+					<input type="radio" name="dealState" value="yes" checked="checked">거래가능
+					<input type="radio" name="dealState" value="no">거래중
+					<input type="radio" name="dealState" value="done">거래완료
+					</c:when>
+					<c:when test="${vo.dealState eq 'no'}">
+					<input type="radio" name="dealState" value="yes">거래가능
+					<input type="radio" name="dealState" value="no" checked="checked">거래중
+					<input type="radio" name="dealState" value="done">거래완료
+					</c:when>
+					<c:otherwise>
+					<input type="radio" name="dealState" value="yes">거래가능
+					<input type="radio" name="dealState" value="no">거래중
+					<input type="radio" name="dealState" value="done" checked="checked">거래완료
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
-			<tr>
-				<td>가격</td>
-				<td><%= vo.getPrice() %></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td height="100"><%= vo.getDealContent() %><%-- <%=vo.getDealContent().replaceAll(" ", "&nbsp;")
-						    								   					 .replaceAll("<", "&lt;")
-					     								     					 .replaceAll(">", "&gt;")
-				        								 						 .replaceAll("\n", "<br>") %> --%></td>
-			</tr>
-			
 		</tbody>
 	</table><br>
+	</form>
 		<a href="dealList.do" class="btn btn-primary">목록</a>
 		
-			<%-- <c:if test="${memberId != null && memberId.equals(mvo.getMemberId())}"> --%>
-			<%
-				if (memberId != null && memberId.equals(mvo.getMemberId())) { // 작성자가 글을 클릭했을때
-			%>
-				<a href="dealUpdate.do?memberId=<%= memberId %>" class="btn btn-primary">수정</a>
-				<a onclick="return confirm('삭제하시겠습니까?')" href="dealDelete.do?memberId=<%= memberId %>" class="btn btn-primary">삭제</a>
-			<%
-				}
-			%>
+				<%
+					if (vo.getNickname().equals(session.getAttribute("nick")) || session.getAttribute("author").equals("ADMIN")) {
+				%>
+			<%-- <c:if test="${vo.nickname eq getNickname()}"> --%>
+				<a href="dealUpdateForm.do?boardId=<%= vo.getBoardId() %>" class="btn btn-primary">수정</a>
+				<a onclick="return confirm('삭제하시겠습니까?')" href="dealDelete.do?boardId=<%= vo.getBoardId() %>" class="btn btn-danger">삭제</a>
 			<%-- </c:if> --%>
+				<%
+					}
+				%>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
