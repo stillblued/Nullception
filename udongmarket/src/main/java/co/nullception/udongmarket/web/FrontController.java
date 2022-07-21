@@ -26,7 +26,7 @@ import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
 import co.nullception.udongmarket.community.command.CommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityUpdate;
-import co.nullception.udongmarket.deal.command.AjaxDealSearch;
+import co.nullception.udongmarket.community.command.UpdateCommunity;
 import co.nullception.udongmarket.deal.command.DealDelete;
 import co.nullception.udongmarket.deal.command.DealDetail;
 import co.nullception.udongmarket.deal.command.DealForm;
@@ -100,7 +100,6 @@ public class FrontController extends HttpServlet {
 		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
 		map.put("/dealForm.do", new DealForm()); // 상품 등록폼
-		map.put("/ajaxDealSearch.do", new AjaxDealSearch()); // 검색
 		map.put("/dealDetail.do", new DealDetail()); // 글 상세
 		map.put("/dealDelete.do", new DealDelete()); // 글 삭제
 		
@@ -110,8 +109,9 @@ public class FrontController extends HttpServlet {
 		map.put("/communitySearch.do", new CommunitySearch()); //커뮤 검색
 		map.put("/communityDelete.do", new CommunityDelete()); //커뮤 삭제
 		map.put("/communityDetail.do", new CommunityDetail()); //커뮤 상세
-		map.put("/communityUpdate.do", new CommunityUpdate()); //커뮤 수정
-	
+		map.put("/communityUpdate.do", new CommunityUpdate()); //커뮤 수정폼
+		map.put("/updateCommunity.do", new UpdateCommunity()); //커뮤 수정완료
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

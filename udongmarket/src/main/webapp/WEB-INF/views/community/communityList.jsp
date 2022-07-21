@@ -40,10 +40,8 @@
 		<div>
 			<form id="frm" action="communitySearch.do" method="get">
 				<select id="key" name="key">
-					<option value="com_category">#</option>
 					<option value="com_title">제목</option>
 					<option value="com_content">내용</option>
-					<option value="nickname">작성자</option>
 
 				</select> &nbsp; <input type="text" id="val" name="val"> &nbsp;&nbsp;
 				<input type="submit" value="검색">
@@ -72,18 +70,18 @@
 					<c:if test="${not empty list}">
 						<c:forEach var="list" items="${list}">
 							<tr>
-								<td>${list.comCategory }</td>
-								<td onclick="location.href='communityDetail.do?boardId=${list.boardId }'">${list.comTitle }</td>
-								<td>${list.nickname }</td>
+								<td
+									onclick="location.href='communitySearch.do?key=com_category&val=${list.comCategory }'">${list.comCategory }</td>
+								<td
+									onclick="location.href='communityDetail.do?boardId=${list.boardId }'">${list.comTitle }</td>
+								<td
+									onclick="location.href='communitySearch.do?key=nickname&val=${list.nickname }'">${list.nickname }</td>
 								<td>${list.comDate }</td>
 							</tr>
 
 
 						</c:forEach>
 					</c:if>
-
-
-
 
 
 				</tbody>
@@ -102,18 +100,18 @@
 				<a href="communityList.do?pageNum=<%=i%>"><%=i%></a>
 				<%
 				}
-				%>	
+				%>
 			</div>
 		</div>
 		<br>
+		<c:if test="${not empty id}">
 		<div>
-			<c:if test="${not empty nick }">
-				<button type="button" onclick="location.href='communityForm.do'">등록</button>
-			</c:if>
+			<button type="button" onclick="location.href='communityForm.do'">글쓰기</button>
 		</div>
+		</c:if>
 	</div>
 
-	
+
 
 
 </body>

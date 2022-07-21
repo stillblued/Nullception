@@ -113,8 +113,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public int communityUpdate(CommunityVO vo) {
 		int cnt = 0;
-		String sql = "UPDATE COMMUNITY SET COM_CATEGORY = ?, COM_TITLE = ?, COM_CONTENT = ? "
-				+ " LOCATION = ?, ATTACH = ?, ATTACH_DIR =?, NICKNAME =? COM_DATE =? WHERE BOARD_ID =?";
+		String sql = "UPDATE COMMUNITY SET COM_CATEGORY =?, COM_TITLE =?, COM_CONTENT =?, LOCATION =?, ATTACH =?, ATTACH_DIR =?, NICKNAME =?, COM_DATE = SYSDATE WHERE BOARD_ID=?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -125,8 +124,8 @@ public class CommunityServiceImpl implements CommunityService {
 			psmt.setString(5, vo.getAttach());
 			psmt.setString(6, vo.getAttachDir());
 			psmt.setString(7, vo.getNickname());
-			psmt.setString(8, vo.getComDate());
-			psmt.setInt(9, vo.getBoardId());
+			psmt.setInt(8, vo.getBoardId());
+			cnt = psmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +138,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public int communityDelete(CommunityVO vo) {
 		int cnt = 0;
-		String sql = "DELETE * FROM COMMUNITY WHERE BOARD_ID = ?";
+		String sql = "DELETE FROM COMMUNITY WHERE BOARD_ID = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -229,5 +228,7 @@ public class CommunityServiceImpl implements CommunityService {
 		}
 		return cnt;
 	}
+
+
 
 }

@@ -34,7 +34,7 @@
 		<div>
 			<h1>${message }</h1>
 		</div>
-		<jsp:forward page="communityList.do"></jsp:forward>
+		
 	</div>
 
 </body>

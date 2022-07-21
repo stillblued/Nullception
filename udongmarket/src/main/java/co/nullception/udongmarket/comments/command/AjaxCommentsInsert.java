@@ -22,11 +22,11 @@ public class AjaxCommentsInsert implements Command {
 		CommentsVO vo = new CommentsVO();
 		ObjectMapper mapper = new ObjectMapper();
 
-		
 		vo.setBoardId(Integer.valueOf(request.getParameter("BoardId")));
 		vo.setCommentsContent(request.getParameter("Content"));
 		String sessionNickName = (String) session.getAttribute("nick");
-		vo.setCommentsNick(sessionNickName);;
+		vo.setCommentsNick(sessionNickName);
+		vo.setBoardNick(request.getParameter("BoardNick"));
 		
 		commentsDao.commentInsert(vo);
 		
