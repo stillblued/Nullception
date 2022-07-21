@@ -13,13 +13,6 @@
 <title>menu</title>
 </head>
 <body>
-	<a href="main.do"><h1>
-			우동<br>마켓
-		</h1></a>
-
-
-
-
 	<%-- <%
 	if (session.getAttribute("nick") == null) {
 	%>
@@ -59,6 +52,5 @@
 	<%
 	}
 	%> --%>
-	<hr>
 </body>
 </html>

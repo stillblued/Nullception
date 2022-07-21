@@ -1,5 +1,6 @@
 package co.nullception.udongmarket.deal.command;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,14 @@ public class DealInsert implements Command {
 		DealService dealDao = new DealServiceImpl();
 		DealVO vo = new DealVO();
 
-		String savePath = "C:\\Temp\\";
+		String rootPath = request.getSession().getServletContext().getRealPath("/") ;
+		String savePath = rootPath + "fileSave/";
+		
+		File targetDir = new File(savePath);
+		if (!targetDir.exists()) {
+			targetDir.mkdirs();
+		}
+		
 		int uploadSize = 1024 * 1024 * 1024;
 		int cnt = 0;
 		HttpSession session = request.getSession();
@@ -36,7 +44,6 @@ public class DealInsert implements Command {
 			
 			vo.setNickname(nickname);
 			vo.setLocation(location);
-			vo.setAttach(multi.getParameter("attach"));
 			vo.setDealCategory(multi.getParameter("dealCategory"));
 			vo.setDealTitle(multi.getParameter("dealTitle"));
 			vo.setDealContent(multi.getParameter("dealContent"));
@@ -47,9 +54,11 @@ public class DealInsert implements Command {
 			vo.setPrice(price);
 			vo.setDealState(multi.getParameter("dealState"));
 
+			String path = "../udongmarket/fileSave/";
+			
 			if (originalFileName != null) {
 				vo.setAttach(originalFileName);
-				saveFileName = savePath + saveFileName;
+				saveFileName = path + saveFileName;
 				vo.setAttachDir(saveFileName);
 			}
 			cnt = dealDao.dealInsert(vo);

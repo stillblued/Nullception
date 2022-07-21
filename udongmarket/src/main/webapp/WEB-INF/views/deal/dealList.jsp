@@ -9,11 +9,13 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-<title>dealList</title>
+<title>거래 게시판 목록</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
+<%
+	MemberVO mvo = new MemberVO();
+%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -32,27 +34,28 @@
 			</ul>
 		</div>
 	</nav>	
-	<div><h1>장터 게시판</h1></div>
+	<div><h1>거래 게시글 목록</h1></div>
 	 <div>
-		<form id="frm">
+		<form id="frm" action="dealSearch.do" method="get">
 			<select id="key" name="key">
 				<option value="deal_title">제목</option>
 				<option value="deal_content">내용</option>
+				<option value="deal_content">작성자</option>
 			</select>&nbsp;
 			<input type="text" id="val" name="val">&nbsp;&nbsp;
-			<input type="button" value="검색" onclick="dealSearch()">
+			<input type="submit" value="검색">
 		</form><br>
 		
-		<table border="1" width="80%">
+		<table border="1" width="50%">
 			<thead>
 				<tr>
 					<th>NO</th>
+					<th>카테고리</th>
 					<th>상품이미지</th>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>가격</th>
 					<th>작성일자</th>
-					
 				</tr>
 			</thead>
 			<tbody>
@@ -60,25 +63,26 @@
 				<c:when test="${not empty list}">
 					<c:forEach items="${list}" var="d">
 						<tr>
-							<td>${d.boardId}</td>
-							<td><img src="${d.attach}"></td>
-							<td>${mvo.memberId}</td>
-							<td><a href="dealDetail.do?boardId=${d.boardId}">${d.dealTitle}</a></td>
-							<td>${d.price}</td>
-							<td>${d.dealDate}</td>
-							
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.boardId}</td>
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.dealCategory}</td>
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'"><img src="${d.attach}"></td>
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.nickname}</td>
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.dealTitle}</td>
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.price}</td>
+							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.dealDate.substring(0, 11)}</td>
 						</tr>			
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="6" align="center">
+						<td colspan="7" align="center">
 						현재 거래중인 상품이 없습니다.</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
 			</tbody>		
 		</table><br>
+		
 		<div id = "page">
 			<%
 			int pageCount = (int) request.getAttribute("pageCount");
@@ -96,48 +100,13 @@
 		
 		<div>
 			<!-- 비회원은 글등록 못하게 -->
-			<c:if test="${not empty id}">
-				<button type="button" onclick="location.href='dealForm.do'">판매상품 등록하기</button>
+			<c:if test="${not empty nickname}">
+				<a href="dealForm.do" class="btn btn-primary">판매상품등록</a>
+				<!-- <input class="btn btn-primary" value="판매상품등록" onclick="location.href='dealForm.do'"> -->
+				<!-- <button type="button" onclick="location.href='dealForm.do'">판매상품 등록하기</button> -->
 			</c:if>
 		</div>
 	</div>
 	
-	<script type="text/javascript">
-		function dealSearch() {
-			let key = $("#key").val();
-			let val = $("#val").val();
-			$.ajax({
-				url : "ajaxDealSearch.do",
-				type : "post",
-				data : {key : key, val : val},
-				dataType : "json",
-				success : function(result) {
-					if(result.length > 0) {
-						jsonHtmlConvert(result);
-					} else {
-						alert("검색한 결과가 없습니다.");
-					}
-				},
-				error : function() {
-					
-				}
-			})
-		}
-		
-		function jsonHtmlConvert(data) {
-			$('tbody').remove();
-			var tbody = $("<tbody />");
-			$.each(data, function(index, item) {
-				var row = $("<tr />").append(
-						  $("<td />").text(item.nickname),
-						  $("<td />").text(item.dealTitle),
-						  $("<td />").text(item.price),
-						  $("<td />").text(item.dealDate)
-				);
-				tbody.append(row);
-			});
-			$('table').append(tbody);
-		}
-	</script>
 </body>
 </html>

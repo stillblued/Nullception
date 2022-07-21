@@ -10,6 +10,7 @@ public interface DealService {
 	int dealInsert(DealVO vo); // 글등록
 	int dealDelete(DealVO vo); // 글삭제
 	int dealUpdate(DealVO vo); // 글수정
-	List<DealVO> dealSearchList(String key, String val); // 목록 검색
+	List<DealVO> dealSearchList(int startRow, int endRow, String key, String val); // 목록 검색
 	int getDealCount();
+	int getDealSearchCount(String key, String val);
 }
