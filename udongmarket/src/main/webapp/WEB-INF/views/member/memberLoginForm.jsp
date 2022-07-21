@@ -35,7 +35,33 @@
      <div align="center">
 		<h1>${message }</h1>
 	</div>
-     <div>
+	 <!-- Start Contact -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <form id="frm" class="col-md-9 m-auto" method="post" role="form" action="memberLogin.do" >
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">아이디</label>
+                        <input type="text" id="memberId" name="memberId" required="required" placeholder="Enter Your Id..." class="form-control mt-1" >
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">비밀번호</label>
+                        <input type="password" id="memberPassword" name="memberPassword" required="required" placeholder="Enter Your Passwokd..." class="form-control mt-1" >
+                    </div>
+                <div class="row">
+                    <div><br><br>
+                        <button type="submit" class="btn btn-success btn-lg px-3">로그인</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-success btn-lg px-3" onclick="location.href='memberJoinForm.do'">회원가입</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-success btn-lg px-3" onclick="location.href='main.do'">메인</button><br><br><br>
+                        <a  href="javascript:kakaoLogin();">
+					<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" />
+					</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Contact -->
+     <!-- <div>
        <form id="frm" action="memberLogin.do" method="post">
          <div>
            <table>
@@ -61,7 +87,7 @@
 					</a>
          </div>
        </form>
-     </div>
+     </div> -->
    </div>
    
    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>

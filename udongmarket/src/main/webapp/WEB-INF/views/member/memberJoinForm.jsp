@@ -33,23 +33,106 @@
 	<div align="center">
 		<h1>${message }</h1>
 	</div>
+	
 	<div align="center">
 		<div>
 			<h1>회원가입</h1>
 		</div>
-			<form id="frm" action="memberJoin.do" onsubmit="return formCheck()"
-				method="post">
-				<div>
-					<table border="1">
-						<tr>
-							<th width="150">아이디</th>
-							<td width="300">
-							<input type="text" id="memberId" name="memberId" size="20" onKeyUp="KeyInput(2)"> &nbsp;
-							<input type="hidden" id="checkId" value="No">
-								<button type="button" id="btn1" onclick="idCheck()">중복체크</button>
-							</td>
-						</tr>
-						<tr>
+		
+		  <!-- Start Contact -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <form id="frm" action="memberJoin.do" onsubmit="return formCheck()" class="col-md-9 m-auto" method="post" role="form">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">아이디</label>
+                        <input type="text" class="form-control mt-1" id="memberId" name="memberId" onKeyUp="KeyInput(2)">
+                        <input type="hidden" class="form-control mt-1" id="checkId" value="No"><br>
+						<button type="button" id="btn1" onclick="idCheck()" class="input-group-text btn-success text-light">중복체크</button>
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">비밀번호</label>
+                        <input class="form-control mt-1" type="password" id="memberPassword" name="memberPassword" size="20" required="required" placeholder="숫자와 문자 포함,6~12자리">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">비밀번호 확인</label>
+                        <input class="form-control mt-1"  type="password" id="password" name="password" size="20" onKeyUp="KeyInput(1)" required="required">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">닉네임</label>
+                        <input type="text" class="form-control mt-1" id="nickname" name="nickname" size="20" onKeyUp="KeyInput(3)">
+                        <input type="hidden" class="form-control mt-1" id="checkNickname" value="No"><br>
+						<button type="button" id="btn2" onclick="nicknameCheck()" class="input-group-text btn-success text-light">중복체크</button>
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">연락처</label>
+                        <div class="row">
+                        <select id="phone" name="phone" class="form-control mt-1">
+									<option>010</option>
+									<option>011</option>
+									<option>016</option>
+									<option>017</option>
+									<option>018</option>
+									<option>019</option>
+							</select> 
+							<b>-</b> 
+							<input type="text" class="form-control mt-1" id="phone1" name="phone1" size= 7 onKeyUp="KeyInput(0)" required="required">
+							 <b>-</b> 
+							 <input type="text"	class="form-control mt-1" id="phone2" name="phone2" size= 7 required="required">
+							 </div>
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">지역</label>
+                        <select id="location" name="location" class="form-control mt-1">
+									<option>대구광역시</option>
+							</select>
+							<select id="location1" name="location1" class="form-control mt-1">
+									<option> 중구</option>
+									<option> 동구</option>
+									<option> 서구</option>
+									<option> 남구</option>
+									<option> 북구</option>
+									<option> 수성구</option>
+									<option> 달서구</option>
+									<option> 달성군</option>
+							</select>  
+							<input type="text" class="form-control mt-1" id="location2" name="location2" required="required">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">이메일</label>
+                        <input class="form-control mt-1" type="text" id="email" name="email" required="required">
+                        <b>@</b> 
+								<select id="email1" name="email1" class="form-control mt-1">
+									<option>naver.com</option>
+									<option>daum.net</option>
+									<option>nate.com</option>
+									<option>google.com</option>
+							</select>
+                    </div><br><br>
+                    <div>
+                        <button type="submit" class="btn btn-success btn-lg px-3">회원가입</button>&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-success btn-lg px-3">취소</button>&nbsp;&nbsp;
+                        <a  href="javascript:kakaoLogin();">
+					<img src="https://developers.kakao.com/tool/resource/static/img/button/kakaosync/complete/ko/kakao_login_medium_narrow.png" />
+					</a> 
+                    </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- End Contact -->
+		
+			<!-- <form id="frm" action="memberJoin.do" onsubmit="return formCheck()" method="post">//
+				<div>//
+					<table border="1">//
+						<tr>//
+							<th width="150">아이디</th>//
+							<td width="300">//
+							<input type="text" id="memberId" name="memberId" size="20" onKeyUp="KeyInput(2)"> &nbsp;//
+							<input type="hidden" id="checkId" value="No">//
+								<button type="button" id="btn1" onclick="idCheck()">중복체크</button>//
+							</td>//
+						</tr>//
+						<tr>//
 							<th width="150">패스워드</th>
 							<td width="300">
 							<input type="password" id="memberPassword" name="memberPassword" size="20" required="required" placeholder="숫자와 문자 포함,6~12자리"> &nbsp;</td>
@@ -61,14 +144,14 @@
 							</td>
 						</tr>
 						<tr>
-							<th width="150">닉네임</th>
-							<td width="300">
+							<th width="150">닉네임</th>//
+							<td width="300">//
 							<input type="text" id="nickname" name="nickname" size="20" onKeyUp="KeyInput(3)"> &nbsp; 
-							<input type="hidden" id="checkNickname" value="No">
-								<button type="button" id="btn2" onclick="nicknameCheck()">중복체크</button>
-							</td>
-						</tr>
-						<tr>
+							<input type="hidden" id="checkNickname" value="No">//
+								<button type="button" id="btn2" onclick="nicknameCheck()">중복체크</button>//
+							</td>//
+						</tr>//
+						<tr>//
 							<th width="150">연락처</th>
 							<td><select id="phone" name="phone">
 									<option>010</option>
@@ -123,9 +206,8 @@
 					<img src="https://developers.kakao.com/tool/resource/static/img/button/kakaosync/complete/ko/kakao_login_medium_narrow.png" />
 					</a> 
 				</div>
-			</form>
-		</div>
-	</div>
+			</form> -->
+		
 	<!-- <form id="kakaoForm" method="post" action="kakaoLogin.do">
       <input type="hidden" name="email"/>
       <input type="hidden" name="name"/>
@@ -369,7 +451,6 @@
 				alert("사용가능한 닉네임입니다.");
 				frm.checkNickname.value = "Yes";
 				frm.btn2.disabled = true; // 버튼 비활성화
-				frm.memberPassword.focus();
 			} else {
 				alert("이미 사용중인 닉네임입니다.");
 				frm.memberNickname.value = "";
