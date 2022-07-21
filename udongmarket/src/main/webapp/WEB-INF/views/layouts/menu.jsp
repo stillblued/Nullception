@@ -13,6 +13,7 @@
 <title>menu</title>
 </head>
 <body>
+
 	<br>
 
 	<div align="center">
@@ -22,8 +23,6 @@
 
 			</h1></a>
 	</div>
-
-
 
 	<%-- <%
 	if (session.getAttribute("nick") == null) {
@@ -64,6 +63,5 @@
 	<%
 	}
 	%> --%>
-	<hr>
 </body>
 </html>

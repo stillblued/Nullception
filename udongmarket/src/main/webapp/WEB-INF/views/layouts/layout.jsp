@@ -12,7 +12,7 @@
 <title><tiles:getAsString name="title" /></title>
 
 <style>
-header {
+/* header {
 	height: 30px;
 	font-size: 15px;
 	text-align: right;
@@ -21,8 +21,7 @@ header {
 	left: 17.75%;
 	right: 17.75%;
 }
-
-
+ */
 
 /* hr {
 	height: 10px;

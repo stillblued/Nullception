@@ -157,14 +157,18 @@ public class DealServiceImpl implements DealService {
 	}
 
 	@Override
-	public List<DealVO> dealSearchList(String key, String val) {
+	public List<DealVO> dealSearchList(int startRow, int endRow, String key, String val) {
 		// 목록 검색
 		List<DealVO> list = new ArrayList<>();
 		DealVO vo;
-		String sql = "SELECT * FROM DEAL WHERE " + key + " LIKE '%" + val + "%'";
+		String sql = "SELECT * FROM (SELECT ROWNUM AS RNUM, "
+				+ "A. * FROM (SELECT * FROM DEAL ORDER BY DEAL_DATE DESC, DEAL_CATEGORY) A) "
+				+ " WHERE " + key + " like '%" + val + "%' and RNUM BETWEEN ? AND ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, startRow);
+			psmt.setInt(2, endRow);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -192,9 +196,27 @@ public class DealServiceImpl implements DealService {
 
 	@Override
 	public int getDealCount() {
-		// 조회수
 		int cnt = 0;
 		String sql = "SELECT COUNT(*) AS CNT FROM DEAL";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("CNT");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
+	}
+	
+	@Override
+	public int getDealSearchCount(String key, String val) {
+		int cnt = 0;
+		String sql = "SELECT COUNT(*) AS CNT FROM DEAL WHERE " + key + " LIKE '%" + val + "%'";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
