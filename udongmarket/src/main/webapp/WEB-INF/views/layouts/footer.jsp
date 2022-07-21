@@ -10,7 +10,7 @@
 <title>footer</title>
 </head>
 <body>
-
+  <br> <br> <br>
   <h5>copyrightⓒ 2022 team Nullception All rights reserved</h5>
 
 </body>

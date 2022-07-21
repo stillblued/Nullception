@@ -303,7 +303,7 @@ public class MyPageImpl implements MyPage {
 
 	@Override
 	public int updateComments(String boardNick) {
-		// 댓글 업데이트
+		// 댓글 업데이트(닉네임 기준)
 		int r = 0;
 		String sql = "update comments set comments_state = '읽음' where board_nick = ?";
 		
@@ -311,6 +311,26 @@ public class MyPageImpl implements MyPage {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, boardNick);
+			r = psmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		
+		return r;
+	}
+
+	@Override
+	public int updateOneComments(int boardId) {
+		// 댓글 1개 업데이트(boardId 기준)
+		int r = 0;
+		String sql = "update comments set comments_state = '읽음' where board_id = ?";
+		
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, boardId);
 			r = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

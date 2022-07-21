@@ -13,10 +13,15 @@
 <title>menu</title>
 </head>
 <body>
-	<a href="main.do"><h1>
-			우동<br>마켓
-		</h1></a>
+	<br>
 
+	<div align="center">
+		<a href="main.do"><h1>
+
+				우동<br>마켓
+
+			</h1></a>
+	</div>
 
 
 

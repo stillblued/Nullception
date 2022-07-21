@@ -51,7 +51,7 @@
 		DealVO vo = (DealVO)request.getAttribute("vo");
 		MemberVO mvo = new MemberVO();
 	%>
-	<table border="1" width="90%">
+	<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 		<thead>
 			<tr>
 				<th colspan="2" style="text-align: center;">게시글 상세보기</th>
