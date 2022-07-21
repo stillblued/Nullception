@@ -56,12 +56,57 @@
            <input type="submit" value="로그인">&nbsp;&nbsp;&nbsp;
            <input type="button" value="회원가입" onclick="location.href='memberJoinForm.do'">&nbsp;&nbsp;&nbsp;
            <input type="button" value="메인" onclick="location.href='main.do'"><br><br><br>
+           <a  href="javascript:kakaoLogin();">
+					<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" />
+					</a>
          </div>
        </form>
      </div>
    </div>
    
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript">
+	//89bd47bf599b76dfe7bcd2c967e68e22 : 사용할 앱의 javascript키
+     window.Kakao.init("89bd47bf599b76dfe7bcd2c967e68e22");
+     
+     function kakaoLogin() {
+    	 window.Kakao.Auth.login({
+    		 scope:'profile_nickname,account_email',
+    		 success: function(authObj) {
+    			 console.log(authObj);
+    			 // id, password, email, nickname > 다른 값은 null이니까 마이페이지에서 수정
+    			 // join command를 사용해서 일단 4개를 DB에 넘기고 넘어가는지 확인하기
+    			 
+    			 
+				 window.Kakao.API.request({
+    				 url:'/v2/user/me',
+    				 success: function(res) {
+    					 
+    					 console.log("아이디:" + res.id);
+    					 let id = res.id + "id";
+    					 let pw = (res.id).toString().substr(0,5) + "pw";
+    					 
+    					 console.log(pw);
+    					 
+    					 // id
+    					 document.getElementById("memberId").value = id;
+    					 console.log(frm.memberId.value);
+    					 
+    					 // password
+    					 document.getElementById("memberPassword").value = pw;
+    					 
+    					 document.querySelector('#frm').submit();
+    					
+    				 },
+    				 fail: err => {
+    					 console.log(err);
+    				 }
+    			 });
+    		 } 
+    	 });
+    	
+     }
   
-   
+     </script>
 </body>
 </html>
