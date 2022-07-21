@@ -13,19 +13,16 @@ public class CommunityDelete implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		
 		CommunityService comDao = new CommunityServiceImpl();
 		CommunityVO vo = new CommunityVO();
+		
 		vo.setBoardId(Integer.parseInt(request.getParameter("boardId")));
-		HttpSession session = request.getSession();
 		
-		vo= comDao.communitySelect(vo);
-		String nick = (String)session.getAttribute("nick");
 		int cnt = 0;
+		cnt = comDao.communityDelete(vo);
 		
-		if (nick.equals(vo.getNickname())) {
-			 cnt = comDao.communityDelete(vo);
-		}
-		
+		System.out.println(cnt);
 		String returnPage = null;
 		
 		if (cnt != 0) { 

@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.comments.service.CommentsService;
+import co.nullception.udongmarket.comments.serviceImpl.CommentsServiceImpl;
+import co.nullception.udongmarket.comments.vo.CommentsVO;
 import co.nullception.udongmarket.community.service.CommunityService;
 import co.nullception.udongmarket.community.serviceImpl.CommunityServiceImpl;
 import co.nullception.udongmarket.community.vo.CommunityVO;
@@ -18,7 +21,7 @@ public class CommunityList implements Command {
 		List<CommunityVO> list = new ArrayList<CommunityVO>();
 		
 		int cnt = communityDao.getBoardCount();
-
+	
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null) {

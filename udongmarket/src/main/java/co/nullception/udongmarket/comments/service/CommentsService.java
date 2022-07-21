@@ -13,9 +13,11 @@ public interface CommentsService {
 	int commentInsert(CommentsVO vo);
 	
 	//삭제
-	int commentDelte(int commentsId);
+	int commentDelete(int commentsId);
 	
 	//수정
 	int CommentUpdate(CommentsVO vo);
+	
+	int getCommentCount(int boardid);//댓글숫자
 
 }

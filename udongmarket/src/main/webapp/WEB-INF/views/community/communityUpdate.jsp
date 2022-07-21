@@ -1,3 +1,4 @@
+<%@page import="co.nullception.udongmarket.community.vo.CommunityVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -30,49 +31,58 @@
 		</div>
 	</nav>
 
+	<%
+	CommunityVO vo = (CommunityVO) request.getAttribute("vo");
+	%>
+
+
 	<div align="center">
 		<div>
 			<h1>게시글 수정</h1>
 		</div>
 		<div>
-			<form id="frm" action="updateCommu.do" method="post"
+			<form id="frm" action="updateCommunity.do" method="post"
 				enctype="multipart/form-data">
 				<div>
 					<input type="hidden" id="boardId" name="boardId"
-						value="${vo.getBoardId }">
+						value="<%=vo.getBoardId()%>">
 					<table border="1">
 						<tr>
 							<th>#</th>
 							<td colspan="3"><select id="comCategory" name="comCategory">
-									<option value="알리미">알리미</option>
-									<option value="소모임">소모임</option>
-									<option value="아르바이트">아르바이트</option>
-									<option value="분실실종">분실실종</option>
-									<option value="도움요청">도움요청</option>
-
+									<option selected value="<%=vo.getComCategory()%>"><%=vo.getComCategory()%></option>
 							</select>
 						</tr>
 
 						<tr>
 							<th>제목</th>
 							<td colspan="3"><input type="text" size="73" id="comTitle"
-								name="comTitle" required="required" value="${vo.getComTitle }"></td>
+								name="comTitle" required="required"
+								value="<%=vo.getComTitle()%>"></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="3"><textarea rows="6" cols="75" id="comContent" name="comContent" required="required">${vo.getComContent }</textarea></td>
+							<td colspan="3"><textarea rows="6" cols="75" id="comContent"
+									name="comContent" required="required"><%=vo.getComContent()%></textarea></td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
-							<td colspan="3"><input type="file" id="file" name="file">
+							<td><input colspan="2" type="file" id="file" name="file">
 							</td>
+								<td><input type="text" id="oldFile" name="oldFile"
+									onfocus="this.value=''" value="<%=vo.getAttach()%>"
+									readonly="readonly" /> <input type="hidden" id="oldFileDir"
+									name="oldFileDir" value="<%=vo.getAttachDir()%>" /></td>
 						</tr>
 					</table>
 				</div>
 				<br>
 				<div>
-					<input type="submit" value="수정">&nbsp;&nbsp;&nbsp; <input
-						type="reset" value="취소">
+					<button type="submit">수정완료</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="reset">다시입력</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="button" onclick="location.href='communityList.do'">목록</button>
 				</div>
 			</form>
 

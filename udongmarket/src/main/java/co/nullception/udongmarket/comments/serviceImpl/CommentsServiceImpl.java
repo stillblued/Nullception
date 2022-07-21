@@ -36,6 +36,7 @@ public class CommentsServiceImpl implements CommentsService {
 				vo.setCommentsContent(rs.getString("COMMENTS_CONTENT"));
 				vo.setCommentsDate(rs.getString("COMMENTS_DATE"));
 				vo.setBoardNick(rs.getString("BOARD_NICK"));
+				vo.setCommentsState(rs.getString("COMMENTS_STATE"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -50,7 +51,7 @@ public class CommentsServiceImpl implements CommentsService {
 	public int commentInsert(CommentsVO vo) {
 		// 댓글 입력
 		int cnt = 0;
-		String sql = "insert into comments (board_id, comments_id, comments_content, comments_nick, board_nick) values( ?, comments_seq.nextval, ?, ?, ?)";
+		String sql = "insert into comments (board_id, comments_id, comments_content, comments_nick, board_nick) values(?, comments_seq.nextval, ?, ?, ?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -70,7 +71,7 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public int commentDelte(int commentsId) {
+	public int commentDelete(int commentsId) {
 		// 댓글 삭제
 		int cnt = 0;
 		String sql = "delete from comments where comments_id = ?";
@@ -91,13 +92,33 @@ public class CommentsServiceImpl implements CommentsService {
 	public int CommentUpdate(CommentsVO vo) {
 		//코멘트 수정
 		int cnt = 0;
-		String sql = "update comments set COMMENTS_CONTENT = ? where comments_id = ?";
+		String sql = "UPDATE COMMENTS SET COMMENTS_CONTENT = ?, COMMENTS_STATE = '읽지않음' WHERE COMMENTS_ID = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCommentsContent());
 			psmt.setInt(2, vo.getCommentsId());
 			cnt = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
+	}
+
+	@Override
+	public int getCommentCount(int boardid) {
+		String sql = "SELECT COUNT(*) AS CNT FROM COMMENTS WHERE BOARD_ID =?";
+		int cnt = 0;
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, boardid);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				cnt = rs.getInt("CNT");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -35,7 +35,18 @@
 
 	<div align="center">
 		<div>
-			<h1>검색 결과</h1>
+			<h1>우동 커뮤니티</h1>
+		</div>
+		<div>
+			<form id="frm" action="communitySearch.do" method="get">
+				<select id="key" name="key">
+					<option value="com_title">제목</option>
+					<option value="com_content">내용</option>
+
+				</select> &nbsp; <input type="text" id="val" name="val"> &nbsp;&nbsp;
+				<input type="submit" value="검색">
+
+			</form>
 		</div>
 
 		<br>
@@ -58,10 +69,13 @@
 					</c:if>
 					<c:if test="${not empty list}">
 						<c:forEach var="list" items="${list}">
-							<tr onclick="location.href='communityDetail.do'">
-								<td>${list.comCategory }</td>
-								<td>${list.comTitle }</td>
-								<td>${list.nickname }</td>
+							<tr>
+								<td
+									onclick="location.href='communitySearch.do?key=com_category&val=${list.comCategory }'">${list.comCategory }</td>
+								<td
+									onclick="location.href='communityDetail.do?boardId=${list.boardId }'">${list.comTitle }</td>
+								<td
+									onclick="location.href='communitySearch.do?key=nickname&val=${list.nickname }'">${list.nickname }</td>
 								<td>${list.comDate }</td>
 							</tr>
 
@@ -81,19 +95,24 @@
 				int pageBlock = (int) request.getAttribute("pageBlock");
 				int startPage = (int) request.getAttribute("startPage");
 				int endPage = (int) request.getAttribute("endPage");
-				String key = (String)request.getAttribute("key");
-				String val = (String)request.getAttribute("val");
+				String key = (String) request.getAttribute("key");
+				String val = (String) request.getAttribute("val");
 
 				for (int i = startPage; i <= endPage; i++) {
 				%>
-				<a href="communitySearch.do?key=<%=key%>&val=<%=val%>&pageNum=<%=i%>"><%=i%></a>
+				<a
+					href="communitySearch.do?key=<%=key%>&val=<%=val%>&pageNum=<%=i%>"><%=i%></a>
 				<%
 				}
 				%>
 			</div>
 		</div>
 		<br>
-
+		<c:if test="${not empty id}">
+		<div>
+			<button type="button" onclick="location.href='communityForm.do'">글쓰기</button>
+		</div>
+		</c:if>
 	</div>
 
 
