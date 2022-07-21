@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
+
 <title>myPage.jsp</title>
 <script src="js/jquery-3.6.0.min.js"></script>
 <style>
@@ -47,7 +48,7 @@
 		<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
 			<thead>
 				<tr>
-					<th colspan="4" style="text-align :center;"><h4>내 정보</h4></th>
+					<th scope="col" colspan="4" style="text-align :center;"><h5>내 정보</h5></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,12 +76,16 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" class="btn btn-primary btn-block" style="width: 80px; display: inline-block;" onclick="location.href='myPageUpdate.do'">회원수정</button>
-		<button type="button" class="btn btn-primary btn-block" style="width: 80px; margin: 0px; display: inline-block;" onclick="location.href='deleteMember.do'">회원탈퇴</button>
+		<button type="button" class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;" onclick="location.href='myPageUpdate.do'">회원수정</button>
+		<button type="button" class="btn btn-info" role="button" style="width: 120px; color: white; margin: 0px; display: inline-block;" onclick="location.href='deleteMember.do'">회원탈퇴</button>
 		<hr>
-
-		<h3>거래게시판 글목록</h3>
-		<select id="dealCategory" name="dealCategory"
+		<details>
+	    <summary style="font-size: 0px;">
+		    <h5>
+			  거래게시판 글 목록
+			</h5>
+	    </summary>
+	    <select id="dealCategory" name="dealCategory" style="text-align :center; margin-top: 10px;"
 			onchange="changeDealList()">
 			<option value="unselect">==카테고리 선택==</option>
 			<option value="elec">전자기기</option>
@@ -109,10 +114,11 @@
 				</tr>
 			</tbody>
 		</table>
-		<br>
+		</details>
 		<hr>
-		<h3>커뮤니티 게시판 글목록</h3>
-		<select name="comCategory" onchange="changeComList()">
+		<details>
+		    <summary style="font-size: 0px;"><h5>커뮤니티 게시판 글목록</h5></summary>
+		    <select name="comCategory" onchange="changeComList()" style="text-align :center; margin-top: 10px;">
 			<option value="unselect">==카테고리 선택==</option>
 			<option value="alert">알리미</option>
 			<option value="together">소모임</option>
@@ -120,7 +126,7 @@
 			<option value="lost">분실실종</option>
 			<option value="help">도움요청</option>
 		</select> <br> <br>
-		<table border="1" id="comList" class="table table-striped" style="width: 80%;  text-align :center;">
+		<table border="1" id="comList" class="table table-striped" style="width: 80%; text-align :center;">
 			<thead>
 				<tr>
 					<th style="display: none">글번호</th>
@@ -136,13 +142,14 @@
 				</tr>
 			</tbody>
 		</table>
-		<br>
+		</details>
 		<hr>
-		<br>
-		<h3>좋아요 게시글 목록</h3>
-		<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
+		<details>
+		    <summary style="font-size: 0px;"><h5>좋아요 게시글 목록</h5></summary>
+		    		<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
+					<th style="display: none">글번호</th>
 					<th style = "text-align :center;">카테고리</th>
 					<th style = "text-align :center;">글제목</th>
 					<th style = "text-align :center;">작성일자</th>
@@ -151,14 +158,17 @@
 			</thead>
 			<c:forEach items="${likesList }" var="likesList">
 				<tr>
+					<td style="display: none">${likesList.boardId }</td>
 					<td>${likesList.dealCategory }</td>
-					<td id='title'>${likesList.dealTitle}</td>
+					<td id='title' onclick="likeDeal(this)">${likesList.dealTitle}</td>
 					<!-- 해당 게시글로 이동하는 기능 => ?? -->
 					<td>${likesList.dealDate }</td>
 					<td>${likesList.dealState }</td>
 				</tr>
 			</c:forEach>
 		</table>
+		</details>
+		<br><br>
 	</div>
 	<!-- 위치 헤더로 옮기기 / div + checkCommentState() + setInterval -->
 	<!-- <h3>알림</h3>
@@ -273,6 +283,14 @@
  		let boardId = ((e.previousSibling).previousSibling).textContent;
  		console.log(boardId);
  		location.href='dealDetail.do?boardId='+boardId;
+ 	}
+ 	
+ 	function likeDeal(e){
+ 		//onclick 이벤트 => board_id를 받아서 그 거래게시판 게시글 조회(페이지 이동)
+ 		console.log(e); //글번호 받아옴 >> 해당 글 페이지로 이동(수정)
+ 		let boardId = ((((e.previousSibling).previousSibling).previousSibling).previousSibling).textContent;
+ 		console.log(boardId);
+ 		location.href='dealDetail.do?boardId='+boardId; 
  	}
  	
  	function selectCom(e){

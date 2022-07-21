@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
+<script src="js/jquery-3.6.0.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -61,11 +62,13 @@
 				</tr>
 			</tbody>
 		</table>
-		
-		
-		<input type="submit" class="btn btn-primary btn-block" style="width: 100px;" value="수정하기">
+		<div>
+			<input type="submit" class="btn btn-info" role="button" style="width: 120px; color: white;" value="수정하기">
+			<input type="button" class="btn btn-info" role="button" style="width: 120px; color: white;" value="뒤로가기" onclick="location.href='myPage.do'">
+		</div>
+		<br>
 		</form>
-	
+		<br>
 	</div>
 </body>
 </html>
