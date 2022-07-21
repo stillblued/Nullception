@@ -43,15 +43,15 @@
 			<input type="button" value="검색" onclick="dealSearch()">
 		</form><br>
 		
-		<table border="1" width="80%">
+		<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
-					<th>NO</th>
-					<th>상품이미지</th>
-					<th>작성자</th>
-					<th>제목</th>
-					<th>가격</th>
-					<th>작성일자</th>
+					<th style = "text-align :center;">NO</th>
+					<th style = "text-align :center;">상품이미지</th>
+					<th style = "text-align :center;">작성자</th>
+					<th style = "text-align :center;">제목</th>
+					<th style = "text-align :center;">가격</th>
+					<th style = "text-align :center;">작성일자</th>
 					
 				</tr>
 			</thead>
@@ -62,7 +62,7 @@
 						<tr>
 							<td>${d.boardId}</td>
 							<td><img src="${d.attach}"></td>
-							<td>${mvo.memberId}</td>
+							<td>${d.nickname}</td>
 							<td><a href="dealDetail.do?boardId=${d.boardId}">${d.dealTitle}</a></td>
 							<td>${d.price}</td>
 							<td>${d.dealDate}</td>
@@ -78,7 +78,7 @@
 				</c:otherwise>
 			</c:choose>
 			</tbody>		
-		</table><br>
+		</table>
 		<div id = "page">
 			<%
 			int pageCount = (int) request.getAttribute("pageCount");
@@ -129,6 +129,8 @@
 			var tbody = $("<tbody />");
 			$.each(data, function(index, item) {
 				var row = $("<tr />").append(
+						  $("<td />").text(item.boardId),
+						  $("<td />").text(item.dealAttach),
 						  $("<td />").text(item.nickname),
 						  $("<td />").text(item.dealTitle),
 						  $("<td />").text(item.price),

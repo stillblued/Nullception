@@ -9,61 +9,138 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<h3>거래게시판</h3>
-	<table border = "1" id="dealCommentsList">
+	<h4>거래게시판</h4>
+	<table border = "1" id="dealCommentsList" class="table table-striped" style="width: 80%;  text-align :center;">
 		<thead>
-			<tr> <!-- 표시할 셀은 나중에 수정 / ajax로 바꾸는게 나을듯 -->
-				<th>글제목</th>
-				<th>카테고리</th>
-				<th>작성일자</th>
-				<th>거래상태</th>
-				<th>지역</th>
-			</tr>
+		<tr>
+			<th style = "text-align :center;">글제목</th>
+			<th style = "text-align :center;">카테고리</th>
+			<th style = "text-align :center;">작성일자</th>
+			<th style = "text-align :center;">거래상태</th>
+			<th style = "text-align :center;">지역</th>
+		</tr>
 		</thead>
-		<tbody>
-			<c:forEach items="${dealCommentsList }" var="dealCommentsList">
-				<tr>
-					<td>${dealCommentsList.dealTitle }</td>
-					<td>${dealCommentsList.dealCategory }</td>
-					<td>${dealCommentsList.dealDate }</td>
-					<td>${dealCommentsList.dealState }</td>
-					<td>${dealCommentsList.location }</td>
-				</tr>
-			</c:forEach>
-		
-		</tbody>
 	</table>
-	
-	<h3>커뮤니티 게시판</h3>
-	<table border = "1" id="commCommentsList">
+	<hr>
+	<h4>커뮤니티게시판</h4>
+	<table border = "1" id="commCommentsList" class="table table-striped" style="width: 80%;  text-align :center;">
 		<thead>
-			<tr> <!-- 표시할 셀은 나중에 수정 / ajax로 바꾸는게 나을듯 -->
-				<th>글제목</th>
-				<th>카테고리</th>
-				<th>작성일자</th>
-				<th>지역</th>
-			</tr>
+		<tr>
+			<th style = "text-align :center;">글제목</th>
+			<th style = "text-align :center;" >카테고리</th>
+			<th style = "text-align :center;">작성일자</th>
+			<th style = "text-align :center;">지역</th>
+		</tr>
 		</thead>
-		<tbody>
-			<c:forEach items="${commCommentsList }" var="commCommentsList">
-				<tr>
-					<td>${commCommentsList.comTitle }</td>
-					<td>${commCommentsList.comCategory }</td>
-					<td>${commCommentsList.comDate }</td>
-					<td>${commCommentsList.location }</td>
-				</tr>
-			</c:forEach>
-		
-		</tbody>
 	</table>
 	<br>
-	<button type="button" onclick="commentCheck()">확인</button>
+	<button type="button" onclick="commentCheck()">알림 확인</button>
 	
 	<script>
+	window.onload = ajaxDealList();
+	window.onload = ajaxCommList();
+	
+	function ajaxDealList(){
+		//거래게시판 리스트를 ajax로 받아오는 함수
+		$.ajax({
+			url : "ajaxDealPrintCommentLists.do",
+			type : "post",
+			dataType : "Json",
+			success : function(result){
+				console.log(result);
+				jsonAjaxDealListConvert(result);
+			},
+			error: function(){
+				console.log("error");
+			}
+		})   
+	}
+	
+	function ajaxCommList(){
+		//거래게시판 리스트를 ajax로 받아오는 함수
+		$.ajax({
+			url : "ajaxCommPrintCommentLists.do",
+			type : "post",
+			dataType : "Json",
+			success : function(result){
+				console.log(result);
+				jsonAjaxCommListConvert(result);
+			},
+			error: function(){
+				console.log("error");
+			}
+		})   
+	}
+	
+	function jsonAjaxDealListConvert(data){
+		//데이터를 테이블에 넣어주는 함수(일단 거래게시판 먼저)
+		$("#dealCommentsList tbody").remove();
+		let tbody = $("<tbody />");
+		if(data.length>0){
+			$.each(data, function(index, item){
+				let row = $("<tr />").append(
+	  					  $("<td style='display:none' />").text(item.boardId),
+						  $("<td />").text(item.dealCategory),
+						  $("<td id='title' onclick='commentOneCheck(this)' />").text(item.dealTitle),
+						  $("<td />").text(item.dealDate),
+						  $("<td />").text(item.dealState),
+						  $("<td />").text(item.location)
+						 );
+				tbody.append(row);
+			});	
+		} else{
+			let row = $("<td colspan='5' />)").text("댓글이 존재하지 않습니다.");
+			tbody.append(row);
+		}
+		$('#dealCommentsList').append(tbody);
+	}
+	
+	function jsonAjaxCommListConvert(data){
+		//데이터를 테이블에 넣어주는 함수(일단 거래게시판 먼저)
+		$("#commCommentsList tbody").remove();
+		let tbody = $("<tbody />");
+		if(data.length>0){
+			$.each(data, function(index, item){
+				let row = $("<tr />").append(
+						  $("<td style='display:none' />").text(item.boardId),
+						  $("<td />").text(item.comCategory),
+						  $("<td id='title' onclick='commentOneCheck(this)' />").text(item.comTitle),
+						  $("<td />").text(item.comDate),
+						  $("<td />").text(item.location)
+						 );
+				tbody.append(row);
+			});	
+		} else{
+			let row = $("<td colspan='4' align='center' />)").text("댓글이 존재하지 않습니다.");
+			tbody.append(row);
+		}
+		$('#commCommentsList').append(tbody);
+	}
+	
 	function commentCheck(){
 		$.ajax({
 			url : "ajaxUpdateComments.do",
 			type : "post",
+			dataType : "Json",
+			success : function(result){
+				
+			},
+			error: function(){
+				console.log("error");
+			}
+		})  
+		ajaxDealList();
+		ajaxCommList();
+	}
+	
+	 function commentOneCheck(e){
+		let boardId = ((e.previousSibling).previousSibling).textContent;
+		let table = (((e.parentNode).parentNode).parentNode);
+		let tableId = $(table).attr('id');
+		 $.ajax({
+			url : "ajaxUpdateComments.do",
+			type : "post",
+			data : {boardId : boardId},
 			dataType : "Json",
 			success : function(result){
 				console.log(result);
@@ -71,8 +148,15 @@
 			error: function(){
 				console.log("error");
 			}
-		})   
-	}
+		}) 
+		if(tableId == 'dealCommentsList'){
+			ajaxDealList();
+			location.href='dealDetail.do?boardId='+boardId;
+		} else{
+			ajaxCommList();
+			location.href='communityDetail.do?boardId='+boardId;
+		}
+	} 
 	
 	</script>
 	
