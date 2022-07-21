@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO memberSelectOne(MemberVO vo) {
 		// 단일조회
-		String sql = "SELECT * FROM WHERE MEMBER_ID = ?";
+		String sql = "SELECT * FROM MEMBER WHERE MEMBER_ID = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 				vo.setMemberPassword(rs.getString("member_password"));
 				vo.setNickname(rs.getString("nickname"));
 				vo.setPhone(rs.getString("phone"));
-				vo.setEmail(rs.getString("emaile"));
+				vo.setEmail(rs.getString("email"));
 				vo.setLocation(rs.getString("location"));
 				vo.setMannerTemp(rs.getInt("manner_temp"));
 				vo.setAuthor(rs.getString("author"));

@@ -48,7 +48,7 @@
 
 			</form>
 		</div>
-		
+		<label><input type="hidden" id="author" value="${author }" >${author}</label>
 		<form id="frm">
 			<table border="1">
 
@@ -57,6 +57,7 @@
 						<th>NO</th>
 						<th>분류</th>
 						<th>제목</th>
+						<th style="display:none">세션닉네임</th>
 						<th>날짜</th>
 						<th>닉네임</th>
 						<th>상태</th>
@@ -80,15 +81,18 @@
 									</c:if>
 									
 									<td id="title" onclick="faqSelectOne(this)" style="cursor:pointer;">${f.faqTitle}</td>
-
+									
+									<td id="nickname" style="display:none"> ${nick } </td>
 									<td>${f.faqDate}</td>
-									<td id="nickname">${f.nickname}</td>
+									<td id="boardNick" name="boardNick">${f.boardNick}</td>
+									
 									<c:if test="${not empty answer_content }">
 										<td>완료</td>
 									</c:if>
 									<c:if test="${ empty answer_content }">
 										<td>처리중</td>
 									</c:if>
+									
 									<c:if test="${ author == 'ADMIN' }">
 									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
 									</c:if>
@@ -105,11 +109,9 @@
 				</tbody>
 			</table>
 
-			
+			<!-- 유저만 글 등록가능 -->
 			<c:if test="${author == 'ADMIN' || author =='USER' || author == 'BLIND' }">
-
-			<input type="button" onclick="location.href='faqForm.do'" id="write"
-				name="write" value="등록">
+			<input type="button" onclick="location.href='faqForm.do'" id="write" name="write" value="등록">
 				</c:if>
 		</form>
 	</div>
@@ -188,14 +190,15 @@
 	}
 
 		 function faqSelectOne(e) {  //get방식 안전하지 않음
-			 let boardId = (document.getElementById('boardId')).innerHTML;
-			 let nick = document.getElementById('nickname').innerHTML;
-			 console.log("nick"+nick);
+		 	 let author = document.getElementById('author').value;
+			 let boardId = ((((e.previousSibling).previousSibling).previousSibling).previousSibling).textContent;
+			 let nickname = ((e.nextSibling).nextSibling).textContent;
+			 let boardNick = ((((((e.nextSibling).nextSibling).nextSibling).nextSibling).nextSibling).nextSibling).textContent;
 			 
-			 if(nick == '${nick}'){
-			 location.href='faqDetail.do?boardId='+boardId;	
+			 if(nickname.trim() == boardNick || author == 'ADMIN'){
+			 	location.href='faqDetail.do?boardId='+boardId+'&boardNick='+boardNick;	
 				 
-			 }else{
+			 } else{
 				 alert('작성자만 열람가능합니다.');
 			 }
 		}

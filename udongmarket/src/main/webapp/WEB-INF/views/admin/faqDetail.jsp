@@ -53,7 +53,7 @@
 				<input type="hidden" id="boardId" name="boardId"
 					value="<%=vo.getBoardId()%>">
 				<th>닉네임</th>
-				<td id="nickname"><%=vo.getNickname()%></td>
+				<td id="boardNick" name="boardNick"><%=vo.getBoardNick()%></td>
 				<th>작성일</th>
 				<td><%=vo.getFaqDate()%></td>
 			</tr>

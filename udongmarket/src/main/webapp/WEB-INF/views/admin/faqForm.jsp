@@ -70,8 +70,9 @@ addLoadEvent(function() {
 			%> 
 				
 				<tr>
-					<th id="nickname">닉네임</th><%-- ${nick } --%>
-					<td><input type="text" id="nickname" name="nickname" value="${vo.nickname}" readonly="readonly" ></td>
+				    <input type="hidden" id="nickname" value="${nick }">
+					<th>닉네임</th><%-- ${nick } --%>
+					<td><input type="text" id="boardNick" name="boardNick" value="${nick}" readonly="readonly" ></td>
 					<th id="nickname">작성 날짜</th>
 					<%-- <td><input type="text" id="faqDate" name="faqDate" value="${list.getFaqDate() }"  readonly="readonly"></td> --%>
 					<td><input name="tName" type="text" id="tDate"></td>

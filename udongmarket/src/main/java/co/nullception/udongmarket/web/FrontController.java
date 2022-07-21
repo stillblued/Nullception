@@ -26,7 +26,6 @@ import co.nullception.udongmarket.community.command.CommunityInsert;
 import co.nullception.udongmarket.community.command.CommunityList;
 import co.nullception.udongmarket.community.command.CommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityUpdate;
-import co.nullception.udongmarket.deal.command.AjaxDealSearch;
 import co.nullception.udongmarket.deal.command.DealDelete;
 import co.nullception.udongmarket.deal.command.DealDetail;
 import co.nullception.udongmarket.deal.command.DealForm;
@@ -42,6 +41,7 @@ import co.nullception.udongmarket.member.command.MemberList;
 import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
+import co.nullception.udongmarket.member.command.MemberAuthorChange;
 import co.nullception.udongmarket.myPage.command.AjaxComList;
 import co.nullception.udongmarket.myPage.command.AjaxCommentCheck;
 import co.nullception.udongmarket.myPage.command.AjaxDealList;
@@ -73,9 +73,10 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복체크
 		map.put("/ajaxNicknameCheck.do", new AjaxNicknameCheck()); // 닉네임 중복체크
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
+		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
-		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
+		map.put("/memberauthorChange.do", new MemberAuthorChange()); // 멤버 권한 변경
     
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
@@ -100,7 +101,6 @@ public class FrontController extends HttpServlet {
 		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
 		map.put("/dealForm.do", new DealForm()); // 상품 등록폼
-		map.put("/ajaxDealSearch.do", new AjaxDealSearch()); // 검색
 		map.put("/dealDetail.do", new DealDetail()); // 글 상세
 		map.put("/dealDelete.do", new DealDelete()); // 글 삭제
 		
