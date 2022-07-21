@@ -14,26 +14,30 @@
 <!-- Load fonts style after rendering the layout styles -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="css/fontawesome.min.css">
-
-<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-1.11.0.min"></script>
 
 <title>header</title>
 <style>
-#stateAlert:hover {
-	color: coral;
-}
-
 .justify-content-end {
 	justify-content: flex-end !important;
 }
+
 .align-self-center {
   align-self: center !important;
+  margin: 0px;
 }
 
 .align-items-center {
   align-items: center !important;
+  margin: 0px;
 }
 
+#templatemo_main_nav a::after {
+  width: 100%;
+  height: 0;
+  background: #34b6d3;
+  left: 0;
+}
 
 </style>
 </head>
@@ -146,7 +150,8 @@
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="main.do">
-                <h1>우동마켓</h1>
+            <h1><img class="logo" width="50px" src="./img/logo4.png" href="main.do">
+                우동마켓</h1>
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
