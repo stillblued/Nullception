@@ -201,4 +201,24 @@ public class MemberServiceImpl implements MemberService {
 		return list;
 	}
 
+	@Override
+	public int memberAuthorUpdate(String id, String auth) {
+		// 멤버 권한 변경
+		int cnt = 0;                                  
+		String sql = "update member set AUTHOR = ? where member_id = ?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, auth);
+			
+			cnt = psmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
+	}
+
 }

@@ -32,7 +32,7 @@
 	<h3>회원정보 수정</h3>
 	
 	<div align="center">
-		<form action="updateMember.do" id="frm" method="post">
+		<form action="memberList.do" id="frm" method="post">
 			<table border="1">
 			<tr>
 				<td>회원아이디</td>
@@ -54,10 +54,10 @@
 			</tr>
 			<tr>
 				<td>기존 등급</td>
-				<td><input type="text" readonly="readonly" author" name="author" value="${member.author }"></td>
+				<td><input type="text" readonly="readonly" id="author" name="author" value="${member.author }"></td>
 				<td>변경할 등급</td>
 				<td>
-				<select id="authorChange">
+				<select id="authorChange" onchange="changeAuthor(this)">
 				<option value="USER">USER</option>
 				<option value="BLIND">BLIND</option>
 				</select>
@@ -71,6 +71,15 @@
 		</form>
 	
 	</div>
-
+	
+	<script type="text/javascript">
+	function changeAuthor(e){
+		console.log(e.value);[]
+		let selected = $("#author option:selected");
+		selected.value = e.value;
+		console.log("selected"+selected.value);
+	}
+	
+	</script>
 </body>
 </html>
