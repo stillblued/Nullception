@@ -17,6 +17,7 @@ public class MemberAuthorChange implements Command {
 		MemberService memberDao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
 		
+		String author = (String) request.getParameter("author");
 		//HttpSession session = request.getSession();
 	    //String id = (String) session.getAttribute("id");
         //vo.setMemberId(id);

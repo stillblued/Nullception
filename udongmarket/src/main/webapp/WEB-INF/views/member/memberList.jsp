@@ -67,23 +67,26 @@ display: inline-block
 		<table border=1 id='tble'>
 			<thead>
 				<tr>
-					<th>권한</th>
 					<th>아이디</th>
 					<th>닉네임</th>
 					<th>이메일</th>
 					<th>매너온도</th>
+					<th>권한</th>
 					<th>권한변경<th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach items="${list}" var="m">
 					<tr>
-						<td>${m.author}</td>
 						<td>${m.memberId}</td>
 						<td>${m.nickname}</td>
 						<td>${m.email}</td>
 						<td>${m.mannerTemp}</td>
+						<td>${m.author}</td>
+						<c:if test="${m.author != 'ADMIN' }">
 						<td><button type="button" onclick="location.href='memberauthorChange.do?memberId='+'${m.memberId}'">권한변경</button></td>
+						</c:if>
+					
 					</tr>
 				</c:forEach>
 			

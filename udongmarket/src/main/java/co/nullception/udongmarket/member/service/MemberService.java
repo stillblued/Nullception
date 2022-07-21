@@ -16,5 +16,7 @@ public interface MemberService {
 	List<MemberVO> memberAuthorSelectList(String category);// 멤버권한 카테고리에 따른 목록 검색
 	
 	
+	int memberAuthorUpdate(String id, String auth); //유저 권한 설정
+	
 
 }
