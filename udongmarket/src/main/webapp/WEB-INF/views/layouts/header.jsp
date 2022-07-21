@@ -115,6 +115,16 @@
 					} else {
 					%>
 			        ${front }&nbsp;&nbsp;
+			        <div align="center"
+					style="color: white; display: inline-block; width: 20px; height: 20px; position: relative; top: 8px;">
+					<table id="alert">
+						<thead style="display: none">
+							<tr>
+								<th>알림 내용</th>
+							</tr>
+						</thead>
+					</table>
+					</div>&nbsp;&nbsp;
                     <a class="navbar-sm-brand text-light text-decoration-none" href='memberLogout.do'>로그아웃</a>&nbsp;<a>/</a>&nbsp;
                     <a class="navbar-sm-brand text-light text-decoration-none" href='myPage.do'>마이페이지</a>&nbsp;<a>/</a>&nbsp;
                     <a class="navbar-sm-brand text-light text-decoration-none" href='faq.do'>고객센터</a>
