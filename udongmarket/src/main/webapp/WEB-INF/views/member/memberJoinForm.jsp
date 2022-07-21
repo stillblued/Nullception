@@ -37,7 +37,6 @@
 		<div>
 			<h1>회원가입</h1>
 		</div>
-		<div>
 			<form id="frm" action="memberJoin.do" onsubmit="return formCheck()"
 				method="post">
 				<div>
@@ -80,29 +79,33 @@
 									<option>019</option>
 							</select> 
 							<b>-</b> 
-							<input type="text" id="phone1" name="phone1" size= 7 onKeyUp="KeyInput(0)" >
+							<input type="text" id="phone1" name="phone1" size= 7 onKeyUp="KeyInput(0)" required="required">
 							 <b>-</b> 
-							 <input type="text"	id="phone2" name="phone2" size= 7 >
+							 <input type="text"	id="phone2" name="phone2" size= 7 required="required">
 							</td>
 						</tr>
 						<tr>
 							<th width="150">지역</th>
-							<td width="300"><select id="location" name="location">
-									<option>대구광역시 중구</option>
-									<option>대구광역시 동구</option>
-									<option>대구광역시 서구</option>
-									<option>대구광역시 남구</option>
-									<option>대구광역시 북구</option>
-									<option>대구광역시 수성구</option>
-									<option>대구광역시 달서구</option>
-									<option>대구광역시 달성군</option>
-							</select> 
-							<input type="text" id="location1" name="location1" size="7" ></td>
+							<td width="300">
+							<select id="location" name="location">
+									<option>대구광역시</option>
+							</select>
+							<select id="location1" name="location1">
+									<option> 중구</option>
+									<option> 동구</option>
+									<option> 서구</option>
+									<option> 남구</option>
+									<option> 북구</option>
+									<option> 수성구</option>
+									<option> 달서구</option>
+									<option> 달성군</option>
+							</select>  
+							<input type="text" id="location2" name="location2" size="7" required="required"></td>
 						</tr>
 						<tr>
 							<th width="150">이메일</th>
 							<td width="300">
-							<input type="text" id="email" name="email" size="10"> 
+							<input type="text" id="email" name="email" size="10" required="required"> 
 							<b>@</b> 
 								<select id="email1" name="email1">
 									<option>naver.com</option>
@@ -117,7 +120,7 @@
 				<div>
 					<input type="submit" value="회원가입">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소">&nbsp;&nbsp;&nbsp;
 					  <a  href="javascript:kakaoLogin();">
-					<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" />
+					<img src="https://developers.kakao.com/tool/resource/static/img/button/kakaosync/complete/ko/kakao_login_medium_narrow.png" />
 					</a> 
 				</div>
 			</form>
@@ -158,7 +161,6 @@
     					 console.log("아이디:" + res.id);
     					 let id = res.id + "id";
     					 let pw = (res.id).toString().substr(0,5) + "pw";
-    					 
     					 console.log(pw);
     					 // let key = Object.keys(res.kakao_account)[6];
     					 let val = res.kakao_account[Object.keys(res.kakao_account)[6]];
@@ -180,7 +182,7 @@
     					 // email
     					 document.getElementById("email").value = val;
     					 
-    					 document.querySelector('#frm').submit();
+    					 document.querySelector('#frm').submit();  // submit
      					 
     					 
     					 
@@ -222,17 +224,23 @@
 			
 			if (frm.phone2.value != "" && frm.phone1.value != "") {
 				var p = document.getElementById("phone");
+				console.log(p);
 				var h = document.getElementById("phone").options.selectedIndex;
+				console.log(h);
 				p.options[h].value = p.options[h].value + "-"
 						+ frm.phone1.value + "-" + frm.phone2.value;
 
 			}
 
-			if (frm.location1.value != "") {
+			if (frm.location2.value != "") {
 				var l = document.getElementById("location");
 				var o = document.getElementById("location").options.selectedIndex;
-				l.options[o].value = l.options[o].value + " "
-						+ frm.location1.value;
+				var c = document.getElementById("location1");
+				var a = document.getElementById("location1").options.selectedIndex;
+				
+				l.options[o].value = l.options[o].value + " " + c.options[a].value + " " + frm.location2.value;
+				console.log(l.options[o].value);
+				console.log("lacaion: "+frm.location.value);
 			}
 
 			if (frm.email.value != "") {
@@ -241,6 +249,7 @@
 				var m = document.getElementById("email1").options.selectedIndex;
 				console.log(m);
 				frm.email.value = frm.email.value + "@" + e.options[m].value;
+				console.log(frm.email.value);
 			}
 			
 			
