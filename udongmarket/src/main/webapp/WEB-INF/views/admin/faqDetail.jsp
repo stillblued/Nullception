@@ -66,7 +66,7 @@
 		<thead>
 			<form name="commentsfrm" action="commentsInsert()" method="post">
 			<tr>
-				<input type="hidden" name="nickname" value="${nick}">
+				<input type="hidden" name="commentsNick" value="${nick}">
 				<th>${nick}</th>
 				<td><textarea id="commentsContent"></textarea></td>&nbsp;&nbsp;&nbsp;&nbsp;
 				<td><input type="button" onclick="commentsInsert()"
@@ -82,7 +82,7 @@
 			</c:if> --%>
 			<c:forEach items="${coList}" var="list">
 				<tr>
-					<th>${list.nickname }</th>
+					<th>${list.CommentsNick }</th>
 					<td>${list.commentsContent }</td>
 					<td>${list.commentsDate }</td>
 				</tr>
@@ -130,7 +130,6 @@
 				 		$("<th />").text(data.nickname),
 				 		$("<td />").text(data.commentsContent),
 				 		$("<td />").text(today)
-				 		 ,$("<td  />").append($("<button onclick='' />").text("수정"))
 				 		 ,$("<td  />").append($("<button onclick='commentdelete()' />").text("삭제"))
 				 		);
 				

@@ -11,7 +11,7 @@ public class MemberAuthorChange implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// 멤버 권한 변경하기
+		// 멤버 권한 변경하기(폼)
 		MemberService memberDao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
 		
@@ -28,8 +28,8 @@ public class MemberAuthorChange implements Command {
 //		//vo.setMannerTemp(Integer.parseInt(request.getParameter("mannerTemp")));
 //		vo.setAuthor(request.getParameter("author"));
 		
-		System.out.println("MemberId"+ vo.getMemberId());
-		System.out.println("닉네임 : "+vo.getNickname());
+		//System.out.println("MemberId"+ vo.getMemberId());
+		//System.out.println("닉네임 : "+vo.getNickname());
 		
 		vo = memberDao.memberSelectOne(vo);
 		request.setAttribute("member", vo); //member에 담아서 보냄

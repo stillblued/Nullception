@@ -26,13 +26,15 @@ public class FaqDetail implements Command {
 				FaqVO vo = new FaqVO();
 				
 				int boardId = Integer.parseInt(request.getParameter("boardId"));
+
 				vo.setBoardId(boardId); 
-				
+        
 				coList = coDao.commentList(boardId);
 				vo = faqDao.faqSelectOne(vo);
 				
 				request.setAttribute("coList", coList);
 				request.setAttribute("vo", vo);
+
 				
 				return "admin/faqDetail";
 	}

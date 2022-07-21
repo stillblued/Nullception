@@ -20,10 +20,10 @@ display: inline-block
 </style>
 </head>
 <body>
-	
-	<div><h1>사용자 목록</h1></div>
-	<br>
 
+	<br><br>
+	<div><h1>사용자 목록</h1></div>
+<br>
 		<div id="membauthorCategory" onchange="authorselectList()">
 		<ul>
 		<!-- <li>
