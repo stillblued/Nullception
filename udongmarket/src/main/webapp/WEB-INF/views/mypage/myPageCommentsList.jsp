@@ -6,23 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>myPageCommentsList.jsp</title>
+
 <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<h4>거래게시판</h4>
-	<table border = "1" id="dealCommentsList" class="table table-striped" style="width: 80%;  text-align :center;">
-		<thead>
-		<tr>
-			<th style = "text-align :center;">글제목</th>
-			<th style = "text-align :center;">카테고리</th>
-			<th style = "text-align :center;">작성일자</th>
-			<th style = "text-align :center;">거래상태</th>
-			<th style = "text-align :center;">지역</th>
-		</tr>
-		</thead>
-	</table>
+	<br>
+	<div align="center">
+		<button type="button" class="btn btn-info" style="color: white; width: 80%; text-align :center; margin-bottom: 15px;" >거래게시판</button>
+		<table border = "1" id="dealCommentsList" class="table table-striped" style="width: 80%;  text-align :center;">
+			<thead>
+			<tr>
+				<th style = "text-align :center;">글제목</th>
+				<th style = "text-align :center;">카테고리</th>
+				<th style = "text-align :center;">작성일자</th>
+				<th style = "text-align :center;">거래상태</th>
+				<th style = "text-align :center;">지역</th>
+			</tr>
+			</thead>
+		</table>
+	</div>
 	<hr>
-	<h4>커뮤니티게시판</h4>
+	<div align="center">
+	<button type="button" class="btn btn-info" style="color: white; width: 80%; text-align :center; margin-bottom: 15px;" >커뮤니티 게시판</button>
 	<table border = "1" id="commCommentsList" class="table table-striped" style="width: 80%;  text-align :center;">
 		<thead>
 		<tr>
@@ -33,9 +38,13 @@
 		</tr>
 		</thead>
 	</table>
+	<div aling="center">
+		<button type="button" class="btn btn-info" role="button" style="color: white;" onclick="commentCheck()">알림 확인</button>
+		<button type="button" class="btn btn-info" role="button" style="color: white;" onclick="location.href='main.do'">메인으로</button>		
+	</div>
+	</div>
 	<br>
-	<button type="button" onclick="commentCheck()">알림 확인</button>
-	
+
 	<script>
 	window.onload = ajaxDealList();
 	window.onload = ajaxCommList();
