@@ -21,18 +21,27 @@ public class FAQCommand implements Command {
 		// faq 게시글 목록 가져오기
 		FaqService faqDao = new FaqServiceImpl();
 		List<FaqVO> list = new ArrayList<>();
+		
 		FaqVO vo = new FaqVO();
-		vo.setNickname(request.getParameter("nickname"));
-		//vo.setNickname(sessionNickName); //세션 닉네임 get
+		//vo.setNickname(request.getParameter("nickname"));
+		String boardNick = request.getParameter("boardNick");
+		vo.setBoardNick(boardNick);
+		vo.setNickname(sessionNickName); //세션 닉네임 get
 		
 		list = faqDao.faqSelectList();
 		request.setAttribute("list", list);
 		request.setAttribute("vo", vo);
-		request.setAttribute("sessionNickName", sessionNickName);
 		
-		 System.out.println("sessionNickName : " + sessionNickName);
-		 System.out.println("vo.getNickname(nickname) : " + vo.getNickname());
-		 //System.out.println("request.getParameter(\"nickname\")"+request.getParameter("nickname"));
+		
+		/*
+		 * request.setAttribute("sessionNickName", sessionNickName);
+		 * System.out.println("boardNick :" +boardNick);
+		 * System.out.println("faqList_BoardNick"+vo.getBoardNick());
+		 * System.out.println("sessionNickName : " + sessionNickName);
+		 * System.out.println("vo.getNickname(nickname) : " + vo.getNickname());
+		 * System.out.println("request.getParameter(\"nickname\")"+request.getParameter(
+		 * "nickname"));
+		 */
 		 
 		return "admin/faq";
 	}

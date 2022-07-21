@@ -83,7 +83,7 @@ display: inline-block
 						<td>${m.nickname}</td>
 						<td>${m.email}</td>
 						<td>${m.mannerTemp}</td>
-						<td><input type="button" onclick="" value="권한변경"></td>
+						<td><button type="button" onclick="location.href='memberauthorChange.do?memberId='+'${m.memberId}'">권한변경</button></td>
 					</tr>
 				</c:forEach>
 			

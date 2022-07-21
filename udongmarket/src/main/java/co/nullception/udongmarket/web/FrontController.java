@@ -46,14 +46,17 @@ import co.nullception.udongmarket.member.command.MemberList;
 import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
+import co.nullception.udongmarket.member.command.MemberAuthorChange;
 import co.nullception.udongmarket.myPage.command.AjaxComList;
+import co.nullception.udongmarket.myPage.command.AjaxCommPrintCommentLists;
 import co.nullception.udongmarket.myPage.command.AjaxCommentCheck;
 import co.nullception.udongmarket.myPage.command.AjaxDealList;
 import co.nullception.udongmarket.myPage.command.AjaxDealState;
 import co.nullception.udongmarket.myPage.command.AjaxUpdateComments;
 import co.nullception.udongmarket.myPage.command.DeleteMember;
 import co.nullception.udongmarket.myPage.command.MyPageUpdate;
-import co.nullception.udongmarket.myPage.command.PrintCommentsList;
+import co.nullception.udongmarket.myPage.command.PrintCommentLists;
+import co.nullception.udongmarket.myPage.command.AjaxDealPrintCommentsList;
 import co.nullception.udongmarket.myPage.command.ShowMyPage;
 import co.nullception.udongmarket.myPage.command.UpdateMember;
 
@@ -77,9 +80,10 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복체크
 		map.put("/ajaxNicknameCheck.do", new AjaxNicknameCheck()); // 닉네임 중복체크
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입 처리
+		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
-		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
+		map.put("/memberauthorChange.do", new MemberAuthorChange()); // 멤버 권한 변경
     
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM
@@ -98,12 +102,15 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxComList.do", new AjaxComList());//회원이 카테고리별로 작성한 community 게시판 글 조회
 		map.put("/ajaxDealState.do", new AjaxDealState());//거래게시판 state 변경
 		map.put("/ajaxcommentCheck.do", new AjaxCommentCheck()); //댓글 state 체크
-		map.put("/printCommentLists.do", new PrintCommentsList());//댓글이 달린 게시글 리스트 출력
+		map.put("/printCommentLists.do", new PrintCommentLists());
+		map.put("/ajaxDealPrintCommentLists.do", new AjaxDealPrintCommentsList());//댓글이 달린 거래게시판 리스트 출력
+		map.put("/ajaxCommPrintCommentLists.do", new AjaxCommPrintCommentLists());//댓글이 달린 커뮤니티게시판 리스트 출력
 		map.put("/ajaxUpdateComments.do", new AjaxUpdateComments()); //실시간 댓글 확인
 		
 		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
 		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
 		map.put("/dealForm.do", new DealForm()); // 상품 등록폼
+
 		map.put("/dealSearch.do", new DealSearch()); // 검색
 		map.put("/dealDetail.do", new DealDetail()); // 글 상세
 		map.put("/dealDelete.do", new DealDelete()); // 글 삭제

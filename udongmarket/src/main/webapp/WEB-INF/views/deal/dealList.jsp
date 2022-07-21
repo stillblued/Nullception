@@ -46,16 +46,17 @@
 			<input type="submit" value="검색">
 		</form><br>
 		
-		<table border="1" width="50%">
+
+
+		<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
-					<th>NO</th>
-					<th>카테고리</th>
-					<th>상품이미지</th>
-					<th>작성자</th>
-					<th>제목</th>
-					<th>가격</th>
-					<th>작성일자</th>
+					<th style = "text-align :center;">NO</th>
+					<th style = "text-align :center;">상품이미지</th>
+					<th style = "text-align :center;">작성자</th>
+					<th style = "text-align :center;">제목</th>
+					<th style = "text-align :center;">가격</th>
+					<th style = "text-align :center;">작성일자</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -63,6 +64,7 @@
 				<c:when test="${not empty list}">
 					<c:forEach items="${list}" var="d">
 						<tr>
+
 							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.boardId}</td>
 							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'">${d.dealCategory}</td>
 							<td onclick="location.href='dealDetail.do?boardId=${d.boardId}'"><img src="${d.attach}"></td>
@@ -81,8 +83,9 @@
 				</c:otherwise>
 			</c:choose>
 			</tbody>		
-		</table><br>
-		
+
+		</table>
+    
 		<div id = "page">
 			<%
 			int pageCount = (int) request.getAttribute("pageCount");
@@ -108,5 +111,46 @@
 		</div>
 	</div>
 	
+
+	<script type="text/javascript">
+		function dealSearch() {
+			let key = $("#key").val();
+			let val = $("#val").val();
+			$.ajax({
+				url : "ajaxDealSearch.do",
+				type : "post",
+				data : {key : key, val : val},
+				dataType : "json",
+				success : function(result) {
+					if(result.length > 0) {
+						jsonHtmlConvert(result);
+					} else {
+						alert("검색한 결과가 없습니다.");
+					}
+				},
+				error : function() {
+					
+				}
+			})
+		}
+		
+		function jsonHtmlConvert(data) {
+			$('tbody').remove();
+			var tbody = $("<tbody />");
+			$.each(data, function(index, item) {
+				var row = $("<tr />").append(
+						  $("<td />").text(item.boardId),
+						  $("<td />").text(item.dealAttach),
+						  $("<td />").text(item.nickname),
+						  $("<td />").text(item.dealTitle),
+						  $("<td />").text(item.price),
+						  $("<td />").text(item.dealDate)
+				);
+				tbody.append(row);
+			});
+			$('table').append(tbody);
+		}
+	</script>
+
 </body>
 </html>

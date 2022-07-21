@@ -32,10 +32,17 @@
 	<%
 		DealVO vo = (DealVO)request.getAttribute("vo");
 	%>
+
 	<div><h3>게시글 상세보기</h3></div>
 	<form name="frm">
 	<input type="hidden" id="boardId" name="boardId" value="${vo.boardId}">
-	<table border="1" width="50%">
+	<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
+		<thead>
+			<tr>
+				<th colspan="2" style="text-align: center;">게시글 상세보기</th>
+			</tr>
+		</thead>
+
 		<tbody>
 			<tr>
 				<th>카테고리</th>

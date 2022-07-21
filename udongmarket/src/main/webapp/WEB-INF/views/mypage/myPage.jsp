@@ -15,7 +15,11 @@
 	}
 	
 	#stateAlert:hover{
-		color: pink;
+		color: coral;
+	}
+	
+	th, tr, td{
+		text-align: center;
 	}
 </style>
 </head>
@@ -39,35 +43,40 @@
 		</div>
 	</nav>	
 
-	<h3>내정보</h3>
 	<div align="center">
-		<table border="1">
-			<tr>
-				<td>회원아이디</td>
-				<td>${member.memberId }</td>
-				<td>닉네임</td>
-				<td>${member.nickname }</td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td>${member.phone }</td>
-				<td>이메일</td>
-				<td>${member.email }</td>
-			</tr>
-			<tr>
-				<td>지역</td>
-				<td>${member.location }</td>
-				<td>매너온도</td>
-				<td>${member.mannerTemp }</td>
-			</tr>
-			<tr>
-				<td>등급</td>
-				<td colspan="3">${member.author }</td>
-			</tr>
+		<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
+			<thead>
+				<tr>
+					<th colspan="4" style="text-align :center;"><h4>내 정보</h4></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>회원아이디</td>
+					<td>${member.memberId }</td>
+					<td>닉네임</td>
+					<td>${member.nickname }</td>
+				</tr>
+				<tr>
+					<td>연락처</td>
+					<td>${member.phone }</td>
+					<td>이메일</td>
+					<td>${member.email }</td>
+				</tr>
+				<tr>
+					<td>지역</td>
+					<td>${member.location }</td>
+					<td>매너온도</td>
+					<td>${member.mannerTemp }</td>
+				</tr>
+				<tr>
+					<td>등급</td>
+					<td colspan="3">${member.author }</td>
+				</tr>
+			</tbody>
 		</table>
-		<br>
-		<button type="button" onclick="location.href='myPageUpdate.do'">회원수정</button>
-		<button type="button" onclick="location.href='deleteMember.do'">회원탈퇴</button>
+		<button type="button" class="btn btn-primary btn-block" style="width: 80px; display: inline-block;" onclick="location.href='myPageUpdate.do'">회원수정</button>
+		<button type="button" class="btn btn-primary btn-block" style="width: 80px; margin: 0px; display: inline-block;" onclick="location.href='deleteMember.do'">회원탈퇴</button>
 		<hr>
 
 		<h3>거래게시판 글목록</h3>
@@ -84,14 +93,14 @@
 			<option value="book">도서/음반</option>
 			<option value="etc">기타</option>
 		</select> <br> <br>
-		<table border="1" id="dealList">
+		<table border="1" id="dealList" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
 					<th style="display: none">글번호</th>
-					<th>카테고리</th>
-					<th>글제목</th>
-					<th>작성일자</th>
-					<th>거래가능상태</th>
+					<th style = "text-align :center;">카테고리</th>
+					<th style = "text-align :center;">글제목</th>
+					<th style = "text-align :center;">작성일자</th>
+					<th style = "text-align :center;">거래가능상태</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -103,7 +112,7 @@
 		<br>
 		<hr>
 		<h3>커뮤니티 게시판 글목록</h3>
-		<select id="comCategory" name="comCategory" onchange="changeComList()">
+		<select name="comCategory" onchange="changeComList()">
 			<option value="unselect">==카테고리 선택==</option>
 			<option value="alert">알리미</option>
 			<option value="together">소모임</option>
@@ -111,14 +120,14 @@
 			<option value="lost">분실실종</option>
 			<option value="help">도움요청</option>
 		</select> <br> <br>
-		<table border="1" id="comList">
+		<table border="1" id="comList" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
 					<th style="display: none">글번호</th>
-					<th>카테고리</th>
-					<th>글제목</th>
-					<th>작성일자</th>
-					<th>지역</th>
+					<th style = "text-align :center;">카테고리</th>
+					<th style = "text-align :center;">글제목</th>
+					<th style = "text-align :center;">작성일자</th>
+					<th style = "text-align :center;">지역</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -131,19 +140,14 @@
 		<hr>
 		<br>
 		<h3>좋아요 게시글 목록</h3>
-		<table border="1">
+		<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
-					<th>카테고리</th>
-					<th>글제목</th>
-					<th>작성일자</th>
-					<th>거래가능상태</th>
+					<th style = "text-align :center;">카테고리</th>
+					<th style = "text-align :center;">글제목</th>
+					<th style = "text-align :center;">작성일자</th>
+					<th style = "text-align :center;">거래가능상태</th>
 				</tr>
-				<tbody>
-				<tr>
-					<td colspan='4' align='center'>게시글이 존재하지 않습니다.</td>
-				</tr>
-			</tbody>
 			</thead>
 			<c:forEach items="${likesList }" var="likesList">
 				<tr>
@@ -157,8 +161,8 @@
 		</table>
 	</div>
 	<!-- 위치 헤더로 옮기기 / div + checkCommentState() + setInterval -->
-	<h3>알림</h3>
-	<div align="center" style="background-color:lightskyblue; width:20px; height: 20px;">
+	<!-- <h3>알림</h3>
+	<div align="center" style="color:navy; width:20px; height: 20px;">
 		<table id="alert">
 			<thead style="display:none">
 			<tr>
@@ -168,7 +172,7 @@
 			
 		</table>
 	
-	</div>
+	</div> -->
 
 	<script type="text/javascript">
 	function changeDealList(){
@@ -196,7 +200,7 @@
 	
 	function changeComList(){
 		//select 태그의 값이 변경될 때 커뮤니티 게시판 게시글 리스트를 필터하는 함수
-		let category = $("#comCategory option:selected").text();
+		let category = $('select[name=comCategory] option:selected').text();
 		console.log(category);
 		$.ajax({
 			url : "ajaxComList.do",
@@ -228,7 +232,7 @@
 				let row = $("<tr />").append(
 			   			  $("<td style='display:none' />").text(item.boardId),
 						  $("<td />").text(item.dealCategory),
-						  $("<td id='title' onclick='selectDeal(this)' />").text(item.dealTitle),
+						  $("<td id='title' onclick='selectDeal(this)' style='cursor:pointer' />").text(item.dealTitle),
 						  $("<td />").text(item.dealDate),
 						  $("<td />").append($("<select onchange='changeState(this)'/>")
 								     .append($("<option " + (state1 == item.dealState ? 'selected' : '')+">거래가능</option> <option " + (state2 == item.dealState ? 'selected' : '') + ">거래중</option> <option " + (state3 == item.dealState ? 'selected' : '') + ">거래완료</option>")))
@@ -250,7 +254,7 @@
 				let row = $("<tr />").append(
 	   					  $("<td style='display:none' />").text(item.boardId),
 						  $("<td />").text(item.comCategory),
-						  $("<td id='title' onclick='selectCom(this)'/>").text(item.comTitle),
+						  $("<td id='title' onclick='selectCom(this)' style='cursor:pointer' />").text(item.comTitle),
 						  $("<td />").text(item.comDate),
 						  $("<td />").text(item.location)
 						);
@@ -302,7 +306,7 @@
 		})   
  	}
  	
- 	function checkCommentState(){
+ 	/* function checkCommentState(){
  		//댓글 상태 확인
  		//체크 요청을 보내면 ajax로 상태를 받아와서 확인(interval로 작동시간 정해주기)
  		//읽지 않은 댓글의 개수(count)값이 있으면 개수를 result로 반환하고 닉네임이 다르면 빈 문자열을 반환(알림이 없음)
@@ -343,15 +347,16 @@
 		}
  	}
  	
+ 	
+ 	window.onload = checkCommentState();
+ 	setInterval(function(){
+ 		checkCommentState();
+ 	}, 6000); 
+ 	
  	function commentsList(){
  		//내가 확인하지 않은 댓글들의 리스트를 보여줌
  		location.href='printCommentLists.do';
- 	}
- 	
- 	setInterval(function(){
- 		checkCommentState();
- 	}, 6000);
- 	
+ 	}*/
 	
 </script>
 </body>
