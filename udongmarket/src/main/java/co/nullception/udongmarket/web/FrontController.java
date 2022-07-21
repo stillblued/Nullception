@@ -2,7 +2,6 @@ package co.nullception.udongmarket.web;
 
 import java.io.IOException;
 import java.util.HashMap;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import co.nullception.udongmarket.MainCommand;
 import co.nullception.udongmarket.admin.command.AjaxFaqDelete;
 import co.nullception.udongmarket.admin.command.AjaxFaqSearch;
@@ -20,8 +18,9 @@ import co.nullception.udongmarket.admin.command.FaqFormCommand;
 import co.nullception.udongmarket.admin.command.FaqInsert;
 import co.nullception.udongmarket.admin.command.FaqUpdate;
 import co.nullception.udongmarket.comm.Command;
+import co.nullception.udongmarket.comments.command.AjaxCommentsDelete;
 import co.nullception.udongmarket.comments.command.AjaxCommentsInsert;
-import co.nullception.udongmarket.community.command.CommunityDelete;
+import co.nullception.udongmarket.community.command.AjaxCommunityDelete;
 import co.nullception.udongmarket.community.command.CommunityDetail;
 import co.nullception.udongmarket.community.command.CommunityForm;
 import co.nullception.udongmarket.community.command.CommunityInsert;
@@ -29,15 +28,15 @@ import co.nullception.udongmarket.community.command.CommunityList;
 import co.nullception.udongmarket.community.command.CommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityUpdate;
 import co.nullception.udongmarket.community.command.UpdateCommunity;
-
-import co.nullception.udongmarket.deal.command.DealDelete;
+import co.nullception.udongmarket.deal.command.AjaxDealDelete;
+import co.nullception.udongmarket.deal.command.AjaxLikeDeal;
 import co.nullception.udongmarket.deal.command.DealDetail;
 import co.nullception.udongmarket.deal.command.DealForm;
 import co.nullception.udongmarket.deal.command.DealInsert;
 import co.nullception.udongmarket.deal.command.DealList;
 import co.nullception.udongmarket.deal.command.DealSearch;
 import co.nullception.udongmarket.deal.command.DealUpdate;
-import co.nullception.udongmarket.deal.command.DealUpdateForm;
+import co.nullception.udongmarket.deal.command.UpdateDeal;
 import co.nullception.udongmarket.member.command.AjaxMemberIdCheck;
 import co.nullception.udongmarket.member.command.AjaxMemberList;
 import co.nullception.udongmarket.member.command.AjaxNicknameCheck;
@@ -92,10 +91,9 @@ public class FrontController extends HttpServlet {
 		map.put("/faqInsert.do" , new FaqInsert()); // FAQ 등록
 		map.put("/ajaxFaqSearch.do", new AjaxFaqSearch()); //FAQ 검색
 		map.put("/ajaxFaqDelete.do", new AjaxFaqDelete()); //AjaxFaq 삭제
-		map.put("/faqDetail.do", new FaqDetail()); // Faq 제목 클릭시 상세 정보
+		map.put("/faqDetail.do", new FaqDetail()); // Faq 상세 정보
 		map.put("/faqUpdate.do", new FaqUpdate()); //Faq 수정
-		map.put("/ajaxCommentsInsert.do", new AjaxCommentsInsert()); // ajax를 통해 댓글 등록
-
+		
 		map.put("/myPage.do", new ShowMyPage());//마이페이지 호출
 		map.put("/deleteMember.do", new DeleteMember());//회원탈퇴
 		map.put("/myPageUpdate.do", new MyPageUpdate());//마이페이지 수정 폼 호출
@@ -109,25 +107,32 @@ public class FrontController extends HttpServlet {
 		map.put("/ajaxCommPrintCommentLists.do", new AjaxCommPrintCommentLists());//댓글이 달린 커뮤니티게시판 리스트 출력
 		map.put("/ajaxUpdateComments.do", new AjaxUpdateComments()); //실시간 댓글 확인
 		
-		map.put("/dealInsert.do", new DealInsert()); // 상품 등록
-		map.put("/dealList.do", new DealList()); // 거래 게시판 글목록
-		map.put("/dealForm.do", new DealForm()); // 상품 등록폼
-
-
-		map.put("/dealSearch.do", new DealSearch()); // 검색
-		map.put("/dealDetail.do", new DealDetail()); // 글 상세
-		map.put("/dealDelete.do", new DealDelete()); // 글 삭제
-		map.put("/dealUpdate.do", new DealUpdate()); // 글 수정
-		map.put("/dealUpdateForm.do", new DealUpdateForm()); // 수정 폼 호출
+		map.put("/dealList.do", new DealList()); 
+		map.put("/dealForm.do", new DealForm()); 
+		map.put("/dealInsert.do", new DealInsert()); 
+		map.put("/dealSearch.do", new DealSearch()); 
+		map.put("/ajaxDealDelete.do", new AjaxDealDelete()); 
+		map.put("/dealDetail.do", new DealDetail()); 
+		map.put("/dealUpdate.do", new DealUpdate()); 
+		map.put("/updateDeal.do", new UpdateDeal()); 
+		
+		map.put("/ajaxLikeDeal.do", new AjaxLikeDeal());//위시리스트 
 		
 		map.put("/communityList.do", new CommunityList()); //커뮤 목록+페이징
 		map.put("/communityForm.do", new CommunityForm()); //커뮤 폼
 		map.put("/communityInsert.do", new CommunityInsert()); //커뮤 등록
 		map.put("/communitySearch.do", new CommunitySearch()); //커뮤 검색
-		map.put("/communityDelete.do", new CommunityDelete()); //커뮤 삭제
+		map.put("/ajaxCommunityDelete.do", new AjaxCommunityDelete()); //커뮤 삭제
 		map.put("/communityDetail.do", new CommunityDetail()); //커뮤 상세
 		map.put("/communityUpdate.do", new CommunityUpdate()); //커뮤 수정폼
 		map.put("/updateCommunity.do", new UpdateCommunity()); //커뮤 수정완료
+		
+		map.put("/ajaxCommentsDelete.do", new AjaxCommentsDelete()); //코멘트삭제
+		map.put("/ajaxCommentsInsert.do", new AjaxCommentsInsert()); // ajax를 통해 댓글 등록
+	
+		
+		
+		
 		
 	}
 

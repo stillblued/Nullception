@@ -23,9 +23,9 @@ public class AjaxComList implements Command {
 		ObjectMapper mapper = new ObjectMapper();
 
 		String nickname = (String) session.getAttribute("nick");
-		System.out.println(nickname);
+		
 		String category = request.getParameter("category");
-		System.out.println(category);
+	
 		list = myPageDao.commSelectList(nickname, category);
 
 		String jsonList = null;

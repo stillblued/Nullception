@@ -2,11 +2,8 @@ package co.nullception.udongmarket.community.command;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.comments.service.CommentsService;
 import co.nullception.udongmarket.comments.serviceImpl.CommentsServiceImpl;
@@ -14,7 +11,6 @@ import co.nullception.udongmarket.comments.vo.CommentsVO;
 import co.nullception.udongmarket.community.service.CommunityService;
 import co.nullception.udongmarket.community.serviceImpl.CommunityServiceImpl;
 import co.nullception.udongmarket.community.vo.CommunityVO;
-import co.nullception.udongmarket.faq.vo.FaqVO;
 
 public class CommunityDetail implements Command {
 

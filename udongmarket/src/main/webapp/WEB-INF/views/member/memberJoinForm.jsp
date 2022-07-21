@@ -125,7 +125,7 @@
 				</div>
 			</form>
 		</div>
-	</div>
+
 	<!-- <form id="kakaoForm" method="post" action="kakaoLogin.do">
       <input type="hidden" name="email"/>
       <input type="hidden" name="name"/>

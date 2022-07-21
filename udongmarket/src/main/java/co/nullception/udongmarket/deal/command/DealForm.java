@@ -8,7 +8,7 @@ public class DealForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// 거래 상품 등록
+		
 		return "deal/dealForm";
 	}
 

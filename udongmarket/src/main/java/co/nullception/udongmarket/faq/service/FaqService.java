@@ -12,5 +12,4 @@ public interface FaqService {
 	int faqDelete(FaqVO vo); // 글 수정
 	List<FaqVO> faqSearch(String key, String val); // 전체 검색
 	
-	int sFaqInsert(FaqVO vo);// 세션 값을 받아서 Faq 등록//사용안함
 }

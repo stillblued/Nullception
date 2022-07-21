@@ -1,8 +1,15 @@
 package co.nullception.udongmarket.likes.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+
 public class LikesVO {
 	
-	private String boardId;
+	private int boardId;
 	private String nickname;
+	
 
 }

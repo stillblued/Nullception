@@ -16,7 +16,6 @@ public class FaqVO {
 	private String reportedId;
 	private String attach;
 	private String attachDir;
-	private String boardNick;
 
 
 }

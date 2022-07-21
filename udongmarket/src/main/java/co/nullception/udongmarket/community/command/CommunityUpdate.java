@@ -16,6 +16,7 @@ public class CommunityUpdate implements Command{
 		CommunityVO vo = new CommunityVO();
 	
 		vo.setBoardId(Integer.parseInt(request.getParameter("boardId")));
+	
 		vo = comDao.communitySelect(vo);
 				
 		request.setAttribute("vo", vo);

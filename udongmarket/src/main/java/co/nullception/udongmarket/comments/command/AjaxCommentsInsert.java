@@ -24,21 +24,25 @@ public class AjaxCommentsInsert implements Command {
 
 		vo.setBoardId(Integer.valueOf(request.getParameter("BoardId")));
 		vo.setCommentsContent(request.getParameter("Content"));
-		String sessionNickName = (String) session.getAttribute("nick");
-		vo.setCommentsNick(sessionNickName);
+		String NickName = (String) session.getAttribute("nick");
+		vo.setCommentsNick(NickName);
 		vo.setBoardNick(request.getParameter("BoardNick"));
 		
-		commentsDao.commentInsert(vo);
+		int cnt = 0;
+		
+		cnt = commentsDao.commentInsert(vo);
 		
 		
 		String jsonList = null;
-		
-	
+
+		if(cnt != 0) {
 		
 		try {
 			jsonList = mapper.writeValueAsString(vo);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
+		}
+		
 		}
 		
 		return "ajax:" + jsonList;

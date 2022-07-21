@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.service.CommunityService;
 import co.nullception.udongmarket.community.serviceImpl.CommunityServiceImpl;
@@ -14,6 +13,7 @@ public class CommunitySearch implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		
 		CommunityService communityDao = new CommunityServiceImpl();
 		List<CommunityVO> list = new ArrayList<CommunityVO>();
 		
@@ -49,22 +49,14 @@ public class CommunitySearch implements Command {
 			}
 		}
 
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("pageBlock", pageBlock);
+
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("key", key);
 		request.setAttribute("val", val);
-
-		HttpSession session = request.getSession();
-		String nickname = (String) session.getAttribute("nick");
-		String location = (String) session.getAttribute("location");
-		
-		request.setAttribute("nickname", nickname);
-		request.setAttribute("location", location);
 		request.setAttribute("list", list);
 		
-		return "community/communitySearch";
+		return "community/communityList";
 
 	}
 

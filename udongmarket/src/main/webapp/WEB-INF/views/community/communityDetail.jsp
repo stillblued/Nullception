@@ -1,189 +1,209 @@
-<%@page import="co.nullception.udongmarket.community.vo.CommunityVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/custom.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 <title>communityDetail</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.do">메인</a></li>
-				<li><a href="dealList.do">장터</a></li>
-				<li class="active"><a href="communityList.do">커뮤니티</a></li>
-			</ul>
-		</div>
-	</nav>
 
-	<%
-	CommunityVO vo = (CommunityVO) request.getAttribute("vo");
-	%>
+	<br>
+	<br>
+	<div align="center"  width="60%">
 
-	<form name="writeFrm">
-		<input type="hidden" id="boardId" name="boardId"
-			value="<%=vo.getBoardId()%>" /> <input type="hidden" id="boardNick"
-			name="boardNick" value="<%=vo.getNickname()%>" />
+		<div>
+			<h1>${vo.comCategory}</h1>
+		</div>
+		<br>
 		<table id="tb" border="1" width="60%">
-			<tr>
-				<th>#</th>
-				<td colspan="3"><%=vo.getComCategory()%></td>
-			</tr>
+
+
 
 			<tr>
 				<th>제목</th>
-				<td colspan="3"><%=vo.getComTitle()%></td>
+				<td colspan="3">${ vo.comTitle}</td>
 			</tr>
 
 			<tr>
 				<th>닉네임</th>
-				<td><%=vo.getNickname()%></td>
+				<td>${ vo.nickname}</td>
 				<th>작성일</th>
-				<td><%=vo.getComDate()%></td>
+				<td>${ vo.comDate}</td>
 			</tr>
 
 			<tr>
-				<td colspan="4">
-					<%
-					if (vo.getAttachDir() != null) {
-					%> <img src="<%=vo.getAttachDir()%>"> <%
- }
- %> <%=vo.getComContent()%></td>
+				<td colspan="4"><c:if test="${not empty vo.attachDir }">
+						<img src="${vo.attachDir}">
+					</c:if> ${vo.comContent }</td>
 			</tr>
-
 		</table>
 
-		<%
-		if (session.getAttribute("id") != null && session.getAttribute("nick").toString().equals(vo.getNickname())) {
-		%>
-		<button type="button" onclick="location.href='communityUpdate.do?boardId=<%=vo.getBoardId()%>'">수정</button>
-		<button type="button" onclick="location.href='communityDelete.do?boardId=<%=vo.getBoardId()%>'">삭제</button>
-		<%
-		}
-		%>
-		<button type="button" onclick="boardReport()">신고</button>
-		<button type="button" onclick="location.href='communityList.do'">목록</button>
-	</form>
-	<hr>
+		<br>
 
-	<form name="coFrm" action="coInsert()" method="post">
-		<table border=1 width="60%">
-			<thead id="comm">
+		<c:if test="${vo.nickname eq nick }">
+			<form name="Frm" action="communityUpdate.do" method="post"
+				enctype="application/x-www-form-urlencoded"  width="60%">
+				<input type="hidden" id="boardId" name="boardId"
+					value="${vo.boardId}" />
+				<button type="submit">수정</button>
+				<button type="button" onclick="boardDelete(${vo.boardId})">삭제</button>
+			</form>
+		</c:if>
+
+		<c:if test="${not empty nick }">
+			<button type="button"
+				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button>
+		</c:if>
+
+		<button type="button" onclick="location.href='communityList.do'">목록</button>
+
+
+		<hr>
+
+
+		<table border="1"  width="60%">
+
+			<tbody id="comm">
 				<c:forEach items="${coList}" var="list">
 					<tr>
 						<th>${list.commentsNick }</th>
 						<td>${list.commentsContent }</td>
 						<td>${list.commentsDate }</td>
-						<td><c:if test="${ nick eq list.commentsNick }">
-								<button type="button" onclick="coDelete()">삭제</button>
-							</c:if>
-							<button type="button" onclick="coReport()">신고</button></td>
+						<td><c:if test="${ not empty nick }">
+								<button type="button"
+									onclick="location.href='faqForm.do?reportedId=${list.commentsNick }'">신고</button>
+							</c:if> <c:if test="${ nick eq list.commentsNick }">
+								<button type="button" onclick="coDelete(${list.commentsId })">삭제</button>
+							</c:if></td>
 					</tr>
 				</c:forEach>
+
 				<c:if test="${empty coList}">
-					<tr id = "coEmpty">
+					<tr id="coEmpty">
 						<td colspan="6" align="center">등록된 댓글이 없습니다.</td>
 					</tr>
 				</c:if>
-			</thead>
-			<c:if test="${not empty nick}">
-				<tbody>
-					<tr>
-						<th>${nick}</th>
-						<td colspan="2"><textarea id="commentsContent"></textarea></td>
-						<td><input type="button" onclick="coInsert()" value="댓글등록"></td>
-					</tr>
-				</tbody>
-			</c:if>
+			</tbody>
 		</table>
-	</form>
+
+
+		<c:if test="${not empty nick}">
+
+			<table border="1"  width="60%">
+				<tr>
+					<td>${nick}</td>
+					<td><textarea id="commentsContent"></textarea></td>
+					<td><button type="button" onclick="coInsert()">등록</button></td>
+				</tr>
+			</table>
+
+		</c:if>
+
+
+
+	</div>
+	<br>
+	<br>
 
 	<br>
 
-	<script type="text/javascript">
-		function coInsert() {
-			let Content = $("#commentsContent").val();
-			let BoardId = $("#boardId").val();
-			let BoardNick = $("#boardNick").val();
+	<script>
+	
+	function coInsert(){
 
+		let Content = $("#commentsContent").val();
+		let BoardId = ${vo.boardId};
+		let BoardNick = '${vo.nickname}';
+		
+		$("#commentsContent").val('');
+
+		$.ajax({
+			url : "ajaxCommentsInsert.do",
+			type : "post",
+			data : {
+				Content : Content,
+				BoardId : BoardId,
+				BoardNick : BoardNick
+			},
+			dataType : "Json",
+			success : function(result) {
+				if (result != null) {
+					
+					window.location.reload();
+					
+				} else {
+					alert("댓글 등록 실패.");
+				}
+			},
+			error : function(err) {
+				console.log("err");
+			}
+		})
+	}
+	
+	function coDelete(data) {
+		let CommentsId = data;
+		
+		if(confirm('댓글을 삭제하시겠습니까?')){  
+		$.ajax({
+			url : "ajaxCommentsDelete.do",
+			type : "post",
+			data : { CommentsId : CommentsId
+			},
+			dataType : "Json",
+			
+			success : function(result) {
+				if (result != null) {
+			
+					window.location.reload();
+
+				} else {
+					alert("댓글 삭제 실패.");
+				}
+			},
+			
+			error : function(err) {
+				console.log(err);
+			}
+		})
+		}
+	}
+	
+function boardDelete(data) {
+		
+		let BoardId = data;
+		
+		if(confirm('게시글을 삭제하시겠습니까?')){  
+			
 			$.ajax({
-				url : "ajaxCommentsInsert.do",
+				url : "ajaxCommunityDelete.do",
 				type : "post",
-				data : {
-					Content : Content,
-					BoardId : BoardId,
-					BoardNick : BoardNick
-
-				},
+				data : { BoardId : BoardId },
 				dataType : "Json",
 				success : function(result) {
+
 					if (result != null) {
-						jsonListConvert(result);
+						location.replace('communityList.do');
 
 					} else {
-						alert("댓글 등록 실패.");
-					}
-				},
+						alert("게시글 삭제 실패.");
+					}},
 				error : function() {
 					console.log("error");
 				}
 			});
-		}
-
-		function jsonListConvert(data) {
-			$("#coEmpty").remove();
-			let today = timestamp();
-
-			console.log(data);
-
-			let tr = $("<tr />").append(
-					$("<th />").text(data.commentsNick),
-					$("<td />").text(data.commentsContent),
-					$("<td />").text(today),
-					$("<td  />").append(
-							$("<button onclick='coDelete()' />").text("삭제"),
-							$("<button onclick='report()' />").text("신고")
-
-					));
-
-			$('#comm').append(tr);
-
+		
 		};
-
-		function timestamp() {
-			var today = new Date();
-			today.setHours(today.getHours() + 9);
-			return today.toISOString().replace('T', ' ').substring(0, 19);
-		}
-
-		function coDelete() {
-
-		}
-
-		function coReport() {
-
-		}
+	}
 		
-		function boaedReport() {
-			
-		}
-		
-	</script>
+
+</script>
+
 
 
 

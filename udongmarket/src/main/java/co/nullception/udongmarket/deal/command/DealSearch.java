@@ -5,9 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.deal.service.DealService;
 import co.nullception.udongmarket.deal.serviceimpl.DealServiceImpl;
@@ -53,23 +50,13 @@ public class DealSearch implements Command {
 			}
 		}
 
-		
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("key", key);
-		request.setAttribute("val", val);
-
-		HttpSession session = request.getSession();
-		String nickname = (String) session.getAttribute("nick");
-		String location = (String) session.getAttribute("location");
-		
-		request.setAttribute("nickname", nickname);
-		request.setAttribute("location", location);
+		request.setAttribute("val", val);	
 		request.setAttribute("list", list);
 		
-		return "deal/dealSearch";
+		return "deal/dealList";
 	}
 
 }

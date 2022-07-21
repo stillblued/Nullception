@@ -15,7 +15,7 @@
 <!-- Load fonts style after rendering the layout styles -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="css/fontawesome.min.css">
-<script src="js/jquery-1.11.0.min"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 
 <title><tiles:getAsString name="title" /></title>
 </head>
@@ -39,8 +39,7 @@
 	</div>
 	
 	<!-- Start Script -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+   
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/templatemo.js"></script>
     <script src="js/custom.js"></script>
