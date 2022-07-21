@@ -23,7 +23,6 @@ public class FaqInsert implements Command {
 		FaqVO vo = new FaqVO();
 		//vo.setNickname(request.getParameter("nickname"));
 		//vo.setFaqDate(request.getParameter("faqDate"));
-		
 		HttpSession session = request.getSession(); // 서버가 만들어 놓은 세션 가져옴. 서버정보는 request통해서 가져옴.
 		//System.out.println("sessionNickName : " +sessionNickName);
 		//System.out.println("vo.getNickname : " + vo.getNickname());
@@ -54,6 +53,9 @@ public class FaqInsert implements Command {
 			vo.setFaqTitle(multi.getParameter("faqTitle"));
 			vo.setFaqContent(multi.getParameter("faqContent"));
 			vo.setAttach(multi.getParameter("attach"));
+			vo.setBoardNick(sessionNickName);
+			System.out.println("insert servelt boardNic 받음  OK : "+vo.getBoardNick());
+			
 
 			if (originalFileName != null) {
 				vo.setAttach(originalFileName);
