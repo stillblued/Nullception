@@ -22,21 +22,19 @@ public class FaqDetail implements Command {
 		// 게시글 상세 조회
 				FaqService faqDao = new FaqServiceImpl();
 				CommentsService coDao = new CommentsServiceImpl();
-				List <CommentsVO> coList = new ArrayList<CommentsVO>(); 
-				List<MemberVO> memVO = new ArrayList<>();
-				
+				List <CommentsVO> coList = new ArrayList<CommentsVO>(); 	
 				FaqVO vo = new FaqVO();
-				int boardId = Integer.parseInt(request.getParameter("boardId"));
-				String commentsNick = request.getParameter("CommentsNick");
-				vo.setBoardId(boardId); 
-				vo.setBoardNick(commentsNick); 
-				coList = coDao.commentList(boardId);
 				
+				int boardId = Integer.parseInt(request.getParameter("boardId"));
+
+				vo.setBoardId(boardId); 
+        
+				coList = coDao.commentList(boardId);
 				vo = faqDao.faqSelectOne(vo);
 				
 				request.setAttribute("coList", coList);
 				request.setAttribute("vo", vo);
-				request.setAttribute("memVO", memVO);
+
 				
 				return "admin/faqDetail";
 	}

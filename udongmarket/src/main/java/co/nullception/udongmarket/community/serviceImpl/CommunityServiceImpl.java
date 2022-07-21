@@ -88,7 +88,8 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public int communityInsert(CommunityVO vo) {
 		int cnt = 0;
-		String sql = "INSERT INTO COMMUNITY (BOARD_ID, NICKNAME, COM_CATEGORY, COM_TITLE, COM_CONTENT, LOCATION, ATTACH, ATTACH_DIR) VALUES (ID_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO COMMUNITY (BOARD_ID, NICKNAME, COM_CATEGORY, COM_TITLE, COM_CONTENT, LOCATION, ATTACH, ATTACH_DIR) "
+				+ " VALUES (ID_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			conn = dao.getConnection();
@@ -113,7 +114,8 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public int communityUpdate(CommunityVO vo) {
 		int cnt = 0;
-		String sql = "UPDATE COMMUNITY SET COM_CATEGORY =?, COM_TITLE =?, COM_CONTENT =?, LOCATION =?, ATTACH =?, ATTACH_DIR =?, NICKNAME =?, COM_DATE = SYSDATE WHERE BOARD_ID=?";
+		String sql = "UPDATE COMMUNITY SET "
+				+ " COM_CATEGORY =?, COM_TITLE =?, COM_CONTENT =?, LOCATION =?, ATTACH =?, ATTACH_DIR =?, NICKNAME =?, COM_DATE = SYSDATE WHERE BOARD_ID=?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);

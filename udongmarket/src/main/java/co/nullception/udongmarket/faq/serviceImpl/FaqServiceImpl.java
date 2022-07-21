@@ -37,7 +37,7 @@ public class FaqServiceImpl implements FaqService {
 				vo.setReportedId(rs.getString("REPORTED_ID"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
-				vo.setBoardNick(rs.getString("BOARD_NICK"));
+			
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -65,7 +65,8 @@ public class FaqServiceImpl implements FaqService {
 				vo.setReportedId(rs.getString("REPORTED_ID"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
-				vo.setBoardNick(rs.getString("BOARD_NICK"));
+			
+		
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,8 +79,8 @@ public class FaqServiceImpl implements FaqService {
 	@Override
 	public int faqInsert(FaqVO vo) {
 		int cnt = 0;
-		String sql = "insert into faq (BOARD_ID, NICKNAME, FAQ_TITLE, FAQ_CONTENT, FAQ_DATE, ATTACH, ATTACH_DIR,BOARD_NICK)"
-				+ " values(id_SEQ.nextval, ?, ?, ?, sysdate, ? ,?,?)";
+		String sql = "insert into faq (BOARD_ID, NICKNAME, FAQ_TITLE, FAQ_CONTENT, ATTACH, ATTACH_DIR, REPORTED_ID)"
+				+ " values(id_SEQ.nextval, ?, ?, ?, ? ,?, ?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -88,7 +89,8 @@ public class FaqServiceImpl implements FaqService {
 			psmt.setString(3, vo.getFaqContent());
 			psmt.setString(4, vo.getAttach());
 			psmt.setString(5, vo.getAttachDir());
-			psmt.setString(6, vo.getBoardNick());
+			psmt.setString(6, vo.getReportedId());
+			
 
 			cnt = psmt.executeUpdate();
 
@@ -108,7 +110,11 @@ public class FaqServiceImpl implements FaqService {
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getBoardId());
+			
+			psmt.setString(1, vo.getFaqTitle());
+			psmt.setString(2, vo.getFaqContent());
+			psmt.setInt(3, vo.getBoardId());
+			
 			cnt = psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,6 +162,7 @@ public class FaqServiceImpl implements FaqService {
 				vo.setReportedId(rs.getString("REPORTED_ID"));
 				vo.setAttach(rs.getString("ATTACH"));
 				vo.setAttachDir(rs.getString("ATTACH_DIR"));
+				
 				list.add(vo);
 			}
 		}catch(SQLException e) {
@@ -167,28 +174,6 @@ public class FaqServiceImpl implements FaqService {
 		return list;
 	}
 
-	@Override
-	public int sFaqInsert(FaqVO vo) {
-		int cnt = 0;
-		String sql = "insert into faq (BOARD_ID, NICKNAME, FAQ_TITLE, FAQ_CONTENT, FAQ_DATE, ATTACH, ATTACH_DIR)"
-				+ " values(id_SEQ.nextval, ?, ?, ?, sysdate, ? ,?)";
-		try {
-			conn = dao.getConnection();
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getNickname());
-			psmt.setString(2, vo.getFaqTitle());
-			psmt.setString(3, vo.getFaqContent());
-			psmt.setString(4, vo.getAttach());
-			psmt.setString(5, vo.getAttachDir());
-
-			cnt = psmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			dao.disconnect();
-		}
-		return cnt;
-	}
+	
 
 }

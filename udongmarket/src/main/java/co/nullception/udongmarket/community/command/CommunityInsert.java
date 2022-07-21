@@ -16,13 +16,12 @@ public class CommunityInsert implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// 게시글 등록(파일 업로드 포함)
+		
 		CommunityService communityDao = new CommunityServiceImpl();
 		CommunityVO vo = new CommunityVO();
 				
 		String rootPath = request.getSession().getServletContext().getRealPath("/") ;
 		String savePath = rootPath + "fileSave/" ;
-
 		
 		File targetDir = new File(savePath);
 		if (!targetDir.exists()) {
@@ -31,11 +30,11 @@ public class CommunityInsert implements Command {
 
 		int uploadSize = 1024 * 1024 * 1024; // 최대 파일 사이즈 : 100MB
 		int n = 0;
+		
 		HttpSession session = request.getSession();
 
 		try {
-			MultipartRequest multi = new MultipartRequest(request, savePath, uploadSize, "utf-8",
-					new DefaultFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, savePath, uploadSize, "utf-8", new DefaultFileRenamePolicy());
 			String originalFileName = multi.getOriginalFileName("file");
 			String saveFileName = multi.getFilesystemName("file");
 

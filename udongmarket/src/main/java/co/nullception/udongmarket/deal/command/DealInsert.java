@@ -48,9 +48,11 @@ public class DealInsert implements Command {
 			vo.setDealTitle(multi.getParameter("dealTitle"));
 			vo.setDealContent(multi.getParameter("dealContent"));
 			int price = 0;
+			
 			if (multi.getParameter("price") != null) {
 				price = Integer.parseInt(multi.getParameter("price"));
 			}
+			
 			vo.setPrice(price);
 			vo.setDealState(multi.getParameter("dealState"));
 
@@ -70,7 +72,7 @@ public class DealInsert implements Command {
 		if (cnt != 0) {
 			returnPage = "dealList.do";
 		} else {
-			request.setAttribute("message", "게시글 등록이 실패했습니다.");
+			request.setAttribute("message", "거래 등록 실패");
 			returnPage = "deal/dealError";
 		}
 		return returnPage;

@@ -1,122 +1,235 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ page import="co.nullception.udongmarket.deal.vo.DealVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/custom.css">
-<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<title>dealDetail</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.do">메인</a></li>
-				<li class="active"><a href="dealList.do">장터</a></li>
-				<li><a href="communityList.do">커뮤니티</a></li>
-			</ul>
-		</div>
-	</nav>	
 
-	<%
-		DealVO vo = (DealVO)request.getAttribute("vo");
-	%>
+	<br>
+	<br>
 
-	<div><h3>게시글 상세보기</h3></div>
-	<form name="frm">
-	<input type="hidden" id="boardId" name="boardId" value="${vo.boardId}">
-	<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
-		<thead>
+	<div align="center"  width="60%">
+	
+	<div><h1> ${ vo.dealTitle}</h1></div>
+<br>
+		<table id="tb" border="1" width="60%">
+
+
 			<tr>
-				<th colspan="2" style="text-align: center;">게시글 상세보기</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr>
-				<th>카테고리</th>
-				<td>왜 안나오냐고 ${vo.dealCategory}</td>
 				<th>작성자</th>
-				<td>${vo.nickname}</td>
-				<th>작성일자</th>
-				<td>${vo.dealDate.substring(0,11)}</td>
+				<td>${ vo.nickname}</td>
+				<th>작성일</th>
+				<td>${ vo.dealDate}</td>
 			</tr>
+
 			<tr>
-				<th>상품이미지</th>
-				<td colspan="6">
-					<%-- <%
-						if (vo.getAttachDir() != null) {
-					%>
-						<img src="<%= vo.getAttachDir() %>">
-					<%
-						}
-					%> --%>
-				<c:if test="${vo.attachDir != null}">
-						<img src="${vo.attachDir}">
+				<td colspan="4"><c:if test="${not empty vo.attachDir }">
+						<img src="${vo.attachDir}" width="50%">
+					</c:if> ${vo.dealContent }</td>
+			</tr>
+		</table>
+
+		<br>
+
+		<c:if test="${vo.nickname eq nick }">
+			<form name="Frm" action="dealUpdate.do" method="post"
+				enctype="application/x-www-form-urlencoded">
+				<input type="hidden" id="boardId" name="boardId"
+					value="${vo.boardId}" />
+				<button type="submit">수정</button>
+				<button type="button" onclick="delDeal(${vo.boardId})">삭제</button>
+			</form>
+		</c:if>
+
+		<c:if test="${not empty nick }">
+			<button type="button" id="Ilikeit"
+				onclick="likeDeal(${ vo.boardId})">♥</button>
+			<button type="button"
+				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button>
+		</c:if>
+
+		<button type="button" onclick="location.href='dealList.do'">목록</button>
+
+
+		<hr>
+
+
+		<table border="1" width="60%">
+
+			<tbody id="comm">
+				<c:forEach items="${coList}" var="list">
+					<tr>
+						<th>${list.commentsNick }</th>
+						<td>${list.commentsContent }</td>
+						<td>${list.commentsDate }</td>
+						<td><c:if test="${ not empty nick }">
+								<button type="button"
+									onclick="location.href='faqForm.do?reportedId=${list.commentsNick }'">신고</button>
+							</c:if> <c:if test="${ nick eq list.commentsNick }">
+								<button type="button" onclick="comDelete(${list.commentsId })">삭제</button>
+							</c:if></td>
+					</tr>
+				</c:forEach>
+
+				<c:if test="${empty coList}">
+					<tr id="coEmpty">
+						<td colspan="6" align="center">등록된 댓글이 없습니다.</td>
+					</tr>
 				</c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td colspan="1">${vo.dealTitle}</td>
-				<th>가격</th>
-				<td colspan="1">${vo.price}</td>
-				<th>거래상태</th>
-				<td colspan="1">${vo.dealState}</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td height="100" colspan="6">${vo.dealContent}</td>
-			</tr>
-			<tr>
-				<th>거래상태</th>
-				<td colspan="5">
-				<c:choose>
-					<c:when test="${vo.dealState eq 'yes'}">
-					<input type="radio" name="dealState" value="yes" checked="checked">거래가능
-					<input type="radio" name="dealState" value="no">거래중
-					<input type="radio" name="dealState" value="done">거래완료
-					</c:when>
-					<c:when test="${vo.dealState eq 'no'}">
-					<input type="radio" name="dealState" value="yes">거래가능
-					<input type="radio" name="dealState" value="no" checked="checked">거래중
-					<input type="radio" name="dealState" value="done">거래완료
-					</c:when>
-					<c:otherwise>
-					<input type="radio" name="dealState" value="yes">거래가능
-					<input type="radio" name="dealState" value="no">거래중
-					<input type="radio" name="dealState" value="done" checked="checked">거래완료
-					</c:otherwise>
-				</c:choose>
-				</td>
-			</tr>
-		</tbody>
-	</table><br>
-	</form>
-		<a href="dealList.do" class="btn btn-primary">목록</a>
-		
-				<%
-					if (vo.getNickname().equals(session.getAttribute("nick")) || session.getAttribute("author").equals("ADMIN")) {
-				%>
-			<%-- <c:if test="${vo.nickname eq getNickname()}"> --%>
-				<a href="dealUpdateForm.do?boardId=<%= vo.getBoardId() %>" class="btn btn-primary">수정</a>
-				<a onclick="return confirm('삭제하시겠습니까?')" href="dealDelete.do?boardId=<%= vo.getBoardId() %>" class="btn btn-danger">삭제</a>
-			<%-- </c:if> --%>
-				<%
+			</tbody>
+		</table>
+
+
+		<c:if test="${not empty nick}">
+
+			<table border="1" width="60%">
+				<tr>
+					<td>${nick}</td>
+					<td><textarea id="commentsContent"></textarea></td>
+					<td><button type="button" onclick="comInsert()">등록</button></td>
+				</tr>
+			</table>
+
+		</c:if>
+
+	</div>
+	<br>
+	<br>
+
+
+
+	<script>
+	
+	function likeDeal(data) {
+		let BoardId = data;
+		if(confirm('관심 상품에 추가하시겠습니까?')){  
+			$.ajax({
+				url : "ajaxLikeDeal.do",
+				type : "post",
+				data : { BoardId : BoardId
+				},
+				dataType : "Json",
+				
+				success : function(result) {
+					if (result != null) {
+						
+						$("#Ilikeit").attr('disabled', true);
+						alert("관심 상품 추가!");
+
+					} else {
+						alert("추가 실패");
 					}
-				%>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+				},
+				
+				error : function(err) {
+					console.log(err);
+				}
+				
+			})
+			}
+		
+	}
+	
+	
+	function comInsert(){
+
+		let Content = $("#commentsContent").val();
+		let BoardId = ${vo.boardId};
+		let BoardNick = '${vo.nickname}';
+		
+		$("#commentsContent").val('');
+
+		$.ajax({
+			url : "ajaxCommentsInsert.do",
+			type : "post",
+			data : {
+				Content : Content,
+				BoardId : BoardId,
+				BoardNick : BoardNick
+			},
+			dataType : "Json",
+			success : function(result) {
+				if (result != null) {
+					
+					window.location.reload();
+					
+				} else {
+					alert("댓글 등록 실패.");
+				}
+			},
+			error : function(err) {
+				console.log("err");
+			}
+		})
+	}
+	
+	function comDelete(data) {
+		let CommentsId = data;
+		
+		if(confirm('댓글을 삭제하시겠습니까?')){  
+		$.ajax({
+			url : "ajaxCommentsDelete.do",
+			type : "post",
+			data : { CommentsId : CommentsId
+			},
+			dataType : "Json",
+			
+			success : function(result) {
+				if (result != null) {
+			
+					window.location.reload();
+
+				} else {
+					alert("댓글 삭제 실패.");
+				}
+			},
+			
+			error : function(err) {
+				console.log(err);
+			}
+		})
+		}
+	}
+	
+function delDeal (data) {
+		
+		let BoardId = data;
+		
+		if(confirm('게시글을 삭제하시겠습니까?')){  
+			
+			$.ajax({
+				url : "ajaxDealDelete.do",
+				type : "post",
+				data : { BoardId : BoardId },
+				dataType : "Json",
+				success : function(result) {
+
+					if (result != null) {
+						location.replace('dealList.do');
+
+					} else {
+						alert("게시글 삭제 실패.");
+					}},
+				error : function() {
+					console.log("error");
+				}
+			});
+		
+		};
+	}
+		
+
+</script>
+
+
+
+
 </body>
 </html>

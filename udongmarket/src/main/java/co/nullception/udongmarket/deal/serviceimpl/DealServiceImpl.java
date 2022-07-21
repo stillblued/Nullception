@@ -11,6 +11,7 @@ import co.nullception.udongmarket.comm.DataSource;
 import co.nullception.udongmarket.deal.vo.DealVO;
 
 public class DealServiceImpl implements DealService {
+	
 	private DataSource dao = DataSource.getInstance();
 	private Connection conn;
 	private PreparedStatement psmt;
@@ -44,7 +45,6 @@ public class DealServiceImpl implements DealService {
 				vo.setAttach(rs.getString("attach"));
 				vo.setAttachDir(rs.getString("attach_dir"));
 				vo.setLocation(rs.getString("location"));
-				vo.setNickname(rs.getString("nickname"));
 				
 				list.add(vo);
 			}
@@ -91,7 +91,8 @@ public class DealServiceImpl implements DealService {
 	public int dealInsert(DealVO vo) {
 		// 글 등록
 		int cnt = 0;
-		String sql = "insert into deal values (id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into  deal (board_id, nickname, deal_category, deal_title, deal_content, price, location, attach, attach_dir) "
+				+ " values (id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -99,8 +100,8 @@ public class DealServiceImpl implements DealService {
 			psmt.setString(2, vo.getDealCategory());
 			psmt.setString(3, vo.getDealTitle());
 			psmt.setString(4, vo.getDealContent());
-			psmt.setString(5, vo.getDealDate());
-			psmt.setInt(6, vo.getPrice());
+			psmt.setInt(5, vo.getPrice());
+			psmt.setString(6, vo.getLocation());
 			psmt.setString(7, vo.getAttach());
 			psmt.setString(8, vo.getAttachDir());
 			cnt = psmt.executeUpdate();
@@ -135,7 +136,7 @@ public class DealServiceImpl implements DealService {
 		// 글 수정
 		int cnt = 0;
 		String sql = "UPDATE DEAL SET DEAL_CATEGORY = ?, DEAL_TITLE = ?, DEAL_CONTENT = ? "
-				+ " PRICE = ?, DEAL_STATE = ?, ATTACH = ?, LOCATION = ? WHERE BOARD_ID =?";
+				+ " PRICE = ?, DEAL_STATE = ?, ATTACH = ?, ATTACH_DIR=?, LOCATION = ?, DEAL_DATE = SYSDATE WHERE BOARD_ID =?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -144,9 +145,10 @@ public class DealServiceImpl implements DealService {
 			psmt.setString(3, vo.getDealContent());
 			psmt.setInt(4, vo.getPrice());
 			psmt.setString(5, vo.getDealState());
-			psmt.setString(6, vo.getAttach());
-			psmt.setString(7, vo.getLocation());
-			psmt.setInt(8, vo.getBoardId());
+			psmt.setString(7, vo.getAttach());
+			psmt.setString(8, vo.getAttachDir());
+			psmt.setString(9, vo.getLocation());
+			psmt.setInt(10, vo.getBoardId());
 			cnt = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -174,6 +176,7 @@ public class DealServiceImpl implements DealService {
 			while(rs.next()) {
 				vo = new DealVO();
 				vo.setBoardId(rs.getInt("board_id"));
+				vo.setNickname(rs.getString("nickname"));
 				vo.setDealCategory(rs.getString("deal_category"));
 				vo.setDealTitle(rs.getString("deal_title"));
 				vo.setDealContent(rs.getString("deal_content"));
@@ -183,7 +186,6 @@ public class DealServiceImpl implements DealService {
 				vo.setAttach(rs.getString("attach"));
 				vo.setAttachDir(rs.getString("attach_dir"));
 				vo.setLocation(rs.getString("location"));
-				vo.setNickname(rs.getString("nickname"));
 				list.add(vo);
 			}
 		} catch(SQLException e) {

@@ -19,7 +19,7 @@ public class DealList implements Command {
 		DealService dealDao = new DealServiceImpl();
 		int cnt = dealDao.getDealCount();
 		
-		int pageSize = 10;
+		int pageSize = 4;
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null) {
 			pageNum = "1";

@@ -20,29 +20,10 @@ display: inline-block
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.do">메인</a></li>
-				<li><a href="dealList.do">장터</a></li>
-				<li><a href="communityList.do">커뮤니티</a></li>
-			    <li class="active"><a href="memberList.do">사용자 목록</a></li>
-			    <li><a href="faq.do">FAQ</a></li>
-			</ul>
-		</div>
-	</nav>
-	<div><h1>사용자 목록</h1><h1><button onclick="location.href='faq.do'">FAQ</button></div>
-	<br>
 
+	<br><br>
+	<div><h1>사용자 목록</h1></div>
+<br>
 		<div id="membauthorCategory" onchange="authorselectList()">
 		<ul>
 		<!-- <li>

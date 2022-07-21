@@ -206,8 +206,10 @@
 					<img src="https://developers.kakao.com/tool/resource/static/img/button/kakaosync/complete/ko/kakao_login_medium_narrow.png" />
 					</a> 
 				</div>
-			</form> -->
-		
+
+			</form>
+		</div>
+
 	<!-- <form id="kakaoForm" method="post" action="kakaoLogin.do">
       <input type="hidden" name="email"/>
       <input type="hidden" name="name"/>

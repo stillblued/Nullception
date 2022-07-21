@@ -211,7 +211,6 @@ public class MyPageImpl implements MyPage {
 	@Override
 	public int checkCommentState(String nickname) {
 		// count 값을 int 변수에 담아주고 출력해보기
-		int r = 0;
 		int count = 0;
 		String sql = "select count(*) as cnt from comments where comments_state = '읽지않음' and board_nick = ?";
 		try {
@@ -229,7 +228,7 @@ public class MyPageImpl implements MyPage {
 		} finally {
 			dao.disconnect();
 		}
-		System.out.println("count : " + count);
+
 		return count;
 	}
 

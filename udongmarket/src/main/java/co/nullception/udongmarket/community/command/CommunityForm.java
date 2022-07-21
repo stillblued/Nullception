@@ -8,6 +8,7 @@ public class CommunityForm implements Command {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		
 		return "community/communityForm";
 	}
 
