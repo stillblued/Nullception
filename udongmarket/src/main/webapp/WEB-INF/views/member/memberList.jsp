@@ -40,7 +40,7 @@ display: inline-block
 			</ul>
 		</div>
 	</nav>
-	<div><h1>사용자 목록</h1></div>
+	<div><h1>사용자 목록</h1><h1><button onclick="location.href='faq.do'">FAQ</button></div>
 	<br>
 
 		<div id="membauthorCategory" onchange="authorselectList()">

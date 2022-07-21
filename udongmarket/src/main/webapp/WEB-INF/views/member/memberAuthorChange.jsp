@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="js/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
@@ -32,7 +33,7 @@
 	<h3>회원정보 수정</h3>
 	
 	<div align="center">
-		<form action="memberList.do" id="frm" method="post">
+		<form id="frm" action="memberAuthorUpdate.do" method="post">
 			<table border="1">
 			<tr>
 				<td>회원아이디</td>
@@ -57,7 +58,7 @@
 				<td><input type="text" readonly="readonly" id="author" name="author" value="${member.author }"></td>
 				<td>변경할 등급</td>
 				<td>
-				<select id="authorChange" onchange="changeAuthor(this)">
+				<select id="authorChange" id="author" name="author"><!-- <onchange="changeAuthor(this)"> -->
 				<option value="USER">USER</option>
 				<option value="BLIND">BLIND</option>
 				</select>
@@ -65,21 +66,18 @@
 			
 			</tr>
 		</table>
-		
-		
-		<input type="submit" value="수정하기">
-		</form>
+		<input type="submit"  value="수정하기">
+		</form><!-- onclick="location.href='memberAuthorUpdate.do'" -->
 	
 	</div>
 	
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 	function changeAuthor(e){
-		console.log(e.value);[]
 		let selected = $("#author option:selected");
 		selected.value = e.value;
-		console.log("selected"+selected.value);
+		//console.log("selected"+selected.value);
 	}
 	
-	</script>
+	</script> -->
 </body>
 </html>

@@ -49,6 +49,7 @@ import co.nullception.udongmarket.member.command.MemberLogin;
 import co.nullception.udongmarket.member.command.MemberLoginForm;
 import co.nullception.udongmarket.member.command.MemberLogout;
 import co.nullception.udongmarket.member.command.MemberAuthorChange;
+import co.nullception.udongmarket.member.command.MemberAuthorUpdate;
 import co.nullception.udongmarket.myPage.command.AjaxComList;
 import co.nullception.udongmarket.myPage.command.AjaxCommPrintCommentLists;
 import co.nullception.udongmarket.myPage.command.AjaxCommentCheck;
@@ -85,7 +86,8 @@ public class FrontController extends HttpServlet {
 		map.put("/kakaoJoin.do", new KakaoJoin()); // 카카오로 들어올시 처리
 		map.put("/memberList.do", new MemberList()); //관리자페이지 > 멤버리스트 호출
 		map.put("/ajaxMemberList.do", new AjaxMemberList()); // 관리자페이지 > 멤버리스트 필터
-		map.put("/memberauthorChange.do", new MemberAuthorChange()); // 멤버 권한 변경
+		map.put("/memberauthorChange.do", new MemberAuthorChange()); // 멤버 권한 변경폼
+		map.put("/memberAuthorUpdate.do", new MemberAuthorUpdate()); // 멤버 권한 수정해주는 메소드 
     
 		map.put("/faq.do", new FAQCommand()); // FAQ List
 		map.put("/faqForm.do", new FaqFormCommand()); // FAQ FORM

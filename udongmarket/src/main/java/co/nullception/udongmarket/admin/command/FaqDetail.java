@@ -27,9 +27,9 @@ public class FaqDetail implements Command {
 				
 				FaqVO vo = new FaqVO();
 				int boardId = Integer.parseInt(request.getParameter("boardId"));
-				String boardNick = request.getParameter("nick");
+				String commentsNick = request.getParameter("CommentsNick");
 				vo.setBoardId(boardId); 
-				vo.setBoardNick(boardNick); 
+				vo.setBoardNick(commentsNick); 
 				coList = coDao.commentList(boardId);
 				
 				vo = faqDao.faqSelectOne(vo);
@@ -37,8 +37,6 @@ public class FaqDetail implements Command {
 				request.setAttribute("coList", coList);
 				request.setAttribute("vo", vo);
 				request.setAttribute("memVO", memVO);
-				
-				System.out.println("boardId : "+boardId);
 				
 				return "admin/faqDetail";
 	}
