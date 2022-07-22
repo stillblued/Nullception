@@ -25,25 +25,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.do">메인</a></li>
-				<li><a href="dealList.do">장터</a></li>
-				<li><a href="communityList.do">커뮤니티</a></li>
-			</ul>
-		</div>
-	</nav>	
-
+<br>
 	<div align="center">
 		<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
 			<thead>

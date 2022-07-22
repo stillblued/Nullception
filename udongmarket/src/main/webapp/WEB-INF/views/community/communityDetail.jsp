@@ -8,19 +8,17 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="img/apple-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/templatemo.css">
+<link rel="stylesheet" href="css/custom.css">
+<!-- Load fonts style after rendering the layout styles -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="css/fontawesome.min.css">
 <title>communityDetail</title>
 <style type="text/css">
-
-* {
-text-align: center;
-
-}
-
-table {
-display: inline-block;
-margin: 10px;
-
-}
 
 </style>
 </head>
@@ -28,31 +26,27 @@ margin: 10px;
 
 	<br>
 	<br>
-	<div align="center"  width="60%">
-
-		<div>
+	<div align="center">
+		<%-- <div>
 			<h1>${vo.comCategory}</h1>
 		</div>
-		<br>
-		<table id="tb" border="1" width="60%">
-
-
-
+		<br> --%>
+		<table id="tb" class="table table-bordered" style="width: 800px; text-align:center;">
 			<tr>
-				<th>제목</th>
+				<th class="table-light">제목</th>
 				<td colspan="3">${ vo.comTitle}</td>
 			</tr>
-
 			<tr>
-				<th>닉네임</th>
+				<th class="table-light">닉네임</th>
 				<td>${ vo.nickname}</td>
-				<th>작성일</th>
-				<td>${ vo.comDate}</td>
+				<th class="table-light">작성일</th>
+				<td>${ vo.comDate.substring(0,11)}</td>
+				<th class="table-light">카테고리</th>
+				<td>${vo.comCategory}</td>
 			</tr>
-
 			<tr>
-				<td colspan="4"><c:if test="${not empty vo.attachDir }">
-						<img src="${vo.attachDir}">
+				<td colspan="6"><c:if test="${not empty vo.attachDir }">
+						<img src="${vo.attachDir}"><br>
 					</c:if> ${vo.comContent }</td>
 			</tr>
 		</table>
@@ -61,7 +55,7 @@ margin: 10px;
 
 		<c:if test="${vo.nickname eq nick }">
 			<form name="Frm" action="communityUpdate.do" method="post"
-				enctype="application/x-www-form-urlencoded"  width="60%">
+				enctype="application/x-www-form-urlencoded">
 				<input type="hidden" id="boardId" name="boardId"
 					value="${vo.boardId}" />
 				<button type="submit">수정</button>
@@ -80,8 +74,7 @@ margin: 10px;
 		<hr>
 
 
-		<table border="1"  width="60%">
-
+		<table class="table table-striped table-hover table-bordered" style="width: 800px; text-align:center;">
 			<tbody id="comm">
 				<c:forEach items="${coList}" var="list">
 					<tr>
@@ -91,7 +84,8 @@ margin: 10px;
 						<td><c:if test="${ not empty nick }">
 								<button type="button"
 									onclick="location.href='faqForm.do?reportedId=${list.commentsNick }'">신고</button>
-							</c:if> <c:if test="${ nick eq list.commentsNick }">
+							</c:if>
+							<c:if test="${ nick eq list.commentsNick }">
 								<button type="button" onclick="coDelete(${list.commentsId })">삭제</button>
 							</c:if></td>
 					</tr>
@@ -103,23 +97,19 @@ margin: 10px;
 					</tr>
 				</c:if>
 			</tbody>
-		</table>
+		</table><br>
 
 
 		<c:if test="${not empty nick}">
 
-			<table border="1"  width="60%">
+			<table class="table table-striped table-hover table-bordered" style="width: 800px; text-align:center;">
 				<tr>
 					<td>${nick}</td>
 					<td><textarea id="commentsContent"></textarea></td>
 					<td><button type="button" onclick="coInsert()">등록</button></td>
 				</tr>
 			</table>
-
 		</c:if>
-
-
-
 	</div>
 	<br>
 	<br>
@@ -218,6 +208,12 @@ function boardDelete(data) {
 
 </script>
 
+	<!-- Start Script -->
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
 
 
 

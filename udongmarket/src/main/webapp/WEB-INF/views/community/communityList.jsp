@@ -7,12 +7,8 @@
 <meta charset="UTF-8">
 <title>communityList</title>
 <script src="js/jquery-3.6.0.min.js"></script>
-
-
 </head>
 <body>
-
-
 
 	<br>
 	<br>
@@ -24,7 +20,7 @@
 			<button type="button" onclick="changeLo2()">▶▶</button>
 			</c:if>
 		</div>
-<br>
+		<br>
 			<form id="frm" action="communitySearch.do" method="get">
 				<select id="key" name="key">
 					<option value="com_title">제목</option>
@@ -32,21 +28,25 @@
 				</select> &nbsp;&nbsp; 
 				
 				<input type="text" id="val" name="val"> &nbsp;&nbsp;
-				<input type="submit" value="검색">
+				<!-- <input type="submit" value="검색"> -->
+				<button class="btn btn-success" type="submit">검색</button>
+				
+				<c:if test="${not empty id}">
+				<!-- <a class="btn btn-success" onclick="location.href='communityForm.do'">글쓰기</a> -->
+				<button class="btn btn-success" type="button" onclick="location.href='communityForm.do'">글쓰기</button>
+				</c:if>
 			</form>
-		
 		<br>
 
-			<table border="1" id="table">
+			<table class="table table-bordered" style="width: 1000px; text-align: center;">
 				<thead>
-					<tr>
-						<th width="70">#</th>
+					<tr class="table-light">
+						<th width="100">#</th>
 						<th width="450">제목</th>
 						<th width="70">작성자</th>
 						<th width="170">작성일</th>
 					</tr>
 				</thead>
-				
 				<tbody id="tb">
 
 					<c:if test="${empty list}">
@@ -62,7 +62,7 @@
 									onclick="location.href='communityDetail.do?boardId=${list.boardId }'">${list.comTitle }</td>
 								<td
 									onclick="location.href='communitySearch.do?key=nickname&val=${list.nickname }'">${list.nickname }</td>
-								<td>${list.comDate }</td>
+								<td>${list.comDate.substring(0,11) }</td>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -104,14 +104,6 @@
 				%>
 			</div>
 		
-		</c:if>
-			
-		<br>
-		
-		<c:if test="${not empty id}">
-			<div>
-				<button type="button" onclick="location.href='communityForm.do'">글쓰기</button>
-			</div>
 		</c:if>
 	</div>
 	

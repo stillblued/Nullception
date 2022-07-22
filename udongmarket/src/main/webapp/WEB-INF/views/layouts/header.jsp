@@ -15,31 +15,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="css/fontawesome.min.css">
 <script src="js/jquery-3.6.0.min.js"></script>
-
 <title>header</title>
-<style>
-.justify-content-end {
-	justify-content: flex-end !important;
-}
-
-.align-self-center {
-  align-self: center !important;
-  margin: 0px;
-}
-
-.align-items-center {
-  align-items: center !important;
-  margin: 0px;
-}
-
-#templatemo_main_nav a::after {
-  width: 100%;
-  height: 0;
-  background: #34b6d3;
-  left: 0;
-}
-
-</style>
 </head>
 <body>
 	<%-- <div>
@@ -265,6 +241,12 @@
 		}, 6000);
 	</script>
 
+	<!-- Start Script -->
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
 
 </body>
 </html>
