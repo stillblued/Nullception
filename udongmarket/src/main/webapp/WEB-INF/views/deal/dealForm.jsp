@@ -21,13 +21,13 @@
 		<form id="frm" action="dealInsert.do" method="post"
 			enctype="multipart/form-data"  width="60%">
 			<div class="form">
-				<table border="1">
+				<table class="table table-bordered" style="width: 1000px;">
 					<tr>
-						<th>상품이미지</th>
+						<th class="table-light">상품이미지</th>
 						<td><input type="file" id="file" name="file"></td>
 					</tr>
 					<tr>
-						<th>카테고리</th>
+						<th class="table-light">카테고리</th>
 						<td><select id="dealCategory" name="dealCategory">
 								<option value="전자기기">전자기기</option>
 								<option value="의류/잡화">의류/잡화</option>
@@ -41,18 +41,18 @@
 						</select></td>
 					</tr>
 					<tr>
-						<th>상품명</th>
+						<th class="table-light">상품명</th>
 						<td><input type="text" id="dealTitle" name="dealTitle"
 							required="required"></td>
 					</tr>
 					<tr>
-						<th>가격</th>
+						<th class="table-light">가격</th>
 						<td><input type="number" id="price" name="price"
 							required="required"></td>
 					</tr>
 
 					<tr>
-						<th>설명</th>
+						<th class="table-light">내용</th>
 						<td><textarea rows="6" cols="50" id="dealContent"
 								name="dealContent" required="required"></textarea></td>
 					</tr>
@@ -63,11 +63,14 @@
 			</div>
 			<br>
 			<div>
-				<button type="submit">완료</button>
+				<button class="btn btn-success" type="submit">등록</button>
+				<!-- <button type="submit">완료</button> -->
 				&nbsp;&nbsp;&nbsp;
-				<button type="reset">리셋</button>
+				<button class="btn btn-success" type="reset">리셋</button>
+				<!-- <button type="reset">리셋</button> -->
 				&nbsp;&nbsp;&nbsp;
-				<button type="button" onclick="location.href='dealList.do'">취소</button>
+				<button class="btn btn-success" type="button" onclick="location.href='dealList.do'">목록가기</button>
+				<!-- <button type="button" onclick="location.href='dealList.do'">취소</button> -->
 			</div>
 		</form>
 	</div>

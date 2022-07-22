@@ -127,7 +127,7 @@
 		</details>
 		<hr>
 		<details>
-		    <summary style="font-size: 0px;"><h5>좋아요 게시글 목록</h5></summary>
+		    <summary style="font-size: 0px;"><h5>좋아요 게시글 목록</h5></summary><br>
 		    		<table border="1" class="table table-striped" style="width: 80%;  text-align :center;">
 			<thead>
 				<tr>
