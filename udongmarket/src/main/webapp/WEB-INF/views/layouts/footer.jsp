@@ -50,6 +50,10 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="dealList.do">장터</a></li>
                         <li><a class="text-decoration-none" href="communityList.do">커뮤니티</a></li>
+                        <c:if test="${author == 'ADMIN' }">
+                        <li><a class="text-decoration-none" href="memberList.do">사용자목록</a></li>
+                        <li><a class="text-decoration-none" href="faq.do">FAQ</a></li>
+                        </c:if>
                     </ul>
                 </div>
 

@@ -20,7 +20,7 @@
 		<h1>FAQ</h1>
 	</div>
 	<form name="writeFrm">
-		<table border="1" width="50%">
+		<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
 
 			<%
 			FaqVO vo = (FaqVO) request.getAttribute("vo");
@@ -52,7 +52,7 @@
 				<td colspan="4" align="center">
 					<!-- ajax 방식으로 쓰면 안됨... --> <!-- <button type="button" onclick="faqUpdate(this)">수정</button>
 					<button type="button" onclick="location.href='ajaxFaqDelete.do'">삭제</button>  -->
-					<button type="button" onclick="location.href='faq.do'">목록</button>
+					<button type="button" class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;" onclick="location.href='faq.do'">목록</button>
 
 				</td>
 			</tr>
@@ -62,14 +62,14 @@
 	<hr>
 
 
-	<table border=1>
+	<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
 		<thead>
 			<form name="commentsfrm" action="commentsInsert()" method="post">
 			<tr>
 				<input type="hidden" name="commentsNick" value="${nick}">
 				<th>${nick}</th>
-				<td><textarea id="commentsContent"></textarea></td>&nbsp;&nbsp;&nbsp;&nbsp;
-				<td><input type="button" onclick="commentsInsert()"
+				<td><textarea id="commentsContent" style="width: 800px; height: 30px;"></textarea></td>&nbsp;&nbsp;&nbsp;&nbsp;
+				<td><input type="button" class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;" onclick="commentsInsert()"
 					value="댓글등록"></td>
 			</tr>
 			</form>
@@ -82,7 +82,7 @@
 			</c:if> --%>
 			<c:forEach items="${coList}" var="list">
 				<tr>
-					<th>${list.CommentsNick }</th>
+					<th>${list.commentsNick }</th>
 					<td>${list.commentsContent }</td>
 					<td>${list.commentsDate }</td>
 				</tr>
@@ -110,6 +110,7 @@
 				dataType : "Json",
 				success : function(result) {
 					if (result != null) {
+						console.log(result);
 						jsonListConvert(result);
 
 					} else {
@@ -127,10 +128,10 @@
 				let today = timestamp();   	
 
 				let tr = $("<tr />").append(
-				 		$("<th />").text(data.nickname),
+				 		$("<th />").text(data.commentsNick),
 				 		$("<td />").text(data.commentsContent),
-				 		$("<td />").text(today)
-				 		 ,$("<td  />").append($("<button onclick='commentdelete()' />").text("삭제"))
+				 		$("<td />").text(today),
+				 		$("<td  />").append($("<button class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;"  onclick='commentdelete()' />").text("삭제"))
 				 		);
 				
 				$('#comm').append(tr);

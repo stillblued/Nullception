@@ -30,35 +30,38 @@
 			</ul>
 		</div>
 	</nav>	
-	<h3>회원정보 수정</h3>
 	
 	<div align="center">
 		<form id="frm" action="memberAuthorUpdate.do" method="post">
-			<table border="1">
+			<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
+			<tr>
+				<td colspan="4"><h5>회원정보 수정</h5></td>
+			</tr>
 			<tr>
 				<td>회원아이디</td>
-				<td><input type="text" id="memberId" name="memberId" value="${member.memberId }" readonly="readonly"></td>
+				<td><input type="text" id="memberId" name="memberId" class="form-control" value="${member.memberId }" readonly="readonly"></td>
 				<td>닉네임</td>
-				<td><input type="text" id="nickName" name="nickName" value="${member.nickname }" readonly="readonly"></td>
+				<td><input type="text" id="nickname" name="nickname" class="form-control" value="${member.nickname }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>연락처</td>
-				<td><input type="text" id="phone" name="phone" value="${member.phone }"></td>
+				<td><input type="text" id="phone" name="phone" class="form-control" value="${member.phone }"></td>
 				<td>이메일</td>
-				<td><input type="text" id="email" name="email" value="${member.email }"></td>
+				<td><input type="text" id="email" name="email" class="form-control" value="${member.email }"></td>
 			</tr>
 			<tr>
 				<td>지역</td>
-				<td><input type="text" id="location" name="location" value="${member.location }"></td>
+				<td><input type="text" id="location" name="location" class="form-control" value="${member.location }"></td>
 				<td>매너온도</td>
-				<td><input type="text" id="mannerTemp" name="mannerTemp" value="${member.mannerTemp }" readonly="readonly"></td>
+				<td><input type="text" id="mannerTemp" name="mannerTemp" class="form-control" value="${member.mannerTemp }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>기존 등급</td>
-				<td><input type="text" readonly="readonly" id="author" name="author" value="${member.author }"></td>
+				<%-- <td><input type="text" readonly="readonly" id="author" name="author" value="${member.author }"></td> --%>
+				<td>${member.author }</td>
 				<td>변경할 등급</td>
 				<td>
-				<select id="authorChange" id="author" name="author"><!-- <onchange="changeAuthor(this)"> -->
+				<select form="frm" id="author" name="author">
 				<option value="USER">USER</option>
 				<option value="BLIND">BLIND</option>
 				</select>
@@ -66,18 +69,20 @@
 			
 			</tr>
 		</table>
-		<input type="submit"  value="수정하기">
+		<input type="submit"  class="btn btn-info" role="button" style="width: 120px; color: white;" value="수정하기">
 		</form><!-- onclick="location.href='memberAuthorUpdate.do'" -->
 	
 	</div>
-	
-<!-- 	<script type="text/javascript">
-	function changeAuthor(e){
-		let selected = $("#author option:selected");
-		selected.value = e.value;
+	<br>
+  <script type="text/javascript">
+	/* function changeAuthor(e){
+		console.log(e.value);
+		let formValue = $("#author").val();
+		formValue = e.value;
+		console.log(formValue);
 		//console.log("selected"+selected.value);
-	}
+	} */
 	
-	</script> -->
+	</script>
 </body>
 </html>
