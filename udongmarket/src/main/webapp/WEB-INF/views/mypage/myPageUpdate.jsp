@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/custom.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 <title>Insert title here</title>
@@ -64,11 +64,18 @@
 		</table>
 		<div>
 			<input type="submit" class="btn btn-info" role="button" style="width: 120px; color: white;" value="수정하기">
-			<input type="button" class="btn btn-info" role="button" style="width: 120px; color: white;" value="뒤로가기" onclick="location.href='myPage.do'">
+			<input type="button" class="btn btn-info" role="button" style="width: 120px; color: white;" value="뒤로가기" onclick="myPage()";>
 		</div>
 		<br>
 		</form>
 		<br>
 	</div>
+	
+	<script type="text/javascript">
+	function myPage(){
+		location.href='myPage.do';
+	}
+	
+	</script>
 </body>
 </html>
