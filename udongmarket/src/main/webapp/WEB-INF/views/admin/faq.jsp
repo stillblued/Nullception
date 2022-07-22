@@ -10,14 +10,13 @@
 <title>FAQ</title>
 </head>
 <body>
-	
+	<br>
 	<div><h1>FAQ</h1></div>
-	
 	
 	<div>
 		<div>
 			<form id="suchfrm">
-				<label>FAQ검색</label><br> <select id="key" name="key">
+				<label></label><br> <select id="key" name="key">
 					<option value="FAQ_TITLE">제목</option>
 					<option value="FAQ_CONTENT">내용</option>
 				</select>&nbsp;
@@ -27,9 +26,9 @@
 
 			</form>
 		</div>
-		<label><input type="hidden" id="author" value="${author }" >${author}</label>
+		<label><input type="hidden" id="author" value="${author }"></label>
 		<form id="frm">
-			<table border="1">
+			<table border="1" class="table table-striped" style="width: 80%; text-align :center;">
 
 				<thead>
 					<tr>
@@ -73,7 +72,7 @@
 									</c:if>
 									
 									<c:if test="${ author == 'ADMIN' }">
-									<td><input type="button" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
+									<td><input type="button" class="btn btn-info" role="button" style="width: 120px; color: white;" onclick="faqDelete(this)" id="delete" name="delete" value="삭제"></td>
 									</c:if>
 								</tr>
 							</c:forEach>
@@ -89,10 +88,11 @@
 
 			<!-- 유저만 글 등록가능 -->
 			<c:if test="${author == 'ADMIN' || author =='USER' || author == 'BLIND' }">
-			<input type="button" onclick="location.href='faqForm.do'" id="write" name="write" value="등록">
+			<input type="button" class="btn btn-info" role="button" style="width: 120px; color: white;" onclick="location.href='faqForm.do'" id="write" name="write" value="등록">
 				</c:if>
 		</form>
 	</div>
+	<br>
 	<script type="text/javascript">
 		/* faq 검색 */
 		function faqSearch() {

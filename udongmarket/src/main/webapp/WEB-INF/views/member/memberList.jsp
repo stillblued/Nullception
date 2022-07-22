@@ -45,7 +45,7 @@ display: inline-block
 		</li>
 		</ul>
 		</div><br>
-		<table border=1 id='tble'>
+		<table border=1 id='tble' class="table table-striped" style="width: 80%; text-align :center;">
 			<thead>
 				<tr>
 					<th>아이디</th>
@@ -53,7 +53,7 @@ display: inline-block
 					<th>이메일</th>
 					<th>매너온도</th>
 					<th>권한</th>
-					<th>권한변경<th>
+					<th>권한변경</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,10 +64,11 @@ display: inline-block
 						<td>${m.email}</td>
 						<td>${m.mannerTemp}</td>
 						<td>${m.author}</td>
+						<td>
 						<c:if test="${m.author != 'ADMIN' }">
-						<td><button type="button" onclick="location.href='memberauthorChange.do?memberId='+'${m.memberId}'">권한변경</button></td>
+						<button type="button" class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;" onclick="location.href='memberauthorChange.do?memberId='+'${m.memberId}'">권한변경</button>
 						</c:if>
-					
+						</td>
 					</tr>
 				</c:forEach>
 			
@@ -103,12 +104,12 @@ display: inline-block
 		let tbody = $("<tbody />");
 		$.each(data, function(index, item){
 			let row = $("<tr />").append(
-   					  $("<td />").text(item.author),
 					  $("<td />").text(item.memberId),
 					  $("<td />").text(item.nickname),
 					  $("<td />").text(item.email),
-					  $("<td />").text(item.mannerTemp)
-					  ,$("<td  />").append($("<button onclick='' />").text("권한변경"))
+					  $("<td />").text(item.mannerTemp),
+   					  $("<td />").text(item.author)
+					  ,$("<td  />").append($("<button class='btn btn-info' role='button' style='width: 120px; color: white; display: inline-block; onclick='' />").text("권한변경"))
 							  );
 			tbody.append(row);
 		});
@@ -119,7 +120,7 @@ display: inline-block
 		$("#tble tbody").remove();
 		let tbody = $("<tbody />");
 			let row = $("<tr />").append(
-   					  $("<td colspan='5' />").text("결과값이 없습니다")
+   					  $("<td colspan='6' />").text("결과값이 없습니다")
    					  
 					);
 			tbody.append(row);

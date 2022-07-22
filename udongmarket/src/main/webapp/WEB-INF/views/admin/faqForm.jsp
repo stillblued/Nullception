@@ -51,7 +51,7 @@
 			<input type="hidden" id="nickname" value="${nick }">
 			
 			
-			<table id="detailBoard" border="1">
+			<table id="detailBoard" border="1" class="table table-striped" style="width: 38%; text-align :center;">
 			
 			<c:if test="${not empty report }">
 				<tr>
@@ -84,8 +84,8 @@
 				</tr>
 
 			</table>
-			<br> <input type="submit" value="전송">
-			<input type="button" onclick="location.href='faq.do'" value="취소">
+			<br> <input type="submit" type="button" class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;" value="전송">
+			<input type="button" type="button" class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;" onclick="location.href='faq.do'" value="취소">
 		</form>
 		             
 	</div>

@@ -24,14 +24,15 @@ public class MemberAuthorUpdate implements Command {
 		
 		String author = request.getParameter("author");
 		String nickname = request.getParameter("nickname");
-		String blind = request.getParameter("BLIND");
 		vo.setAuthor(author);
 		vo.setNickname(nickname);
 		
+		System.out.println(author);
+		System.out.println(nickname);
 		
-		System.out.println(blind);
 		System.out.println(vo.getAuthor());
 		System.out.println(vo.getNickname());
+		
 		vo.setMemberId(request.getParameter("memberId"));
 		vo.setPhone(request.getParameter("phone"));
 		vo.setEmail(request.getParameter("email"));
