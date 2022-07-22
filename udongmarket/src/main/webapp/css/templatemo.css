@@ -30,48 +30,52 @@ Table of contents
 
 /* Typography */
 body, ul, li, p, a, label, input, div {
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px !important;
+  font-family: 'Nanum Gothic';
+  font-size: 20px !important;
   font-weight: 300 !important;
 }
 .h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Hanna';
   font-size: 48px !important;
   font-weight: 200 !important;
 }
 .h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Hanna';
   font-size: 30px !important;
   font-weight: 300;
 }
 .h3 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nanum Gothic';
   font-size: 22px !important;
 }
 /* General */
 .logo { font-weight: 500 !important;}
 .text-warning {  color: #ede861 !important;}
 .text-muted { color: #bcbcbc !important;}
-.text-success { color: #59ab6e !important;}
-.text-light { color: #cfd6e1 !important;}
-.bg-dark { background-color: #212934 !important;}
-.bg-light { background-color: #e9eef5 !important;}
-.bg-black { background-color: #1d242d !important;}
-.bg-success { background-color: #59ab6e !important;}
+.text-success { color: rgb(41, 163, 188) !important;}
+.text-light { color: #181f27 !important; font-weight: bolder;}
+.bg-dark { background-color: #98c1cb !important;}
+.bg-light { background-color: #e4eff1 !important;}
+.bg-black { background-color: #98c1cb !important;}
+.bg-success { background-color: #98c1cb !important;}
 .btn-success {
-  background-color: #59ab6e !important;
-  border-color: #56ae6c !important;
+  background-color: #98c1cb !important;
+  border-color: #98c1cb !important;
+}
+.btn-info {
+  background-color: #98c1cb !important;
+  border-color: #98c1cb !important;
 }
 .pagination .page-link:hover {color: #000;}
 .pagination .page-link:hover, .pagination .page-link.active {
-  background-color: #69bb7e;
+  background-color: #98c1cb;
   color: #fff;
 }
 /* Nav */
 #templatemo_nav_top { min-height: 40px;}
 #templatemo_nav_top * { font-size: .9em !important;}
 #templatemo_main_nav a { color: #212934;}
-#templatemo_main_nav a:hover { color: #69bb7e;}
+#templatemo_main_nav a:hover { color: #98c1cb;}
 #templatemo_main_nav .navbar .nav-icon { margin-right: 20px;}
 
 /* Hero Carousel */
@@ -80,14 +84,14 @@ body, ul, li, p, a, label, input, div {
 .templatemo-accordion a { color: #000;}
 .templatemo-accordion a:hover { color: #333d4a;}
 /* Shop */
-.shop-top-menu a:hover { color: #69bb7e !important;}
+.shop-top-menu a:hover { color: #98c1cb !important;}
 /* Product */
 .product-wap { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);}
 .product-wap .product-color-dot.color-dot-red { background:#f71515;}
 .product-wap .product-color-dot.color-dot-blue { background:#6db4fe;}
 .product-wap .product-color-dot.color-dot-black { background:#000000;}
 .product-wap .product-color-dot.color-dot-light { background:#e0e0e0;}
-.product-wap .product-color-dot.color-dot-green { background:#0bff7e;}
+.product-wap .product-color-dot.color-dot-green { background:#98c1cb;}
 .card.product-wap .card .product-overlay {
   background: rgba(0,0,0,.2);
   visibility: hidden;
@@ -102,7 +106,7 @@ body, ul, li, p, a, label, input, div {
 #carousel-related-product .slick-slide:focus { outline: none !important;}
 #carousel-related-product .slick-dots li button:before {
   font-size: 15px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 /* Brand */
 .brand-img {
@@ -117,11 +121,11 @@ body, ul, li, p, a, label, input, div {
 /* Carousel Hero */
 #template-mo-zay-hero-carousel .carousel-indicators li {
   margin-top: -50px;
-  background-color: #59ab6e;
+  background-color: #98c1cb;
 }
 #template-mo-zay-hero-carousel .carousel-control-next i,
 #template-mo-zay-hero-carousel .carousel-control-prev i {
-  color: #59ab6e !important;
+  color: #98c1cb !important;
   font-size: 2.8em !important;
 }
 /* Carousel Brand */
@@ -132,13 +136,13 @@ body, ul, li, p, a, label, input, div {
 /* Services */
 .services-icon-wap {transition: .3s;}
 .services-icon-wap:hover, .services-icon-wap:hover i {color: #fff;}
-.services-icon-wap:hover {background: #69bb7e;}
+.services-icon-wap:hover {background: #98c1cb;}
 /* Contact map */
 .leaflet-control a, .leaflet-control { font-size: 10px !important;}
 .form-control { border: 1px solid #e8e8e8;}
 /* Footer */
-#tempaltemo_footer a { color: #dcdde1;}
-#tempaltemo_footer a:hover { color: #68bb7d;}
+#tempaltemo_footer a { color: #1d242d;}
+#tempaltemo_footer a:hover { color: #1d242d;}
 #tempaltemo_footer ul.footer-link-list li { padding-top: 10px;}
 #tempaltemo_footer ul.footer-icons li {
   width: 2.6em;
@@ -153,7 +157,7 @@ body, ul, li, p, a, label, input, div {
   color: #212934;
   transition: .5s;
 }
-#tempaltemo_footer .border-light { border-color: #2d343f !important;}
+#tempaltemo_footer .border-light { border-color: rgb(116, 132, 156) !important;}
 /*
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap

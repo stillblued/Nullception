@@ -24,11 +24,6 @@ margin: 10px;
 
 </head>
 <body>
-
-
-
-	
-
 	<br>
 	<br>
 	<div align="center">
@@ -45,7 +40,12 @@ margin: 10px;
 				<option value="deal_title">상품명</option>
 				<option value="deal_content">설명</option>
 			</select> &nbsp;&nbsp; <input type="text" id="val" name="val">
-			&nbsp;&nbsp; <input type="submit" value="검색">
+			&nbsp;&nbsp; <button class="btn btn-success" type="submit">검색</button>
+			
+			<c:if test="${not empty id}">
+				<button class="btn btn-success" type="button" onclick="location.href='dealForm.do'">거래하기</button>
+				<!-- <a class="btn btn-success" onclick="location.href='dealForm.do'">거래하기</a> -->
+		</c:if>
 		</form>
 
 		<br>
@@ -65,12 +65,12 @@ margin: 10px;
 				</tr>
 				<tr>
 					<th>${list.dealTitle }</th>
-					<th>${list.price }￦</th>
+					<th>${list.price } 원</th>
 				</tr>
 				<tr
 					onclick="location.href='dealSearch.do?key=deal_category&val=${list.dealCategory }'">
 					<td>${list.dealCategory }</td>
-					<td>${list.dealDate }</td>
+					<td>${list.dealDate.substring(0,11) }</td>
 				</tr>
 
 			</table>
@@ -111,14 +111,6 @@ margin: 10px;
 				%>
 			</div>
 
-		</c:if>
-
-		<br>
-
-		<c:if test="${not empty id}">
-			<div>
-				<button type="button" onclick="location.href='dealForm.do'">거래하기</button>
-			</div>
 		</c:if>
 	</div>
 

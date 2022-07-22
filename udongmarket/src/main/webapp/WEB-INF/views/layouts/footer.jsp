@@ -14,12 +14,6 @@
 <link rel="stylesheet" href="css/fontawesome.min.css">
 <script src="js/jquery-3.6.0.min.js"></script>
 <title>footer</title>
-<style>
-.text-success {
-    color: #34b6d3 !important;
-    font-family : 'Hanna';
-}
-</style>
 </head>
 <body>
 	<!-- Start Footer -->
@@ -79,6 +73,13 @@
 
     </footer>
     <!-- End Footer -->
+    
+    <!-- Start Script -->
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
 
 </body>
 </html>

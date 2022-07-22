@@ -17,20 +17,20 @@
 
 	<div align="center">
 	
-	<div><h1> ${ vo.dealTitle}</h1></div>
-<br>
-		<table id="tb" border="1" width="60%">
-
-
+	<%-- <div><h1> ${ vo.dealTitle}</h1></div>
+	<br> --%>
+		<table id="tb" class="table table-bordered" style="width: 800px; text-align:center;">
 			<tr>
-				<th>작성자</th>
+				<th class="table-light">제목</th>
+				<td>${ vo.dealTitle}</td>
+				<th class="table-light">작성자</th>
 				<td>${ vo.nickname}</td>
-				<th>작성일</th>
-				<td>${ vo.dealDate}</td>
+				<th class="table-light">작성일</th>
+				<td>${ vo.dealDate.substring(0,11)}</td>
 			</tr>
 
 			<tr>
-				<td colspan="4"><c:if test="${not empty vo.attachDir }">
+				<td colspan="6"><c:if test="${not empty vo.attachDir }">
 						<img src="${vo.attachDir}" width="50%">
 					</c:if> ${vo.dealContent }</td>
 			</tr>
@@ -62,8 +62,7 @@
 		<hr>
 
 
-		<table border="1" width="60%">
-
+		<table class="table table-bordered" style="width: 800px; text-align:center;">
 			<tbody id="comm">
 				<c:forEach items="${coList}" var="list">
 					<tr>
@@ -90,7 +89,7 @@
 
 		<c:if test="${not empty nick}">
 
-			<table border="1" width="60%">
+			<table class="table table-bordered" style="width: 800px; text-align:center;">
 				<tr>
 					<td>${nick}</td>
 					<td><textarea id="commentsContent"></textarea></td>
@@ -265,7 +264,12 @@ function delDealGo(data) {
 
 </script>
 
-
+	<!-- Start Script -->
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
 
 
 </body>
