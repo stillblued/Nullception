@@ -60,7 +60,7 @@
                                 <h1 class="h1 text-success"><b>Zay</b> eCommerce</h1>
                                 <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
                                 <p>
-                                    뭐넣지<a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
+                                    <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
                                     <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
                                     <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
                                 </p>
@@ -134,20 +134,12 @@
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
                                 <li class="text-muted text-right">$240.00</li>
                             </ul>
                             <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
                             </p>
-                            <p class="text-muted">Reviews (24)</p>
                         </div>
                     </div>
                 </div>
@@ -158,20 +150,12 @@
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
                                 <li class="text-muted text-right">$480.00</li>
                             </ul>
                             <a href="shop-single.html" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
                             <p class="card-text">
                                 Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
                             </p>
-                            <p class="text-muted">Reviews (48)</p>
                         </div>
                     </div>
                 </div>
@@ -182,20 +166,12 @@
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
                                 <li class="text-muted text-right">$360.00</li>
                             </ul>
                             <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
                             <p class="card-text">
                                 Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
                             </p>
-                            <p class="text-muted">Reviews (74)</p>
                         </div>
                     </div>
                 </div>

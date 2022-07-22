@@ -28,9 +28,9 @@
 		</div>
 		<br>
 			<form id="frm" action="communityInsert.do" method="post" enctype="multipart/form-data">
-					<table class="table table-striped table-hover table-bordered" style="width: 800px;">
+					<table class="table table-bordered" style="width: 1000px;">
 						<tr>
-							<th>#</th>
+							<th class="table-light">#</th>
 							<td colspan="3">
 							<select id="comCategory" name="comCategory">
 									<option value="알리미">알리미</option>
@@ -42,17 +42,17 @@
 						</tr>
 
 						<tr>
-							<th>제목</th>
+							<th class="table-light">제목</th>
 							<td colspan="3"><input type="text" size="73" id="comTitle" name="comTitle" required="required"></td>
 						</tr>
 						
 						<tr>
-							<th>내용</th>
+							<th class="table-light">내용</th>
 							<td colspan="3"><textarea rows="6" cols="75" id="comContent" name="comContent" required="required"></textarea></td>
 						</tr>
 						
 						<tr>
-							<th>첨부파일</th>
+							<th class="table-light">첨부파일</th>
 							<td colspan="3"><input type="file" id="file" name="file"></td>
 						</tr>
 					</table>
@@ -60,11 +60,14 @@
 				<br>
 				
 				<div>
-				<button type="submit">완료</button>
+				<button class="btn btn-success" type="submit">등록</button>
+				<!-- <button type="submit">완료</button> -->
 				&nbsp;&nbsp;&nbsp;
-				<button type="reset">리셋</button>
+				<button class="btn btn-success" type="reset">리셋</button>
+				<!-- <button type="reset">리셋</button> -->
 				&nbsp;&nbsp;&nbsp;
-				<button type="button" onclick="location.href='communityList.do'">취소</button>
+				<button class="btn btn-success" type="button" onclick="location.href='dealList.do'">목록가기</button>
+				<!-- <button type="button" onclick="location.href='communityList.do'">취소</button> -->
 				</div>
 				
 			</form>

@@ -29,7 +29,7 @@
 				
 				<input type="text" id="val" name="val"> &nbsp;&nbsp;
 				<!-- <input type="submit" value="검색"> -->
-				<button class="btn btn-success" type="submit">검색</button>
+				<button class="btn btn-success" type="submit">검색</button>&nbsp;
 				
 				<c:if test="${not empty id}">
 				<!-- <a class="btn btn-success" onclick="location.href='communityForm.do'">글쓰기</a> -->

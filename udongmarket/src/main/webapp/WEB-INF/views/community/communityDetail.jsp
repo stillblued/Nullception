@@ -52,24 +52,26 @@
 		</table>
 
 		<br>
-
+		
 		<c:if test="${vo.nickname eq nick }">
 			<form name="Frm" action="communityUpdate.do" method="post"
 				enctype="application/x-www-form-urlencoded">
 				<input type="hidden" id="boardId" name="boardId"
 					value="${vo.boardId}" />
-				<button type="submit">수정</button>
-				<button type="button" onclick="boardDelete(${vo.boardId})">삭제</button>
+				<button class="btn btn-success" type="submit">수정</button>
+				<!-- <button type="submit">수정</button> -->
+				<button class="btn btn-success" onclick="boardDelete(${vo.boardId})">삭제</button>
+				<%-- <button type="button" onclick="boardDelete(${vo.boardId})">삭제</button> --%>
 			</form>
 		</c:if>
 
 		<c:if test="${not empty nick }">
-			<button type="button"
-				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button>
+			<button class="btn btn-success" onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button>
+			<%-- <button type="button"
+				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button> --%>
 		</c:if>
-
-		<button type="button" onclick="location.href='communityList.do'">목록</button>
-
+		<button class="btn btn-success" onclick="location.href='communityList.do'">목록</button>
+		<!-- <button type="button" onclick="location.href='communityList.do'">목록</button> -->
 
 		<hr>
 
@@ -105,8 +107,10 @@
 			<table class="table table-striped table-hover table-bordered" style="width: 800px; text-align:center;">
 				<tr>
 					<td>${nick}</td>
-					<td><textarea id="commentsContent"></textarea></td>
-					<td><button type="button" onclick="coInsert()">등록</button></td>
+					<td><textarea name="review" cols="60" id="commentsContent"></textarea></td>
+					<td>
+					<button class="btn btn-success" onclick="coInsert()">등록</button>
+					<!-- <button type="button" onclick="coInsert()">등록</button> --></td>
 				</tr>
 			</table>
 		</c:if>
