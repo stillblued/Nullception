@@ -17,6 +17,8 @@ public class DealList implements Command {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		// 거래 게시판 목록
 		DealService dealDao = new DealServiceImpl();
+		List<DealVO> list = new ArrayList<DealVO>();
+		
 		int cnt = dealDao.getDealCount();
 		
 		int pageSize = 4;
@@ -29,7 +31,7 @@ public class DealList implements Command {
 		int startRow = (currentPage - 1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
 		
-		List<DealVO> list = new ArrayList<DealVO>();
+		
 		list = dealDao.dealSelectList(startRow, endRow);
 		
 		int pageCount = 0;
@@ -48,17 +50,13 @@ public class DealList implements Command {
 			}
 		}
 		
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("pageBlock", pageBlock);
+		String Location = "대구광역시";
+		
+		request.setAttribute("udong", Location);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-
-		HttpSession session = request.getSession();
-		String nickname = (String) session.getAttribute("nick");
-		String location = (String) session.getAttribute("location");
-		request.setAttribute("nickname", nickname);
-		request.setAttribute("location", location);
 		request.setAttribute("list", list);
+		
 		return "deal/dealList";
 	}
 

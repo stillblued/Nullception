@@ -20,8 +20,9 @@
 		<h1>거래 수정</h1>
 	</div>
 	<br>
-		<form id="frm" action="dealInsert.do" method="post"
+		<form id="frm" action="updateDeal.do" method="post"
 			enctype="multipart/form-data" width="60%">
+			<input type="hidden" id="boardId" name="boardId" value="${vo.boardId}" />
 			<div class="form">
 				<table border="1">
 					<tr>

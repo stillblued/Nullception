@@ -9,8 +9,14 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 
+* {
+text-align: center;
+
+}
+
 table {
 display: inline-block;
+margin: 10px;
 
 }
 
@@ -19,11 +25,19 @@ display: inline-block;
 </head>
 <body>
 
+
+
+	
+
 	<br>
 	<br>
 	<div align="center">
 		<div>
-			<h1>우리동네 장터</h1>
+			<h1 id = "titleName">${udong } 장터</h1>
+			<c:if test = "${not empty location}">
+			<button type="button" onclick="changeLoca1()">▶</button>
+			<button type="button" onclick="changeLoca2()">▶</button>
+			</c:if>
 		</div>
 		<br>
 		<form id="frm" action="dealSearch.do" method="get">
@@ -38,7 +52,7 @@ display: inline-block;
 
 		<c:forEach var="list" items="${list}">
 
-			<table border="1" >
+			<table border="1">
 				<tr onclick="location.href='dealDetail.do?boardId=${list.boardId }'">
 					<td colspan="2">
 					<c:if test = "${not empty list.attach }">
@@ -110,6 +124,30 @@ display: inline-block;
 
 	<br>
 	<br>
+
+	<script type="text/javascript">
+	
+	HttpSession session = request.getSession();
+	String Location = (String)session.getAttribute("location");
+	String[] LoArr = Location.split(" ");
+	
+	function changeLoca1() {
+		request.setAttribute("udong", LoArr[1]);
+		
+		location.replace('dealList.do?key=location&val='LoArr[1]);
+		
+	}
+	
+	function changeLoca2() {
+		request.setAttribute("udong", LoArr[2]);
+		
+		location.replace('dealList.do?key=location&val='LoArr[2]);
+		
+	}
+	
+	
+	
+	</script>
 
 
 </body>

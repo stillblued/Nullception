@@ -79,4 +79,28 @@ public class LikesServiceImpl implements LikesService {
 		return cnt;
 	}
 
+	@Override
+	public int searchLikes(LikesVO vo) {
+		String sql = "SELECT COUNT(*) AS CNT FROM Likes WHERE Board_id =? and nickname = ?";
+		int cnt = 0;
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, vo.getBoardId());
+			psmt.setString(2, vo.getNickname());
+			
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				cnt = rs.getInt("CNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
+	}
+
 }
