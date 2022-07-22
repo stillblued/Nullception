@@ -26,17 +26,30 @@ public class AjaxLikeDeal implements Command {
 		vo.setBoardId(Integer.parseInt(request.getParameter("BoardId")));
 	
 		int cnt = 0;
+		String jsonList = null;
+		cnt = likeDao.searchLikes(vo);
+		
+		if(cnt == 0) {
+		
 		cnt = likeDao.likesInsert(vo);
 		
-		String jsonList = null;
-
 		try {
 			jsonList = mapper.writeValueAsString(cnt);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		return "ajax:" + jsonList;
-	
+		} else {
+			
+			cnt = 0;
+			try {
+				jsonList = mapper.writeValueAsString(cnt);
+			} catch (JsonProcessingException e) {
+				
+				e.printStackTrace();
+			}
+			return "ajax:" + jsonList;
+		}
 	
 	
 	}

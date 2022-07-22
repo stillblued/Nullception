@@ -117,7 +117,7 @@ public class DealServiceImpl implements DealService {
 	public int dealDelete(DealVO vo) {
 		// 글 삭제
 		int cnt = 0;
-		String sql = "DELETE * FROM DEAL WHERE BOARD_ID = ?";
+		String sql = "DELETE FROM DEAL WHERE BOARD_ID = ?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -135,8 +135,9 @@ public class DealServiceImpl implements DealService {
 	public int dealUpdate(DealVO vo) {
 		// 글 수정
 		int cnt = 0;
-		String sql = "UPDATE DEAL SET DEAL_CATEGORY = ?, DEAL_TITLE = ?, DEAL_CONTENT = ? "
-				+ " PRICE = ?, DEAL_STATE = ?, ATTACH = ?, ATTACH_DIR=?, LOCATION = ?, DEAL_DATE = SYSDATE WHERE BOARD_ID =?";
+		String sql = "UPDATE DEAL SET "
+				+ " DEAL_CATEGORY = ?, DEAL_TITLE = ?, DEAL_CONTENT = ?, "
+				+ " PRICE = ?, DEAL_STATE = ?, ATTACH = ?, ATTACH_DIR=?, LOCATION = ?, DEAL_DATE = SYSDATE, NICKNAME =? WHERE BOARD_ID =?";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -145,9 +146,10 @@ public class DealServiceImpl implements DealService {
 			psmt.setString(3, vo.getDealContent());
 			psmt.setInt(4, vo.getPrice());
 			psmt.setString(5, vo.getDealState());
-			psmt.setString(7, vo.getAttach());
-			psmt.setString(8, vo.getAttachDir());
-			psmt.setString(9, vo.getLocation());
+			psmt.setString(6, vo.getAttach());
+			psmt.setString(7, vo.getAttachDir());
+			psmt.setString(8, vo.getLocation());
+			psmt.setString(9, vo.getNickname());
 			psmt.setInt(10, vo.getBoardId());
 			cnt = psmt.executeUpdate();
 		} catch(SQLException e) {
@@ -226,6 +228,25 @@ public class DealServiceImpl implements DealService {
 			if(rs.next()) {
 				cnt = rs.getInt("CNT");
 			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+		return cnt;
+	}
+
+	@Override
+	public int getDealGo(int boardId) {
+		int cnt = 0;
+		String sql = "UPDATE DEAL SET DEAL_STATE = '거래대기' WHERE BOARD_ID =?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+		
+			psmt.setInt(1, boardId);
+			
+			cnt = psmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

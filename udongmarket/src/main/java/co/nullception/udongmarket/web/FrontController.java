@@ -29,6 +29,7 @@ import co.nullception.udongmarket.community.command.CommunitySearch;
 import co.nullception.udongmarket.community.command.CommunityUpdate;
 import co.nullception.udongmarket.community.command.UpdateCommunity;
 import co.nullception.udongmarket.deal.command.AjaxDealDelete;
+import co.nullception.udongmarket.deal.command.AjaxGoDeal;
 import co.nullception.udongmarket.deal.command.AjaxLikeDeal;
 import co.nullception.udongmarket.deal.command.DealDetail;
 import co.nullception.udongmarket.deal.command.DealForm;
@@ -131,7 +132,8 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/ajaxCommentsDelete.do", new AjaxCommentsDelete()); //코멘트삭제
 		map.put("/ajaxCommentsInsert.do", new AjaxCommentsInsert()); // ajax를 통해 댓글 등록
-	
+		map.put("/ajaxGoDeal.do", new AjaxGoDeal());//거래신청
+		
 		
 		
 		

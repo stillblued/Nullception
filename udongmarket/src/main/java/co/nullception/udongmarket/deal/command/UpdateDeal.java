@@ -49,12 +49,11 @@ public class UpdateDeal implements Command {
 			vo.setDealCategory(multi.getParameter("dealCategory"));
 			vo.setDealTitle(multi.getParameter("dealTitle"));
 			vo.setDealContent(multi.getParameter("dealContent"));
-			int price = 0;
 			
-			if (multi.getParameter("price") != null) {
-				price = Integer.parseInt(multi.getParameter("price"));
-			}
+			int price = Integer.parseInt(multi.getParameter("price"));
+			int board = Integer.parseInt(multi.getParameter("boardId"));
 			
+			vo.setBoardId(board);
 			vo.setPrice(price);
 			vo.setDealState(multi.getParameter("dealState"));
 			
@@ -71,12 +70,12 @@ public class UpdateDeal implements Command {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		
 		String returnPage = null;
 		
 		if (cnt != 0) { 
-			returnPage = "deal/dealList";
+			returnPage = "dealList.do";
 		} else {
 			request.setAttribute("message", "게시글 수정 실패");
 			returnPage = "deal/dealError";

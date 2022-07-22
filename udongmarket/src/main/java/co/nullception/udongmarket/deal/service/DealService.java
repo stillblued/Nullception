@@ -13,5 +13,6 @@ public interface DealService {
 	List<DealVO> dealSearchList(int startRow, int endRow, String key, String val); // 목록 검색
 	int getDealCount();
 	int getDealSearchCount(String key, String val);
+	int getDealGo(int boardId);
 	
 }

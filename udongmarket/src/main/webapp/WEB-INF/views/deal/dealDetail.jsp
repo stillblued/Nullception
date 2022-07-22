@@ -15,7 +15,7 @@
 	<br>
 	<br>
 
-	<div align="center"  width="60%">
+	<div align="center">
 	
 	<div><h1> ${ vo.dealTitle}</h1></div>
 <br>
@@ -44,13 +44,14 @@
 				<input type="hidden" id="boardId" name="boardId"
 					value="${vo.boardId}" />
 				<button type="submit">수정</button>
-				<button type="button" onclick="delDeal(${vo.boardId})">삭제</button>
+				<button type="button" onclick="delDealGo(${vo.boardId})">삭제</button>
 			</form>
 		</c:if>
 
 		<c:if test="${not empty nick }">
 			<button type="button" id="Ilikeit"
 				onclick="likeDeal(${ vo.boardId})">♥</button>
+				<button type="button" id="GoGoDeal" onclick="GoToDeal(${ vo.boardId})">거래신청</button>
 			<button type="button"
 				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button>
 		</c:if>
@@ -120,11 +121,12 @@
 				success : function(result) {
 					if (result != null) {
 						
-						$("#Ilikeit").attr('disabled', true);
-						alert("관심 상품 추가!");
+						$("#GoGoDeal").attr('disabled', true);
+						alert("거래 신청 완료!");
 
 					} else {
-						alert("추가 실패");
+						$("#GoGoDeal").attr('disabled', true);
+						alert("이미 거래 중인 상품입니다.");
 					}
 				},
 				
@@ -136,7 +138,6 @@
 			}
 		
 	}
-	
 	
 	function comInsert(){
 
@@ -198,7 +199,7 @@
 		}
 	}
 	
-function delDeal (data) {
+function delDealGo(data) {
 		
 		let BoardId = data;
 		
@@ -212,17 +213,53 @@ function delDeal (data) {
 				success : function(result) {
 
 					if (result != null) {
+						alert("게시글 삭제!");
 						location.replace('dealList.do');
 
 					} else {
 						alert("게시글 삭제 실패.");
 					}},
 				error : function() {
+					
 					console.log("error");
 				}
-			});
+			
+			})
 		
-		};
+		}
+	}
+	
+	
+	function GoToDeal(data) {
+		let BoardId = data;
+		if(confirm('거래를 신청하시겠습니까?')){  
+			$.ajax({
+				url : "ajaxGoDeal.do",
+				type : "post",
+				data : { BoardId : BoardId
+				},
+				dataType : "Json",
+				
+				success : function(result) {
+					if (result != null) {
+						
+						$("#Ilikeit").attr('disabled', true);
+						alert("관심 상품 추가!");
+
+					} else {
+						$("#Ilikeit").attr('disabled', true);
+						alert("이미 추가한 상품입니다.");
+					}
+				},
+				
+				error : function(err) {
+					console.log(err);
+				}
+				
+			})
+			}
+		
+		
 	}
 		
 

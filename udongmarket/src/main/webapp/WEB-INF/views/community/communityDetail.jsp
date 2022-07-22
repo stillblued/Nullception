@@ -9,6 +9,20 @@
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 <title>communityDetail</title>
+<style type="text/css">
+
+* {
+text-align: center;
+
+}
+
+table {
+display: inline-block;
+margin: 10px;
+
+}
+
+</style>
 </head>
 <body>
 

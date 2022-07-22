@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import co.nullception.udongmarket.comm.Command;
 import co.nullception.udongmarket.community.service.CommunityService;
 import co.nullception.udongmarket.community.serviceImpl.CommunityServiceImpl;
@@ -46,7 +48,9 @@ public class CommunityList implements Command {
 				endPage = pageCount;
 			}
 		}
-
+		
+		String Location = "대구광역시";
+		request.setAttribute("udong", Location);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("list", list);

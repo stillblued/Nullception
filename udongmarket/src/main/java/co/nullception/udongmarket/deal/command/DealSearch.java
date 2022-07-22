@@ -22,7 +22,7 @@ public class DealSearch implements Command {
 		String val = request.getParameter("val");
 		int cnt = dealDao.getDealSearchCount(key, val);
 		
-		int pageSize = 10;
+		int pageSize = 4;
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null) {
 			pageNum = "1";

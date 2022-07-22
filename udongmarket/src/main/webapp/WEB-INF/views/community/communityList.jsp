@@ -12,11 +12,17 @@
 </head>
 <body>
 
+
+
 	<br>
 	<br>
 	<div align="center">
 		<div>
-			<h1>우리동네 커뮤니티</h1>
+			<h1 id = "titleName">${udong} 커뮤니티</h1>
+			<c:if test = "${not empty location}">
+			<button type="button" onclick="changeLo1()">▶</button>
+			<button type="button" onclick="changeLo2()">▶▶</button>
+			</c:if>
 		</div>
 <br>
 			<form id="frm" action="communitySearch.do" method="get">
@@ -111,6 +117,33 @@
 	
 	<br>
 	<br>
+	
+	<script type="text/javascript">
+	
+	HttpSession session = request.getSession();
+	String Location = (String)session.getAttribute("location");
+	String[] LoArr = Location.split(" ");
+	
+	function changeLo1() {
+		
+		
+		request.setAttribute("udong", LoArr[1]);
+			
+		location.replace('communityList.do?key=location&val='LoArr[1]);
+		
+	}
+	
+	function changeLo2() {
+		
+		request.setAttribute("udong", LoArr[2]);
+		
+		location.replace('communityList.do?key=location&val='LoArr[2]);
+		
+	}
+	
+	
+	
+	</script>
 
 
 </body>
