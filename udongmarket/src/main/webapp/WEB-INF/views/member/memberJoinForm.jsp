@@ -47,7 +47,7 @@
                         <label for="inputname">아이디</label>
                         <input type="text" class="form-control mt-1" id="memberId" name="memberId" onKeyUp="KeyInput(2)">
                         <input type="hidden" class="form-control mt-1" id="checkId" value="No"><br>
-						<button type="button" id="btn1" onclick="idCheck()" class="input-group-text btn-success text-light">중복체크</button>
+						<button type="button" id="btn1" onclick="idCheck()" class="btn btn-info" role="button" style="width: 100px; color: white;">중복체크</button>
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputemail">비밀번호</label>
@@ -61,7 +61,7 @@
                         <label for="inputemail">닉네임</label>
                         <input type="text" class="form-control mt-1" id="nickname" name="nickname" size="20" onKeyUp="KeyInput(3)">
                         <input type="hidden" class="form-control mt-1" id="checkNickname" value="No"><br>
-						<button type="button" id="btn2" onclick="nicknameCheck()" class="input-group-text btn-success text-light">중복체크</button>
+						<button type="button" id="btn2" onclick="nicknameCheck()" class="btn btn-info" role="button" style="width: 100px; color: white;">중복체크</button>
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">연락처</label>
@@ -109,8 +109,8 @@
 							</select>
                     </div><br><br>
                     <div>
-                        <button type="submit" class="btn btn-success btn-lg px-3">회원가입</button>&nbsp;&nbsp;
-                        <button type="reset" class="btn btn-success btn-lg px-3">취소</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-info" role="button" style="width: 100px; height:50px; color: white;">회원가입</button>&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-info" role="button" style="width: 100px; height:50px; color: white;">취소</button>&nbsp;&nbsp;
                         <a  href="javascript:kakaoLogin();">
 					<img src="https://developers.kakao.com/tool/resource/static/img/button/kakaosync/complete/ko/kakao_login_medium_narrow.png" />
 					</a> 
@@ -206,10 +206,8 @@
 					<img src="https://developers.kakao.com/tool/resource/static/img/button/kakaosync/complete/ko/kakao_login_medium_narrow.png" />
 					</a> 
 				</div>
-
-			</form>
-		</div>
-
+			</form> -->
+		
 	<!-- <form id="kakaoForm" method="post" action="kakaoLogin.do">
       <input type="hidden" name="email"/>
       <input type="hidden" name="name"/>
