@@ -130,8 +130,8 @@
 				let tr = $("<tr />").append(
 				 		$("<th />").text(data.commentsNick),
 				 		$("<td />").text(data.commentsContent),
-				 		$("<td />").text(today),
-				 		$("<td  />").append($("<button class="btn btn-info" role="button" style="width: 120px; color: white; display: inline-block;"  onclick='commentdelete()' />").text("삭제"))
+				 		$("<td />").text(today)
+				 		//,$("<td  />").append($("<button class='btn btn-info' role='button' style='width: 120px; color: white; display: inline-block;'  onclick='commentdelete()' />").text("삭제"))
 				 		);
 				
 				$('#comm').append(tr);

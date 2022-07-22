@@ -114,7 +114,8 @@
 					%>
 			        ${front }&nbsp;&nbsp;
                     <a class="navbar-sm-brand text-light text-decoration-none" href='memberLogout.do'>로그아웃</a>&nbsp;<a>/</a>&nbsp;
-                    <a class="navbar-sm-brand text-light text-decoration-none" href='memberList.do'>관리자 페이지</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href='faq.do'>고객센터</a>&nbsp;<a>/</a>&nbsp;
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="memberList.do">사용자관리</a>
                     <%
 					} else {
 					%>
