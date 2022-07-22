@@ -169,13 +169,7 @@
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
+                                
                                 <li class="text-muted text-right">62000￦</li>
                             </ul>
                             <a href="dealList.do" class="h2 text-decoration-none text-dark">폴라로이드 카메라</a>
