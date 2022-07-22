@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
 				
 				<input type="text" id="val" name="val"> &nbsp;&nbsp;
 				<!-- <input type="submit" value="검색"> -->
-				<button class="btn btn-success" type="submit">검색</button>&nbsp;
+				<button class="btn btn-success" type="submit">검색</button>
 				
 				<c:if test="${not empty id}">
 				<!-- <a class="btn btn-success" onclick="location.href='communityForm.do'">글쓰기</a> -->

@@ -139,13 +139,13 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="main.do">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="dealList.do">장터</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="communityList.do">커뮤니티</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="faq.do">고객센터</a>
                         </li>
                     </ul>
                 </div>

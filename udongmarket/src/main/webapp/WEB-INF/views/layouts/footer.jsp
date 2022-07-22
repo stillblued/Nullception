@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Menu</h2>
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">메뉴</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="dealList.do">장터</a></li>
                         <li><a class="text-decoration-none" href="communityList.do">커뮤니티</a></li>
@@ -48,13 +48,11 @@
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">인포</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="faq.do">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        
+                        <li><a class="text-decoration-none" href="faq.do">고객센터</a></li>
+                      
                     </ul>
                 </div>
             </div>

@@ -57,12 +57,13 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Zay</b> eCommerce</h1>
-                                <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                                <h1 class="h1 text-success">우리 동네의</h1>
+                                <h3 class="h2">믿을 수 있는 직거래 중고 커뮤니티</h3>
                                 <p>
-                                    <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                    <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
-                                    <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
+                                동네 주민들과 가깝고 따뜻한 거래를 지금 경험해보세요.
+                                    <a rel="sponsored" class="text-success" href="main.do" target="_blank"></a>
+                                    <a rel="sponsored" class="text-success" href="main.do" target="_blank"></a> 
+                                    <a rel="sponsored" class="text-success" href="main.do" target="_blank"></a>
                                 </p>
                             </div>
                         </div>
@@ -77,12 +78,12 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Proident occaecat</h1>
-                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                                <h1 class="h1">동네 모임</h1>
+                                <h3 class="h2">이웃과 함께 하는 동네생활</h3>
                                 <p>
-                                    You are permitted to use this Zay CSS template for your commercial websites. 
-                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
-                                </p>
+                                    중고 거래부터 동네 정보까지, 이웃과 함께해요. </p>
+                                  <p>  가깝고 따뜻한 우리 동네를 만들어요 </p>
+                                   <p> 관심사가 비슷한 이웃과 온오프라인으로 만나요.</p>
                             </div>
                         </div>
                     </div>
@@ -96,12 +97,11 @@
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
-                                <h1 class="h1">Repr in voluptate</h1>
-                                <h3 class="h2">Ullamco laboris nisi ut </h3>
+                                <h1 class="h1">우리 동네 질문</h1>
+                                <h3 class="h2">동네 분실 센터 </h3>
                                 <p>
-                                    We bring you 100% free CSS templates for your websites. 
-                                    If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
-                                </p>
+                                  궁금한 게 있을 땐 이웃에게 물어보세요.</p>
+                                  <p>무언가를 잃어버렸을 때, 함께 찾을 수 있어요. </p>
                             </div>
                         </div>
                     </div>
@@ -123,55 +123,65 @@
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">신규 등록 상품</h1>
+                    <h1 class="h1">중고 매물 더보기</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="dealList.do">
                             <img src="./img/feature_prod_01.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$240.00</li>
+                                
+                                <li class="text-muted text-right">4500￦</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="dealList.do" class="h2 text-decoration-none text-dark">고성능 손전등</a>
                             <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                                 사용감 적어요!
                             </p>
+                            <p class="text-muted">관심 등록 / 거래 신청</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="dealList.do">
                             <img src="./img/feature_prod_02.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$480.00</li>
+                                
+                                <li class="text-muted text-right">150000￦</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
+                            <a href="dealList.do" class="h2 text-decoration-none text-dark">스마트 워치</a>
                             <p class="card-text">
-                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
-                            </p>
+                                이 기회에 싼 값에 구매하세요 </p>
+                            <p class="text-muted">관심 등록 / 거래 신청</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="dealList.do">
                             <img src="./img/feature_prod_03.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">$360.00</li>
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">62000￦</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                            <a href="dealList.do" class="h2 text-decoration-none text-dark">폴라로이드 카메라</a>
                             <p class="card-text">
-                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
-                            </p>
+                              사용감 있지만 A급이라 자부합니다.</p>
+                            <p class="text-muted">관심 등록 / 거래 신청</p>
                         </div>
                     </div>
                 </div>

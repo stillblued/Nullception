@@ -24,9 +24,9 @@
 			enctype="multipart/form-data" width="60%">
 			<input type="hidden" id="boardId" name="boardId" value="${vo.boardId}" />
 			<div class="form">
-				<table class="table table-bordered" style="width: 800px;">
+				<table border="1">
 					<tr>
-						<th class="table-light">상품이미지</th>
+						<th>상품이미지</th>
 						<td><input type="file" id="file" name="file"> <c:if
 								test="${not empty vo.attach }">
 								<input type="text" id="oldFile" name="oldFile"
@@ -36,28 +36,28 @@
 							value="${vo.attachDir}" /></td>
 					</tr>
 					<tr>
-						<th class="table-light">카테고리</th>
+						<th>카테고리</th>
 						<td><select id="dealCategory" name="dealCategory">
 								<option value="${vo.dealCategory}">${vo.dealCategory}</option>
 						</select></td>
 					</tr>
 					<tr>
-						<th class="table-light">상품명</th>
+						<th>상품명</th>
 						<td><input type="text" id="dealTitle" name="dealTitle"
 							value="${vo.dealTitle}" required="required"></td>
 					</tr>
 					<tr>
-						<th class="table-light">가격</th>
+						<th>가격</th>
 						<td><input type="number" id="price" name="price"
 							value="${vo.price}" required="required"></td>
 					</tr>
 					<tr>
-						<th class="table-light">설명</th>
+						<th>설명</th>
 						<td><textarea rows="6" cols="50" id="dealContent"
 								name="dealContent" required="required">${vo.dealContent}</textarea></td>
 					</tr>
 					<tr>
-						<th class="table-light">거래상태</th>
+						<th>거래상태</th>
 						<td><input type="radio" name="dealState" value="거래가능"
 							checked="checked">거래가능 <input type="radio"
 							name="dealState" value="거래중">거래중 <input type="radio"
@@ -67,14 +67,11 @@
 			</div>
 			<br>
 			<div>
-				<button class="btn btn-success" type="submit">등록</button>
-				<!-- <button type="submit">완료</button> -->
+				<button type="submit">완료</button>
 				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-success" type="reset">리셋</button>
-				<!-- <button type="reset">리셋</button> -->
+				<button type="reset">리셋</button>
 				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-success" type="button" onclick="location.href='communityList.do'">목록가기</button>
-				<!-- <button type="button" onclick="location.href='dealList.do'">취소</button> -->
+				<button type="button" onclick="location.href='dealList.do'">취소</button>
 			</div>
 		</form>
 	</div>

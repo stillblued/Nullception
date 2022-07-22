@@ -11,7 +11,7 @@
 <body>
 	<br>
 	<br>
-	<div align="center">
+	<div align="center"  width="60%">
 		<div>
 			<h1>게시글 수정</h1>
 		</div>
@@ -23,29 +23,29 @@
 			<input type="hidden" id="boardId" name="boardId"
 				value="${vo.boardId}">
 
-			<table class="table table-bordered" style="width: 800px;">
+			<table border="1">
 
 				<tr>
-					<th class="table-light" style="width: 100px;">#</th>
+					<th>#</th>
 					<td colspan="3"><select id="comCategory" name="comCategory">
 							<option selected value="${vo.comCategory}">${vo.comCategory}</option>
 					</select></td>
 				</tr>
 
 				<tr>
-					<th class="table-light">제목</th>
-					<td colspan="3"><input type="text" size="75" id="comTitle"
+					<th>제목</th>
+					<td colspan="3"><input type="text" size="73" id="comTitle"
 						name="comTitle" required="required" value="${vo.comTitle}"></td>
 				</tr>
 
 				<tr>
-					<th class="table-light">내용</th>
+					<th>내용</th>
 					<td colspan="3"><textarea rows="6" cols="75" id="comContent"
 							name="comContent" required="required">${vo.comContent}</textarea></td>
 				</tr>
 
 				<tr>
-					<th class="table-light">첨부파일</th>
+					<th>첨부파일</th>
 					<td><input type="file" id="file" name="file"> <c:if
 							test="${not empty vo.attach }">
 							<input type="text" id="oldFile" name="oldFile"
@@ -59,14 +59,11 @@
 			<br>
 
 			<div>
-				<button class="btn btn-success" type="submit">등록</button>
-				<!-- <button type="submit">완료</button> -->
+				<button type="submit">완료</button>
 				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-success" type="reset">리셋</button>
-				<!-- <button type="reset">리셋</button> -->
+				<button type="reset">리셋</button>
 				&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-success" type="button" onclick="location.href='communityList.do'">목록가기</button>
-				<!-- <button type="button" onclick="location.href='communityList.do'">취소</button> -->
+				<button type="button" onclick="location.href='communityList.do'">취소</button>
 			</div>
 
 		</form>

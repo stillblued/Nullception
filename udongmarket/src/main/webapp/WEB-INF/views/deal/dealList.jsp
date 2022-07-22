@@ -31,7 +31,7 @@ margin: 10px;
 			<h1 id = "titleName">${udong } 장터</h1>
 			<c:if test = "${not empty location}">
 			<button type="button" onclick="changeLoca1()">▶</button>
-			<button type="button" onclick="changeLoca2()">▶</button>
+			<button type="button" onclick="changeLoca2()">▶▶</button>
 			</c:if>
 		</div>
 		<br>
@@ -40,7 +40,7 @@ margin: 10px;
 				<option value="deal_title">상품명</option>
 				<option value="deal_content">설명</option>
 			</select> &nbsp;&nbsp; <input type="text" id="val" name="val">
-			&nbsp;&nbsp; <button class="btn btn-success" type="submit">검색</button>&nbsp;
+			&nbsp;&nbsp; <button class="btn btn-success" type="submit">검색</button>
 			
 			<c:if test="${not empty id}">
 				<button class="btn btn-success" type="button" onclick="location.href='dealForm.do'">거래하기</button>
@@ -51,6 +51,7 @@ margin: 10px;
 		<br>
 
 		<c:forEach var="list" items="${list}">
+
 			<table border="1">
 				<tr onclick="location.href='dealDetail.do?boardId=${list.boardId }'">
 					<td colspan="2">
@@ -71,11 +72,16 @@ margin: 10px;
 					<td>${list.dealCategory }</td>
 					<td>${list.dealDate.substring(0,11) }</td>
 				</tr>
+
 			</table>
+
 		</c:forEach>
 
+
 		<br>
+
 		<c:if test="${empty key }">
+
 			<div id="page">
 				<%
 				int startPage = (int) request.getAttribute("startPage");
@@ -104,9 +110,10 @@ margin: 10px;
 				}
 				%>
 			</div>
+
 		</c:if>
 	</div>
-	
+
 	<br>
 	<br>
 

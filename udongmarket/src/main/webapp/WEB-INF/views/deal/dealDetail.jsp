@@ -43,26 +43,20 @@
 				enctype="application/x-www-form-urlencoded">
 				<input type="hidden" id="boardId" name="boardId"
 					value="${vo.boardId}" />
-				<button class="btn btn-success" type="submit">수정</button>
-				<!-- <button type="submit">수정</button> -->
-				<button class="btn btn-success" onclick="delDealGo(${vo.boardId})">삭제</button>
-				<%-- <button type="button" onclick="delDealGo(${vo.boardId})">삭제</button> --%>
+				<button type="submit">수정</button>
+				<button type="button" onclick="delDealGo(${vo.boardId})">삭제</button>
 			</form>
 		</c:if>
 
 		<c:if test="${not empty nick }">
-			<button class="btn btn-success" id="Ilikeit" onclick="likeDeal(${ vo.boardId})">♥</button>
-			<%-- <button type="button" id="Ilikeit"
-				onclick="likeDeal(${ vo.boardId})">♥</button> --%>
-			<button class="btn btn-success" id="GoGoDeal" onclick="GoToDeal(${ vo.boardId})">거래신청</button>
-			<%-- <button type="button" id="GoGoDeal" onclick="GoToDeal(${ vo.boardId})">거래신청</button> --%>
-			<button class="btn btn-success" location.href="'faqForm.do?reportedId=${ vo.nickname}'">신고</button>
-			<%-- <button type="button"
-				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button> --%>
+			<button type="button" id="Ilikeit"
+				onclick="likeDeal(${ vo.boardId})">♥</button>
+				<button type="button" id="GoGoDeal" onclick="GoToDeal(${ vo.boardId})">거래신청</button>
+			<button type="button"
+				onclick="location.href='faqForm.do?reportedId=${ vo.nickname}'">신고</button>
 		</c:if>
 
-		<button class="btn btn-success" onclick="location.href='dealList.do'">목록</button>
-		<!-- <button type="button" onclick="location.href='dealList.do'">목록</button> -->
+		<button type="button" onclick="location.href='dealList.do'">목록</button>
 
 
 		<hr>
@@ -78,9 +72,8 @@
 						<td><c:if test="${ not empty nick }">
 								<button type="button"
 									onclick="location.href='faqForm.do?reportedId=${list.commentsNick }'">신고</button>
-							</c:if>
-							<c:if test="${ nick eq list.commentsNick }">
-								<button type="button" onclick="coDelete(${list.commentsId })">삭제</button>
+							</c:if> <c:if test="${ nick eq list.commentsNick }">
+								<button type="button" onclick="comDelete(${list.commentsId })">삭제</button>
 							</c:if></td>
 					</tr>
 				</c:forEach>
@@ -99,9 +92,8 @@
 			<table class="table table-bordered" style="width: 800px; text-align:center;">
 				<tr>
 					<td>${nick}</td>
-					<td><textarea name="review" cols="60" id="commentsContent"></textarea></td>
-					<td><button class="btn btn-success" onclick="comInsert()">등록</button></td>
-					<!-- <td><button type="button" onclick="comInsert()">등록</button></td> -->
+					<td><textarea id="commentsContent"></textarea></td>
+					<td><button type="button" onclick="comInsert()">등록</button></td>
 				</tr>
 			</table>
 
