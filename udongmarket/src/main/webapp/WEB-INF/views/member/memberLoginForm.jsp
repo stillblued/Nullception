@@ -49,9 +49,9 @@
                     </div>
                 <div class="row">
                     <div><br><br>
-                        <button type="submit" class="btn btn-success btn-lg px-3">로그인</button>&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-success btn-lg px-3" onclick="location.href='memberJoinForm.do'">회원가입</button>&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-success btn-lg px-3" onclick="location.href='main.do'">메인</button><br><br><br>
+                        <button type="submit" class="btn btn-info" role="button" style="width: 100px; height:50px; color: white;">로그인</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-info" role="button" style="width: 100px; height:50px; color: white;"onclick="location.href='memberJoinForm.do'">회원가입</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-info" role="button" style="width: 100px; height:50px; color: white;"onclick="location.href='main.do'">메인</button><br><br><br>
                         <a  href="javascript:kakaoLogin();">
 					<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" />
 					</a>
